@@ -13,7 +13,8 @@ set tabstop=2
 set cmdheight=1
 set showtabline=1
 set switchbuf=
-
+set number
+set relativenumber
 
 if has("gui_running")
   set background=light
@@ -210,6 +211,7 @@ nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
 nmap <leader>iw :set wrap!<CR>
 nmap <leader>is :nohlsearch<CR>
 nmap <leader>ip :set paste!<CR>
+nmap <leader>in :set number!<CR>:set relativenumber!<CR>
 
 
 " misc

@@ -45,7 +45,6 @@ base16-vim https://github.com/chriskempson/base16-vim
 jedi-vim https://github.com/davidhalter/jedi-vim
 jellybeans.vim https://github.com/nanotech/jellybeans.vim
 molokai https://github.com/tomasr/molokai
-numbers.vim https://github.com/myusuf3/numbers.vim
 tabular https://github.com/godlygeek/tabular
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
@@ -55,7 +54,8 @@ tagbar https://github.com/majutsushi/tagbar
 vimim https://github.com/vimim/vimim
 """.strip()
 
-#peaksea https://github.com/vim-scripts/peaksea
+# peaksea https://github.com/vim-scripts/peaksea
+# numbers.vim https://github.com/myusuf3/numbers.vim
 PLUGINS = """
 vim-signature https://github.com/kshenoy/vim-signature
 """.strip()
