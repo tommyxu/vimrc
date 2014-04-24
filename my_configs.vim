@@ -156,18 +156,25 @@ nmap <leader>no :NumbersOnOff<CR>
 nmap <leader>nt :NumbersToggle<CR>
 
 
+" vimim
+let g:vimim_toggle="wubi,pinyin"
+
+
+" peepopen (disable)
+let g:peepopen_loaded=1
+
+
 " system
 nmap <leader>x :x<CR>
 nmap <leader>q <ESC>:q!<CR>
 nmap <leader>qq <ESC>:qa!<CR>
 
 
-" motion
+" motion and reset
 unmap <C-B>
 unmap <C-H>
 unmap <C-J>
 unmap 0
-unmap <leader>p
 nnoremap <bslash> <C-B>
 nnoremap <space> <C-F>
 
@@ -212,7 +219,4 @@ nmap <leader>v <Esc>:!./%<CR>
 nnoremap <C-L> o<ESC>
 " use <CR> to confirm omni-complete popup
 inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
-
-let g:vimim_toggle="wubi,pinyin"
-" vimim
 
