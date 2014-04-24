@@ -50,11 +50,13 @@ tabular https://github.com/godlygeek/tabular
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-gitgutter https://github.com/airblade/vim-gitgutter
+vim-easymotion https://github.com/Lokaltog/vim-easymotion
+tagbar https://github.com/majutsushi/tagbar
 """.strip()
 
 #peaksea https://github.com/vim-scripts/peaksea
 PLUGINS = """
-vim-easymotion https://github.com/Lokaltog/vim-easymotion
+tagbar https://github.com/majutsushi/tagbar
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'

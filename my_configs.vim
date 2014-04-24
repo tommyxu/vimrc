@@ -12,7 +12,7 @@ set shiftwidth=2
 set tabstop=2
 set cmdheight=1
 set showtabline=1
-
+set switchbuf=
 
 if has("gui_running")
   set background=light
