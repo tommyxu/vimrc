@@ -56,9 +56,9 @@ vimim https://github.com/vimim/vimim
 """.strip()
 
 #peaksea https://github.com/vim-scripts/peaksea
-# PLUGINS = """
-# vimim https://github.com/vimim/vimim
-# """.strip()
+PLUGINS = """
+vim-signature https://github.com/kshenoy/vim-signature
+""".strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
 

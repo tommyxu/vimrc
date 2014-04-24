@@ -200,7 +200,7 @@ nnoremap <leader>lp :lprev<CR>
 
 " copy/paste from system clipboard
 " under insert mode, it is the same as <C-R>* or <C-R>+
-imap <C-K>v <C-O>"+p
+imap <C-K>v <C-O>"+P
 nmap <C-K>v "+P
 vmap <C-K>c "+y
 
