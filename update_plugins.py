@@ -39,7 +39,16 @@ syntastic https://github.com/scrooloose/syntastic
 vim-repeat https://github.com/tpope/vim-repeat
 vim-commentary https://github.com/tpope/vim-commentary
 vim-golang https://github.com/jnwhiteh/vim-golang
+base16-vim https://github.com/chriskempson/base16-vim
+jedi-vim https://github.com/davidhalter/jedi-vim
+jellybeans.vim https://github.com/nanotech/jellybeans.vim
+molokai https://github.com/tomasr/molokai
+numbers.vim https://github.com/myusuf3/numbers.vim
+tabular https://github.com/godlygeek/tabular
+vim-textobj-line https://github.com/kana/vim-textobj-line
 """.strip()
+
+#peaksea https://github.com/vim-scripts/peaksea
 
 GITHUB_ZIP = '%s/archive/master.zip'
 
