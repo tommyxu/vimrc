@@ -81,6 +81,15 @@ let g:multi_cursor_next_key = '<C-E>'
 " let g:multi_cursor_prev_key = '<C-z>'
 
 
+" signature
+let g:SignatureMap = {
+  \ 'Leader'            : "m",
+  \ 'PlaceNextMark'     : "m",
+  \ 'GotoNextSpotByPos' : "mn",
+  \ 'GotoPrevSpotByPos' : "mp",
+  \ }
+
+
 " showmarks
 let g:showmarks_textlower="#"
 let g:showmarks_hlline_lower=1
