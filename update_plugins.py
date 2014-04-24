@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import zipfile
 import shutil
 import tempfile
@@ -46,7 +48,14 @@ molokai https://github.com/tomasr/molokai
 numbers.vim https://github.com/myusuf3/numbers.vim
 tabular https://github.com/godlygeek/tabular
 vim-textobj-line https://github.com/kana/vim-textobj-line
+vim-textobj-user https://github.com/kana/vim-textobj-user
+vim-gitgutter https://github.com/airblade/vim-gitgutter
 """.strip()
+
+# PLUGINS = """
+# vim-textobj-user https://github.com/kana/vim-textobj-user
+# vim-gitgutter https://github.com/airblade/vim-gitgutter
+# """.strip()
 
 #peaksea https://github.com/vim-scripts/peaksea
 
