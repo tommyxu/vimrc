@@ -1,0 +1,201 @@
+syntax enable
+
+au FileType javascript setl nofoldenable nowrap
+au FileType python setl nowrap
+au FileType json setl nowrap
+
+set nofoldenable
+set foldcolumn=0
+set textwidth=0
+set nolbr
+set shiftwidth=2
+set tabstop=2
+set cmdheight=1
+set showtabline=1
+
+
+if has("gui_running")
+  set background=light
+  " let g:solarized_termcolors=256
+  " set t_Co=16
+  colorscheme solarized
+else
+  set t_Co=256
+  set background=dark
+  colorscheme jellybeans
+endif
+
+" colorscheme peaksea
+" colorscheme default
+" colorscheme ir_black
+" colorscheme elflord
+" colorscheme Tomorrow-Night-Eighties
+" colorscheme base16-3024 
+" colorscheme molokai
+" colorscheme jellybeans
+
+
+" airline
+let g:airline#extensions#tabline#enabled=1
+
+
+" tagbar
+let g:tagbar_autofocus = 1
+" let g:tagbar_hide_nonpublic = 1
+" let g:tagbar_left = 1
+let g:tagbar_sort = 0
+let g:tagbar_width = 42
+let g:tagbar_indent = 1
+" autocmd VimEnter * nested :TagbarOpen
+map <leader>tt :TagbarToggle<CR>
+
+
+" syntastic
+let g:syntastic_auto_loc_list = 1
+" let g:syntastic_python_checkers = ['python']
+" let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_c_checkers = ['make', 'gcc']
+
+
+" multicursor
+" let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_start_key= '<C-E>'
+let g:multi_cursor_next_key = '<C-E>'
+" let g:multi_cursor_skip_key = '<C-x>'
+" let g:multi_cursor_quit_key = '<Esc>'
+" let g:multi_cursor_prev_key = '<C-z>'
+
+
+" showmarks
+let g:showmarks_textlower="#"
+let g:showmarks_hlline_lower=1
+let g:showmarks_include="abcdefgjknzxvqwrt"
+let g:showmarks_enable=0
+hi default ShowMarksHLl cterm=reverse
+hi default ShowMarksHLm cterm=reverse
+" let g:showmarks_textother="-"
+
+
+" git gutter
+let g:gitgutter_map_keys = 0
+nmap <leader>kk :GitGutterToggle<CR>
+nmap <leader>kt :GitGutterToggle<CR>
+nmap <leader>kl :GitGutterLineHighlightsToggle<CR>
+nmap <leader>kn :GitGutterNextHunk<CR>
+nmap <leader>kp :GitGutterPrevHunk<CR>
+nmap <leader>ku <Plug>GitGutterRevertHunk
+nmap <leader>kv <Plug>GitGutterPreviewHunk
+
+
+" git fugitive
+nmap <leader>ks :Gstatus<CR>
+nmap <leader>kd :Gdiff<CR>
+nmap <leader>kc :Gcommit<CR>
+
+
+" jedi
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#goto_assignments_command = "<leader>ga"
+let g:jedi#goto_definitions_command = "<leader>gd"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>gu"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>gr"
+let g:jedi#show_call_signatures = "1"
+
+
+" ack
+map <leader>a :Ack   %<LEFT><LEFT><LEFT>
+map <leader>aa :Ack  <LEFT>
+
+
+" ctrl-p find-files
+let g:ctrlp_map = '<leader>f'
+
+
+" MRU
+map <leader>r :MRU<CR>
+
+
+" easymotion
+map <leader>g <Plug>(easymotion-prefix)
+map <leader>gl <Plug>(easymotion-bd-jk)
+map S <Plug>(easymotion-jumptoanywhere)
+map s <Plug>(easymotion-bd-w)
+
+
+" tabularize
+map <leader>al :Tab /=
+map <leader>ar :s/ *\(=\) */ \1 /
+
+
+" yankring
+map <leader>y :YRShow<CR>
+
+
+" commentary
+let g:commentary_map_backslash = 0
+
+
+" vim-number
+nmap <leader>no :NumbersOnOff<CR>
+nmap <leader>nt :NumbersToggle<CR>
+
+
+" system
+nmap <leader>x :x<CR>
+nmap <leader>q <ESC>:q!<CR>
+nmap <leader>qq <ESC>:qa!<CR>
+
+
+" motion
+unmap <C-B>
+unmap <C-H>
+unmap <C-J>
+unmap 0
+nnoremap <bslash> <C-B>
+nnoremap <space> <C-F>
+
+
+" buffer
+nmap <leader><leader> :e #<CR>
+nmap <leader>bn :bnext<CR>
+nmap <leader>bp :bprev<CR>
+map <leader>bd :Bdelete<CR>
+map <leader>bc :Bclose<CR>
+
+
+" quickfix
+nnoremap <leader>cl :ccl<CR>
+nnoremap <leader>cn :cn<CR>
+nnoremap <leader>cp :cp<CR>
+
+
+" location next/prev
+nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>lp :lprev<CR>
+
+
+" copy/paste from system clipboard
+" under insert mode, it is the same as <C-R>* or <C-R>+
+imap <C-K>v <C-O>"+p
+nmap <C-K>v "+P
+vmap <C-K>c "+y
+
+
+" toggle option
+nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
+nmap <leader>iw :set wrap!<CR>
+nmap <leader>is :nohlsearch<CR>
+nmap <leader>ip :set paste!<CR>
+
+
+" misc
+" execute current script (python/bash)
+nmap <leader>v <Esc>:!./%<CR>
+" insert a empty line
+nnoremap <C-L> o<ESC>
+" use <CR> to confirm omni-complete popup
+inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
+
