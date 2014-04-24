@@ -14,6 +14,7 @@ set cmdheight=1
 set showtabline=1
 set switchbuf=
 
+
 if has("gui_running")
   set background=light
   " let g:solarized_termcolors=256
@@ -22,7 +23,7 @@ if has("gui_running")
 else
   set t_Co=256
   set background=dark
-  colorscheme jellybeans
+  colorscheme molokai
 endif
 
 " colorscheme peaksea
@@ -166,6 +167,7 @@ unmap <C-B>
 unmap <C-H>
 unmap <C-J>
 unmap 0
+unmap <leader>p
 nnoremap <bslash> <C-B>
 nnoremap <space> <C-F>
 
@@ -210,4 +212,7 @@ nmap <leader>v <Esc>:!./%<CR>
 nnoremap <C-L> o<ESC>
 " use <CR> to confirm omni-complete popup
 inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
+
+let g:vimim_toggle="wubi,pinyin"
+" vimim
 

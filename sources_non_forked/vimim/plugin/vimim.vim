@@ -2244,14 +2244,14 @@ function! s:vimim_set_backend_embedded()
     let dir = s:plugin . "pinyin"  " always test ../plugin/pinyin/pinyin
     if isdirectory(dir)
         if filereadable(dir . "/pinyin")
-            return s:vimim_set_directory(dir . "/")
+            call s:vimim_set_directory(dir . "/")
         endif
     endif
     " (2/3) scan bsddb database as edw: enterprise data warehouse
     if has("python") " bsddb is from Python 2 only with 46,694,400 Bytes
         let datafile = s:vimim_filereadable("vimim.gbk.bsddb")
         if !empty(datafile)
-            return s:vimim_set_datafile("pinyin", datafile)
+            call s:vimim_set_datafile("pinyin", datafile)
         endif
     endif
     " (3/3) scan all supported data files, in order
