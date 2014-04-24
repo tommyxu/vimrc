@@ -39,7 +39,20 @@ endif
 let g:airline#extensions#tabline#enabled=1
 
 
+" taglist
+map <leader>tl :TlistToggle<CR>NumbersDisable
+" let Tlist_Compact_Format = 1
+let Tlist_File_Fold_Auto_Close = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_WinWidth = 42
+let Tlist_Show_One_File = 1
+let Tlist_Use_Right_Window = 1
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Exit_OnlyWindow = 1
+
+
 " tagbar
+map <leader>tt :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 " let g:tagbar_hide_nonpublic = 1
 " let g:tagbar_left = 1
@@ -47,7 +60,6 @@ let g:tagbar_sort = 0
 let g:tagbar_width = 42
 let g:tagbar_indent = 1
 " autocmd VimEnter * nested :TagbarOpen
-map <leader>tt :TagbarToggle<CR>
 
 
 " syntastic

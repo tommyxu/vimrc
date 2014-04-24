@@ -52,12 +52,10 @@ vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-gitgutter https://github.com/airblade/vim-gitgutter
 """.strip()
 
-# PLUGINS = """
-# vim-textobj-user https://github.com/kana/vim-textobj-user
-# vim-gitgutter https://github.com/airblade/vim-gitgutter
-# """.strip()
-
 #peaksea https://github.com/vim-scripts/peaksea
+PLUGINS = """
+vim-easymotion https://github.com/Lokaltog/vim-easymotion
+""".strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
 
