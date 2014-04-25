@@ -42,7 +42,7 @@ let g:airline#extensions#tabline#enabled=1
 
 
 " taglist
-map <leader>tl :TlistToggle<CR>NumbersDisable
+map <leader>tl :TlistToggle<CR><leader>inn
 " let Tlist_Compact_Format = 1
 let Tlist_File_Fold_Auto_Close = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
@@ -193,8 +193,8 @@ nnoremap <space> <C-F>
 nmap <leader><leader> :e #<CR>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
-map <leader>bd :Bdelete<CR>
-map <leader>bc :Bclose<CR>
+map <leader>bd :bdelete<CR>
+map <leader>bcc :1,19bdelete<CR>
 
 
 " quickfix
@@ -218,9 +218,12 @@ vmap <C-K>c "+y
 " toggle option
 nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
 nmap <leader>iw :set wrap!<CR>
-nmap <leader>is :nohlsearch<CR>
 nmap <leader>ip :set paste!<CR>
-nmap <leader>in :set number!<CR>:set relativenumber!<CR>
+nmap <leader>is :nohlsearch<CR>
+" use 2 commands to switch line numbers as 
+" option "number" and "relativenumber" are exclusive on same vim version
+nmap <leader>in :set number<CR>:set relativenumber<CR>
+nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 
 
 " misc
