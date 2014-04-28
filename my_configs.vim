@@ -131,6 +131,7 @@ let g:jedi#show_call_signatures = "1"
 " ack
 map <leader>a :Ack   %<LEFT><LEFT><LEFT>
 map <leader>aa :Ack  <LEFT>
+map <leader>as :Ack <cword><CR>
 
 
 " ctrl-p find-files
