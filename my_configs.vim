@@ -195,7 +195,7 @@ nmap <leader><leader> :e #<CR>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
 map <leader>bd :bdelete<CR>
-map <leader>bcc :1,19bdelete<CR>
+map <leader>bb :bdelete<CR>
 
 
 " quickfix
