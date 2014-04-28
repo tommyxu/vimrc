@@ -143,8 +143,8 @@ map <leader>r :MRU<CR>
 
 " easymotion
 map <leader>g <Plug>(easymotion-prefix)
-map <leader>gl <Plug>(easymotion-bd-jk)
-map S <Plug>(easymotion-jumptoanywhere)
+" map <leader>gl <Plug>(easymotion-bd-jk)
+map S <Plug>(easymotion-bd-W)
 map s <Plug>(easymotion-bd-w)
 
 
