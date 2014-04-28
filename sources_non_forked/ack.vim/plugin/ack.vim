@@ -1,5 +1,5 @@
 if !exists("g:ack_default_options")
-  let g:ack_default_options = " -s -H --nocolor --nogroup --column"
+  let g:ack_default_options = " -H --nocolor --nogroup --column"
 endif
 
 " Location of the ack utility
