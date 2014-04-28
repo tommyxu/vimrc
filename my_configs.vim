@@ -13,7 +13,7 @@ set tabstop=2
 set cmdheight=1
 set showtabline=1
 set switchbuf=
-set number
+set nonumber
 set relativenumber
 
 if has("gui_running")
@@ -142,7 +142,8 @@ map <leader>r :MRU<CR>
 
 
 " easymotion
-map <leader>g <Plug>(easymotion-prefix)
+let g:EasyMotion_do_mapping=0
+map <leader>ge <Plug>(easymotion-prefix)
 " map <leader>gl <Plug>(easymotion-bd-jk)
 map S <Plug>(easymotion-bd-W)
 map s <Plug>(easymotion-bd-w)
@@ -221,8 +222,8 @@ nmap <leader>iw :set wrap!<CR>
 nmap <leader>ip :set paste!<CR>
 nmap <leader>is :nohlsearch<CR>
 " use 2 commands to switch line numbers as 
-" option "number" and "relativenumber" are exclusive on same vim version
-nmap <leader>in :set number<CR>:set relativenumber<CR>
+" there is a bug that option "number" and "relativenumber" are exclusive on same vim version
+nmap <leader>in :set nonumber<CR>:set relativenumber<CR>
 nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 
 
