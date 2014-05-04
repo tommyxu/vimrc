@@ -52,12 +52,13 @@ vim-gitgutter https://github.com/airblade/vim-gitgutter
 vim-easymotion https://github.com/Lokaltog/vim-easymotion
 tagbar https://github.com/majutsushi/tagbar
 vimim https://github.com/vimim/vimim
+vim-signature https://github.com/kshenoy/vim-signature
 """.strip()
 
 # peaksea https://github.com/vim-scripts/peaksea
 # numbers.vim https://github.com/myusuf3/numbers.vim
+# vim-conque https://github.com/basepi/vim-conque
 PLUGINS = """
-vim-signature https://github.com/kshenoy/vim-signature
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
