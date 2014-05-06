@@ -37,6 +37,13 @@ endif
 " colorscheme jellybeans
 
 
+" bufexplorer
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerShowRelativePath=0
+" let g:bufExplorerSortBy='number'
+let g:bufExplorerSortBy='mru'
+
+
 " airline
 let g:airline#extensions#tabline#enabled=1
 
