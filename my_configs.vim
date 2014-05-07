@@ -10,11 +10,14 @@ set textwidth=0
 set nolbr
 set shiftwidth=2
 set tabstop=2
+" set softtabstop=2
 set cmdheight=1
 set showtabline=1
 set switchbuf=
 set nonumber
 set relativenumber
+set cursorline
+set wildmenu
 
 if has("gui_running")
   set background=light
@@ -230,7 +233,7 @@ vmap <C-K>c "+y
 nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
 nmap <leader>iw :set wrap!<CR>
 nmap <leader>ip :set paste!<CR>
-nmap <leader>is :nohlsearch<CR>
+nmap <leader>ii :nohlsearch<CR>
 " use 2 commands to switch line numbers as 
 " there is a bug that option "number" and "relativenumber" are exclusive on same vim version
 nmap <leader>in :set nonumber<CR>:set relativenumber<CR>
@@ -244,4 +247,7 @@ nmap <leader>v <Esc>:!./%<CR>
 nnoremap <C-L> o<ESC>
 " use <CR> to confirm omni-complete popup
 inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
+" select last inserted text
+nnoremap gV `[v`]
+
 
