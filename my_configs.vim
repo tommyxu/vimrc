@@ -10,7 +10,7 @@ set textwidth=0
 set nolbr
 set shiftwidth=2
 set tabstop=2
-" set softtabstop=2
+set softtabstop=2
 set cmdheight=1
 set showtabline=1
 set switchbuf=
@@ -19,21 +19,26 @@ set relativenumber
 set cursorline
 set wildmenu
 
+
+" color scheme selection
+let g:solarized_termcolors=256
+let g:gruvbox_italicize_comments=0
+
 if has("gui_running")
   set background=light
-  " let g:solarized_termcolors=256
-  " set t_Co=16
   colorscheme solarized
 else
+  " set t_Co=16
   set t_Co=256
+
+  " set background=light
+  " colorscheme solarized
+
   set background=dark
-  set background=light
-  " colorscheme molokai
-  colorscheme kolor
-  " let g:gruvbox_italicize_comments=0
-  " colorscheme gruvbox
+  colorscheme gruvbox
 endif
 
+" colorscheme kolor
 " colorscheme peaksea
 " colorscheme default
 " colorscheme ir_black
