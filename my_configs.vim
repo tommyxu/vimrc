@@ -80,7 +80,7 @@ let g:syntastic_auto_loc_list = 1
 " let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_c_checkers = ['make', 'gcc']
-let g:syntastic_cpp_checkers = ['cppcheck'] 
+let g:syntastic_cpp_checkers = ['make', 'cppcheck'] 
 
 
 " multicursor
