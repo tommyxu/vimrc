@@ -27,7 +27,11 @@ if has("gui_running")
 else
   set t_Co=256
   set background=dark
-  colorscheme molokai
+  set background=light
+  " colorscheme molokai
+  colorscheme kolor
+  " let g:gruvbox_italicize_comments=0
+  " colorscheme gruvbox
 endif
 
 " colorscheme peaksea
@@ -249,5 +253,6 @@ nnoremap <C-L> o<ESC>
 inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
 " select last inserted text
 nnoremap gV `[v`]
-
+" quick quit the input mode
+imap jj <esc>
 

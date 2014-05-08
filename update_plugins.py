@@ -53,6 +53,8 @@ vim-easymotion https://github.com/Lokaltog/vim-easymotion
 tagbar https://github.com/majutsushi/tagbar
 vimim https://github.com/vimim/vimim
 vim-signature https://github.com/kshenoy/vim-signature
+vim-kolor https://github.com/zeis/vim-kolor
+gruvbox https://github.com/morhetz/gruvbox
 """.strip()
 
 # peaksea https://github.com/vim-scripts/peaksea
