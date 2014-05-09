@@ -3,6 +3,7 @@ syntax enable
 au FileType javascript setl nofoldenable nowrap
 au FileType python setl nowrap
 au FileType json setl nowrap
+au FileType samba set commentstring=#%s
 
 set nofoldenable
 set foldcolumn=0
@@ -261,4 +262,6 @@ inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
 nnoremap gV `[v`]
 " quick quit the input mode
 imap jj <esc>
+" sudo write
+nmap <leader>W :W<CR>:set nomodified<CR>
 
