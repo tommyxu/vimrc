@@ -35,7 +35,8 @@ else
   " colorscheme solarized
 
   set background=dark
-  colorscheme gruvbox
+  " colorscheme gruvbox
+  colorscheme Tomorrow-Night-Eighties
 endif
 
 " colorscheme kolor
