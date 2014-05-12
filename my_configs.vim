@@ -222,11 +222,13 @@ map <leader>bb :bdelete<CR>
 map <leader>bt :e  <LEFT>
 
 
-" quickfix
+" quickfix and location list
 nnoremap <leader>cl :ccl<CR>
 nnoremap <leader>cn :cn<CR>
 nnoremap <leader>cp :cp<CR>
-
+nnoremap <leader>ll :lop<CR>
+nnoremap <leader>lc :lcl<CR>
+" lnext and lpreve is already mapped
 
 " location next/prev
 nnoremap <leader>ln :lnext<CR>
