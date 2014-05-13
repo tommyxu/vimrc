@@ -19,6 +19,8 @@ set nonumber
 set relativenumber
 set cursorline
 set wildmenu
+set mouse=a
+set ttymouse=xterm2
 
 
 " color scheme selection
@@ -218,8 +220,7 @@ nmap <leader><leader> :e #<CR>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
 map <leader>bd :bdelete<CR>
-map <leader>bb :bdelete<CR>
-map <leader>bt :e  <LEFT>
+map <leader>bb :e  <LEFT>
 
 
 " quickfix and location list
@@ -266,4 +267,13 @@ nnoremap gV `[v`]
 imap jj <esc>
 " sudo write
 nmap <leader>W :W<CR>:set nomodified<CR>
+
+
+" for reference
+" set exrc   "enable per-directory .vimrc files
+" set secure "disable unsafe commands in local .vimrc files
+" noremap <c-up> <c-w>+
+" noremap <c-down> <c-w>-
+" noremap <c-left> <c-w>>
+" noremap <c-right> <c-w><
 
