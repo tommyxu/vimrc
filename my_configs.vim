@@ -216,7 +216,8 @@ nnoremap <space> <C-F>
 
 
 " buffer
-nmap <leader><leader> :e #<CR>
+" nmap <leader><leader> :e #<CR>
+nmap <leader><leader> <C-^>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
 map <leader>bd :bdelete<CR>
@@ -267,13 +268,27 @@ nnoremap gV `[v`]
 imap jj <esc>
 " sudo write
 nmap <leader>W :W<CR>:set nomodified<CR>
+" <CR> as command prefix
+nnoremap <CR> :
+" switch buffer with Tab key
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
+" replace current word
+nnoremap <leader>rw :'{,'}s/\<<c-r>=expand('<cword>')<cr>\>/
 
 
 " for reference
+" au FocusLost * :w
 " set exrc   "enable per-directory .vimrc files
 " set secure "disable unsafe commands in local .vimrc files
 " noremap <c-up> <c-w>+
 " noremap <c-down> <c-w>-
 " noremap <c-left> <c-w>>
 " noremap <c-right> <c-w><
+" let mapleader=" "
+" imap <c-l><c-a> <c-k>a* " Alpha
+" imap <c-l><c-b> <c-k>b* " Beta
+" imap <c-l><c-g> <c-k>g* " Gamma
+" imap <c-l><c-d> <c-k>d* " Delta
+" imap <c-l><c-e> <c-k>e* " Epslion
 
