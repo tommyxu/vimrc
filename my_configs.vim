@@ -211,6 +211,8 @@ unmap <C-B>
 unmap <C-H>
 unmap <C-J>
 unmap 0
+nnoremap 0 ^
+nnoremap 00 0
 nnoremap <bslash> <C-B>
 nnoremap <space> <C-F>
 
@@ -257,7 +259,7 @@ nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 
 " misc
 " execute current script (python/bash)
-nmap <leader>v <Esc>:!./%<CR>
+nmap <leader>v <Esc>:w<CR>:!./%<CR>
 " insert a empty line
 nnoremap <C-L> o<ESC>
 " use <CR> to confirm omni-complete popup
@@ -268,8 +270,6 @@ nnoremap gV `[v`]
 imap jj <esc>
 " sudo write
 nmap <leader>W :W<CR>:set nomodified<CR>
-" <CR> as command prefix
-nnoremap <CR> :
 " switch buffer with Tab key
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
@@ -278,6 +278,8 @@ nnoremap <leader>rw :'{,'}s/\<<c-r>=expand('<cword>')<cr>\>/
 
 
 " for reference
+" <CR> as command prefix
+" nnoremap <CR> :
 " au FocusLost * :w
 " set exrc   "enable per-directory .vimrc files
 " set secure "disable unsafe commands in local .vimrc files
