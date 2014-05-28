@@ -21,7 +21,8 @@ set cursorline
 set wildmenu
 set mouse=a
 set ttymouse=xterm2
-
+" set listchars=eol:¬
+set listchars=tab:»»,trail:·,extends:▸ 
 
 " color scheme selection
 let g:solarized_termcolors=256
