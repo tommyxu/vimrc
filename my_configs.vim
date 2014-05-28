@@ -1,5 +1,7 @@
 syntax enable
 
+au BufRead,BufNewFile Makefile* setlocal filetype=make
+
 au FileType javascript setl nofoldenable nowrap
 au FileType python setl nowrap
 au FileType json setl nowrap
@@ -275,7 +277,8 @@ nmap <leader>W :W<CR>:set nomodified<CR>
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 " replace current word
-nnoremap <leader>rw :'{,'}s/\<<c-r>=expand('<cword>')<cr>\>/
+nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
+" nnoremap <leader>rw :'{,'}s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 
 
 " for reference
