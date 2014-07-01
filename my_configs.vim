@@ -42,7 +42,8 @@ else
 
   set background=dark
   " colorscheme gruvbox
-  colorscheme Tomorrow-Night-Eighties
+  colorscheme molokai
+  " colorscheme Tomorrow-Night-Eighties
 endif
 
 " colorscheme kolor
