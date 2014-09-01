@@ -1,5 +1,7 @@
 syntax enable
 
+au BufRead,BufNewFile Makefile* setlocal filetype=make
+
 au FileType javascript setl nofoldenable nowrap
 au FileType python setl nowrap
 au FileType json setl nowrap
@@ -21,7 +23,8 @@ set cursorline
 set wildmenu
 "set mouse=a
 set ttymouse=xterm2
-
+" set listchars=eol:¬
+set listchars=tab:»»,trail:·,extends:▸ 
 
 " color scheme selection
 let g:solarized_termcolors=256
@@ -39,7 +42,8 @@ else
 
   set background=dark
   " colorscheme gruvbox
-  colorscheme Tomorrow-Night-Eighties
+  colorscheme molokai
+  " colorscheme Tomorrow-Night-Eighties
 endif
 
 " colorscheme kolor
@@ -274,7 +278,8 @@ nmap <leader>W :W<CR>:set nomodified<CR>
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 " replace current word
-nnoremap <leader>rw :'{,'}s/\<<c-r>=expand('<cword>')<cr>\>/
+nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
+" nnoremap <leader>rw :'{,'}s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 
 
 " for reference
