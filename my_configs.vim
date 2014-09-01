@@ -19,7 +19,7 @@ set nonumber
 set relativenumber
 set cursorline
 set wildmenu
-set mouse=a
+"set mouse=a
 set ttymouse=xterm2
 
 
