@@ -211,7 +211,7 @@ nmap <leader>qq <ESC>:qa!<CR>
 
 
 " indentLine
-set shiftwidth=4
+" set shiftwidth=4
 let g:indentLine_char = '¦' "'┆┊'
 
 " motion and reset
