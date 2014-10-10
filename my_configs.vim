@@ -210,6 +210,10 @@ nmap <leader>q <ESC>:q!<CR>
 nmap <leader>qq <ESC>:qa!<CR>
 
 
+" indentLine
+set shiftwidth=4
+let g:indentLine_char = '¦' "'┆┊'
+
 " motion and reset
 unmap <C-B>
 unmap <C-H>

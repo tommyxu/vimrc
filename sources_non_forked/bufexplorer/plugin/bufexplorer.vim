@@ -432,12 +432,6 @@ function! s:BEMapKeys()
     nnoremap <buffer> <silent> <tab> :call <SID>BESelectBuffer("tab")<cr>
   endif
 
-  let bufn = 1
-  while bufn < 10
-    exec 'nnoremap <buffer> <silent> b' . bufn . ' :buffer ' . bufn . '<cr>'
-    let bufn += 1
-  endwhile
-
   nnoremap <buffer> <silent> <F1>          :call <SID>BEToggleHelp()<cr>
   nnoremap <buffer> <silent> <2-leftmouse> :call <SID>BESelectBuffer()<cr>
   nnoremap <buffer> <silent> <cr>          :call <SID>BESelectBuffer()<cr>

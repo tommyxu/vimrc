@@ -42,7 +42,6 @@ vim-repeat https://github.com/tpope/vim-repeat
 vim-commentary https://github.com/tpope/vim-commentary
 vim-golang https://github.com/jnwhiteh/vim-golang
 base16-vim https://github.com/chriskempson/base16-vim
-jedi-vim https://github.com/davidhalter/jedi-vim
 jellybeans.vim https://github.com/nanotech/jellybeans.vim
 molokai https://github.com/tomasr/molokai
 tabular https://github.com/godlygeek/tabular
@@ -51,17 +50,20 @@ vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-gitgutter https://github.com/airblade/vim-gitgutter
 vim-easymotion https://github.com/Lokaltog/vim-easymotion
 tagbar https://github.com/majutsushi/tagbar
-vimim https://github.com/vimim/vimim
-vim-signature https://github.com/kshenoy/vim-signature
 vim-kolor https://github.com/zeis/vim-kolor
+supertab https://github.com/ervandew/supertab
+indentLine https://github.com/Yggdroot/indentLine
 gruvbox https://github.com/morhetz/gruvbox
 """.strip()
 
+# jedi-vim https://github.com/davidhalter/jedi-vim
 # peaksea https://github.com/vim-scripts/peaksea
+# vimim https://github.com/vimim/vimim
 # numbers.vim https://github.com/myusuf3/numbers.vim
 # vim-conque https://github.com/basepi/vim-conque
+# vim-signature https://github.com/kshenoy/vim-signature
 PLUGINS = """
-""".strip()
+"".strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
 
@@ -72,6 +74,8 @@ def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
     temp_zip_path = path.join(temp_dir, plugin_name)
 
     # Download and extract file in temp dir
+    print zip_path
+
     req = requests.get(zip_path)
     open(temp_zip_path, 'wb').write(req.content)
 

@@ -3,7 +3,7 @@
 " Description: Retro groove color scheme for Vim
 " Author: morhetz <morhetz@gmail.com>
 " Source: https://github.com/morhetz/gruvbox
-" Last Modified: 11 Mar 2014
+" Last Modified: 22 Aug 2014
 " -----------------------------------------------------------------------------
 
 " Supporting code -------------------------------------------------------------
@@ -61,6 +61,10 @@ if !exists('g:gruvbox_sign_column')
 	let g:gruvbox_sign_column='dark1'
 endif
 
+if !exists('g:gruvbox_vert_split')
+	let g:gruvbox_vert_split='dark2'
+endif
+
 if !exists('g:gruvbox_invert_signs')
 	let g:gruvbox_invert_signs=0
 endif
@@ -71,6 +75,18 @@ endif
 
 if !exists('g:gruvbox_contrast')
 	let g:gruvbox_contrast='medium'
+endif
+
+if !exists('g:gruvbox_contrast_dark')
+	let g:gruvbox_contrast_dark='medium'
+endif
+
+if !exists('g:gruvbox_contrast_light')
+	let g:gruvbox_contrast_light='medium'
+endif
+
+if !exists('g:gruvbox_invert_tabline')
+	let g:gruvbox_invert_tabline=0
 endif
 
 let s:is_dark=(&background == 'dark')
@@ -125,8 +141,16 @@ if s:is_dark
 	if g:gruvbox_contrast == 'hard'
 		let s:gb.dark0  = ['1d2021', 234]     " 29-32-33
 	endif
+
+	if g:gruvbox_contrast_dark == 'soft'
+		let s:gb.dark0  = ['32302f', 236]     " 50-48-47
+	endif
+
+	if g:gruvbox_contrast_dark == 'hard'
+		let s:gb.dark0  = ['1d2021', 234]     " 29-32-33
+	endif
 else
-	let s:gb.dark0  = ['fdf4c1', 229]     " 253-244-193
+	let s:gb.dark0  = ['fbf1c7', 229]     " 251-241-199
 	let s:gb.dark1  = ['ebdbb2', 223]     " 235-219-178
 	let s:gb.dark2  = ['d5c4a1', 250]     " 213-196-161
 	let s:gb.dark3  = ['bdae93', 248]     " 189-174-147
@@ -151,7 +175,7 @@ else
 	let s:gb.orange = ['af3a03', 130]     " 175-58-3
 
 	if g:gruvbox_termcolors == 16
-		let s:gb.dark0  = ['fdf4c1', 0]
+		let s:gb.dark0  = ['fbf1c7', 0]
 		let s:gb.light4 = ['7c6f64', 7]
 		let s:gb.medium = ['928374', 8]
 		let s:gb.red    = ['9d0006', 9]
@@ -164,11 +188,19 @@ else
 	endif
 
 	if g:gruvbox_contrast == 'soft'
-		let s:gb.dark0  = ['f4e8ba', 228]     " 244-232-186
+		let s:gb.dark0  = ['f2e5bc', 228]     " 242-229-188
 	endif
 
 	if g:gruvbox_contrast == 'hard'
-		let s:gb.dark0  = ['ffffc8', 230]     " 255-255-200
+		let s:gb.dark0  = ['f9f5d7', 230]     " 249-245-215
+	endif
+
+	if g:gruvbox_contrast_light == 'soft'
+		let s:gb.dark0  = ['f2e5bc', 228]     " 242-229-188
+	endif
+
+	if g:gruvbox_contrast_light == 'hard'
+		let s:gb.dark0  = ['f9f5d7', 230]     " 249-245-215
 	endif
 endif
 
@@ -305,12 +337,18 @@ if version >= 700
 	" Screen column that the cursor is
 	call s:HL('CursorColumn', 'none', 'dark1')
 
+if g:gruvbox_invert_tabline == 0
 	" Tab pages line filler
 	call s:HL('TabLineFill', 'dark4', 'bg')
 	" Active tab page label
 	call s:HL('TabLineSel', 'bg', 'dark4', 'bold')
 	" Not active tab page label
 	call s:HL('TabLine', 'dark4', 'bg')
+else
+	call s:HL('TabLineFill', 'bg', 'dark4')
+	call s:HL('TabLineSel', 'dark4', 'bg', 'bold')
+	call s:HL('TabLine', 'bg', 'dark4')
+endif
 
 	" Match paired bracket under the cursor
 	call s:HL('MatchParen', 'none', 'dark3', 'bold')
@@ -347,7 +385,7 @@ call s:HL('StatusLine',   'dark4', 'dark0', 'bold,inverse')
 call s:HL('StatusLineNC', 'dark2', 'light4', 'bold,inverse')
 
 " The column separating vertically split windows
-call s:HL('VertSplit', 'light4', 'dark2')
+call s:HL('VertSplit', 'light4', g:gruvbox_vert_split)
 
 " Current match in wildmenu completion
 call s:HL('WildMenu', 'blue', 'dark2', 'bold')
@@ -542,7 +580,7 @@ let g:indentLine_color_gui = '#' . s:gb.dark2[0]
 " }}}
 " Rainbow Parentheses: {{{
 
-let g:rbpt_colorpairs = 
+let g:rbpt_colorpairs =
 	\ [
 		\ ['brown',       '#458588'], ['Darkblue',    '#b16286'],
 		\ ['darkgray',    '#cc241d'], ['darkgreen',   '#d65d0e'],
@@ -554,7 +592,7 @@ let g:rbpt_colorpairs =
 		\ ['darkred',     '#cc241d'], ['red',         '#d65d0e'],
 	\ ]
 
-let g:rainbow_guifgs = 
+let g:rainbow_guifgs =
 	\ [
 		\ '#458588', '#b16286', '#cc241d', '#d65d0e',
 		\ '#458588', '#b16286', '#cc241d', '#d65d0e',
@@ -562,7 +600,7 @@ let g:rainbow_guifgs =
 		\ '#458588', '#b16286', '#cc241d', '#d65d0e'
 	\ ]
 
-let g:rainbow_ctermfgs = 
+let g:rainbow_ctermfgs =
 	\ [
 		\ 'brown', 'Darkblue', 'darkgray', 'darkgreen',
 		\ 'darkcyan', 'darkred', 'darkmagenta', 'brown',
@@ -571,15 +609,6 @@ let g:rainbow_ctermfgs =
 	\ ]
 
 "}}}
-" Airline: {{{
-
-if !exists('g:airline_theme_map')
-	let g:airline_theme_map = { 'gruvbox.*': 'tomorrow' }
-else
-	let g:airline_theme_map['gruvbox.*'] = 'tomorrow'
-endif
-
-" }}}
 " GitGutter: {{{
 
 if g:gruvbox_invert_signs == 0
@@ -680,9 +709,9 @@ call s:HL('StartifyFooter', 'dark2')
 " Vimshell: {{{
 
 let g:vimshell_escape_colors = map(split(
-		  \ 'dark4 red green yellow blue purple aqua light4 ' .
-		  \ 'dark0 red green orange blue purple aqua light0'
-		  \ ), '"#" . s:gb[v:val][0]')
+	\ 'dark4 red green yellow blue purple aqua light4 ' .
+	\ 'dark0 red green orange blue purple aqua light0'
+	\ ), '"#" . s:gb[v:val][0]')
 
 " }}}
 

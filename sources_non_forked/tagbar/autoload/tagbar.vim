@@ -938,10 +938,11 @@ function! s:MapKeys() abort
         \ ['openallfolds',  'SetFoldLevel(99, 1)'],
         \ ['closeallfolds', 'SetFoldLevel(0, 1)'],
         \
-        \ ['togglesort', 'ToggleSort()'],
-        \ ['zoomwin',    'ZoomWindow()'],
-        \ ['close',      'CloseWindow()'],
-        \ ['help',       'ToggleHelp()'],
+        \ ['togglesort',      'ToggleSort()'],
+        \ ['toggleautoclose', 'ToggleAutoclose()'],
+        \ ['zoomwin',         'ZoomWindow()'],
+        \ ['close',           'CloseWindow()'],
+        \ ['help',            'ToggleHelp()'],
     \ ]
 
     for [map, func] in maps
@@ -1808,11 +1809,11 @@ function! s:InitWindow(autoclose) abort
     setlocal foldmethod&
     setlocal foldexpr&
 
+    let w:autoclose = a:autoclose
+
     call s:SetStatusLine('current')
 
     let s:new_window = 1
-
-    let w:autoclose = a:autoclose
 
     if has('balloon_eval')
         setlocal balloonexpr=TagbarBalloonExpr()
@@ -2131,7 +2132,8 @@ function! s:ExecuteCtagsOnFile(fname, realfname, typeinfo) abort
                           \ '--excmd=pattern',
                           \ '--fields=nksSa',
                           \ '--extra=',
-                          \ '--sort=no'
+                          \ '--sort=no',
+                          \ '--append=no'
                           \ ]
 
         " Include extra type definitions
@@ -2818,6 +2820,7 @@ function! s:PrintHelp() abort
         silent  put ='\"'
         silent  put ='\" ---------- Misc -----------'
         silent  put ='\" ' . s:get_map_str('togglesort') . ': Toggle sort'
+        silent  put ='\" ' . s:get_map_str('toggleautoclose') . ': Toggle autoclose option'
         silent  put ='\" ' . s:get_map_str('zoomwin') . ': Zoom window in/out'
         silent  put ='\" ' . s:get_map_str('close') . ': Close window'
         silent  put ='\" ' . s:get_map_str('help') . ': Toggle help'
@@ -3499,6 +3502,12 @@ endfunction
 function! s:ExecuteCtags(ctags_cmd) abort
     call s:debug('Executing ctags command: ' . a:ctags_cmd)
 
+    if has('unix')
+        " Reset shell in case it is set to something incompatible like fish
+        let shell_save = &shell
+        set shell=sh
+    endif
+
     if exists('+shellslash')
         let shellslash_save = &shellslash
         set noshellslash
@@ -3526,6 +3535,10 @@ function! s:ExecuteCtags(ctags_cmd) abort
 
     if exists('+shellslash')
         let &shellslash = shellslash_save
+    endif
+
+    if has('unix')
+        let &shell = shell_save
     endif
 
     return ctags_output
@@ -3665,6 +3678,12 @@ function! s:ToggleHideNonPublicTags() abort
     call s:SetStatusLine('current')
 endfunction
 
+" s:ToggleAutoclose() {{{2
+function! s:ToggleAutoclose() abort
+    let g:tagbar_autoclose = !g:tagbar_autoclose
+    call s:SetStatusLine('current')
+endfunction
+
 " s:IsValidFile() {{{2
 function! s:IsValidFile(fname, ftype) abort
     call s:debug('Checking if file is valid [' . a:fname . ']')
@@ -3726,13 +3745,21 @@ function! s:SetStatusLine(current)
         let fname = ''
     endif
 
+    let flags = []
+    let flags += exists('w:autoclose') && w:autoclose ? ['c'] : []
+    let flags += g:tagbar_autoclose ? ['C'] : []
+    let flags += g:tagbar_hide_nonpublic ? ['v'] : []
+
     if exists('g:tagbar_status_func')
-        let args = [current, sort, fname]
+        let args = [current, sort, fname, flags]
         let &l:statusline = call(g:tagbar_status_func, args)
     else
         let colour = current ? '%#StatusLine#' : '%#StatusLineNC#'
-        let hide = g:tagbar_hide_nonpublic ? '[h] ' : ''
-        let text = colour . '[' . sort . '] ' . hide . fname
+        let flagstr = join(flags, '')
+        if flagstr != ''
+            let flagstr = '[' . flagstr . '] '
+        endif
+        let text = colour . '[' . sort . '] ' . flagstr . fname
         let &l:statusline = text
     endif
 
@@ -3779,12 +3806,7 @@ function! s:NextNormalWindow() abort
         let buf = winbufnr(i)
 
         " skip unlisted buffers
-        if buflisted(buf) == 0
-            continue
-        endif
-
-        " skip un-modifiable buffers
-        if getbufvar(buf, '&modifiable') != 1
+        if !buflisted(buf)
             continue
         endif
 

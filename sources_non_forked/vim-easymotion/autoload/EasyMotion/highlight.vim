@@ -2,7 +2,6 @@
 " FILE: highlight.vim
 " AUTHOR: haya14busa
 " Reference: https://github.com/t9md/vim-smalls
-" Last Change: 12 Feb 2014.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -172,6 +171,9 @@ function! EasyMotion#highlight#delete_highlight(...) "{{{
 endfunction "}}}
 function! EasyMotion#highlight#add_highlight(re, group) "{{{
     call add(s:h.ids[a:group], matchadd(a:group, a:re, s:priorities[a:group]))
+endfunction "}}}
+function! EasyMotion#highlight#add_pos_highlight(line_num, col_num, group) "{{{
+    call add(s:h.ids[a:group], matchaddpos(a:group, [[a:line_num, a:col_num]], s:priorities[a:group]))
 endfunction "}}}
 function! EasyMotion#highlight#attach_autocmd() "{{{
     " Reference: https://github.com/justinmk/vim-sneak
