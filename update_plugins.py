@@ -54,6 +54,7 @@ vim-kolor https://github.com/zeis/vim-kolor
 supertab https://github.com/ervandew/supertab
 indentLine https://github.com/Yggdroot/indentLine
 gruvbox https://github.com/morhetz/gruvbox
+delimitMate https://github.com/Raimondi/delimitMate
 """.strip()
 
 # jedi-vim https://github.com/davidhalter/jedi-vim
@@ -63,10 +64,10 @@ gruvbox https://github.com/morhetz/gruvbox
 # vim-conque https://github.com/basepi/vim-conque
 # vim-signature https://github.com/kshenoy/vim-signature
 PLUGINS = """
-"".strip()
+""".strip()
+
 
 GITHUB_ZIP = '%s/archive/master.zip'
-
 SOURCE_DIR = path.join(path.dirname(__file__), 'sources_non_forked')
 
 
