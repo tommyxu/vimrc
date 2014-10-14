@@ -64,6 +64,7 @@ vim-gradle https://github.com/tfnico/vim-gradle
 # numbers.vim https://github.com/myusuf3/numbers.vim
 # vim-conque https://github.com/basepi/vim-conque
 # vim-signature https://github.com/kshenoy/vim-signature
+# lusty https://github.com/sjbach/lusty
 PLUGINS = """
 """.strip()
 
