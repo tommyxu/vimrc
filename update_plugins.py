@@ -55,6 +55,7 @@ supertab https://github.com/ervandew/supertab
 indentLine https://github.com/Yggdroot/indentLine
 gruvbox https://github.com/morhetz/gruvbox
 delimitMate https://github.com/Raimondi/delimitMate
+vim-gradle https://github.com/tfnico/vim-gradle
 """.strip()
 
 # jedi-vim https://github.com/davidhalter/jedi-vim
