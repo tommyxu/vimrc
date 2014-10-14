@@ -56,6 +56,7 @@ indentLine https://github.com/Yggdroot/indentLine
 gruvbox https://github.com/morhetz/gruvbox
 delimitMate https://github.com/Raimondi/delimitMate
 vim-gradle https://github.com/tfnico/vim-gradle
+emmet-vim https://github.com/mattn/emmet-vim
 """.strip()
 
 # jedi-vim https://github.com/davidhalter/jedi-vim

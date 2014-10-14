@@ -1,18 +1,18 @@
 let s:mx = '\([+>]\|[<^]\+\)\{-}\s*'
 \     .'\((*\)\{-}\s*'
-\       .'\([@#.]\{-}[a-zA-Z\!][a-zA-Z0-9:_\!\-$]*\|{\%([^$}]\+\|\$#\|\${\w\+}\|\$\+\)*}[ \t\r\n}]*\)'
+\       .'\([@#.]\{-}[a-zA-Z_\!][a-zA-Z0-9:_\!\-$]*\|{\%([^$}]\+\|\$#\|\${\w\+}\|\$\+\)*}*[ \t\r\n}]*\|\[[^\]]\+\]\)'
 \       .'\('
 \         .'\%('
 \           .'\%(#{[{}a-zA-Z0-9_\-\$]\+\|#[a-zA-Z0-9_\-\$]\+\)'
-\           .'\|\%(\[[^\]]\+\]\)'
+\           .'\|\%(\[\%("[^"]*"\|[^"\]]*\)\+\]\)'
 \           .'\|\%(\.{[{}a-zA-Z0-9_\-\$]\+\|\.[a-zA-Z0-9_\-\$]\+\)'
 \         .'\)*'
 \       .'\)'
-\       .'\%(\({\%([^$}]\+\|\$#\|\${\w\+}\|\$\+\)*}\)\)\{0,1}'
-\         .'\%(\*\([0-9]\+\)\)\{0,1}'
-\     .'\(\%()\%(\*[0-9]\+\)\{0,1}\)*\)'
+\       .'\%(\({\%([^$}]\+\|\$#\|\${\w\+}\|\$\+\)*}\+\)\)\{0,1}'
+\         .'\%(\(@-\{0,1}[0-9]*\)\{0,1}\*\([0-9]\+\)\)\{0,1}'
+\     .'\(\%()\%(\(@-\{0,1}[0-9]*\)\{0,1}\*[0-9]\+\)\{0,1}\)*\)'
 
-function! zencoding#lang#html#findTokens(str)
+function! emmet#lang#html#findTokens(str)
   let str = a:str
   let [pos, last_pos] = [0, 0]
   while 1
@@ -34,31 +34,35 @@ function! zencoding#lang#html#findTokens(str)
     endif
     let pos = stridx(str, token, pos) + len(token)
   endwhile
-  return a:str[last_pos :-1]
+  let str = a:str[last_pos :-1]
+  if str =~ '^\w\+="[^"]*$'
+    return ''
+  endif
+  return str
 endfunction
 
-function! zencoding#lang#html#parseIntoTree(abbr, type)
+function! emmet#lang#html#parseIntoTree(abbr, type)
   let abbr = a:abbr
   let type = a:type
 
-  let settings = zencoding#getSettings()
+  let settings = emmet#getSettings()
   if !has_key(settings, type)
     let type = 'html'
   endif
   if len(type) == 0 | let type = 'html' | endif
 
-  let settings = zencoding#getSettings()
-  let indent = zencoding#getIndentation(type)
+  let settings = emmet#getSettings()
+  let indent = emmet#getIndentation(type)
 
   " try 'foo' to (foo-x)
-  let rabbr = zencoding#getExpandos(type, abbr)
+  let rabbr = emmet#getExpandos(type, abbr)
   if rabbr == abbr
     " try 'foo+(' to (foo-x)
-    let rabbr = substitute(abbr, '\%(+\|^\)\([a-zA-Z][a-zA-Z0-9+]\+\)+\([(){}>]\|$\)', '\="(".zencoding#getExpandos(type, submatch(1)).")".submatch(2)', 'i')
+    let rabbr = substitute(abbr, '\%(+\|^\)\([a-zA-Z][a-zA-Z0-9+]\+\)+\([(){}>]\|$\)', '\="(".emmet#getExpandos(type, submatch(1)).")".submatch(2)', 'i')
   endif
   let abbr = rabbr
 
-  let root = { 'name': '', 'attr': {}, 'child': [], 'snippet': '', 'multiplier': 1, 'parent': {}, 'value': '', 'pos': 0, 'important': 0, 'attrs_order': ['id', 'class'] }
+  let root = emmet#newNode()
   let parent = root
   let last = root
   let pos = []
@@ -71,8 +75,9 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
     let tag_name = substitute(match, s:mx, '\3', 'ig')
     let attributes = substitute(match, s:mx, '\4', 'ig')
     let value = substitute(match, s:mx, '\5', 'ig')
-    let multiplier = 0 + substitute(match, s:mx, '\6', 'ig')
-    let block_end = substitute(match, s:mx, '\7', 'ig')
+    let basevalue = substitute(match, s:mx, '\6', 'ig')
+    let multiplier = 0 + substitute(match, s:mx, '\7', 'ig')
+    let block_end = substitute(match, s:mx, '\8', 'ig')
     let important = 0
     if len(str) == 0
       break
@@ -81,7 +86,7 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
       let attributes = tag_name . attributes
       let tag_name = 'div'
     endif
-    if tag_name =~ '.!$'
+    if tag_name =~ '[^!]!$'
       let tag_name = tag_name[:-2]
       let important = 1
     endif
@@ -89,37 +94,61 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
       let attributes = tag_name . attributes
       let tag_name = 'div'
     endif
+    if tag_name =~ '^\[.*\]$'
+      let attributes = tag_name . attributes
+      let tag_name = 'div'
+    endif
+    let basedirect = basevalue[1] == '-' ? -1 : 1
+    let basevalue = 0 + abs(basevalue[1:])
     if multiplier <= 0 | let multiplier = 1 | endif
 
     " make default node
-    let current = { 'name': '', 'attr': {}, 'child': [], 'snippet': '', 'multiplier': 1, 'parent': {}, 'value': '', 'pos': 0, 'important': 0, 'attrs_order': ['id', 'class'] }
+    let current = emmet#newNode()
     let current.name = tag_name
 
     let current.important = important
 
     " aliases
-    let aliases = zencoding#getResource(type, 'aliases', {})
+    let aliases = emmet#getResource(type, 'aliases', {})
     if has_key(aliases, tag_name)
       let current.name = aliases[tag_name]
     endif
 
-    let use_pipe_for_cursor = zencoding#getResource(type, 'use_pipe_for_cursor', 1)
+    let use_pipe_for_cursor = emmet#getResource(type, 'use_pipe_for_cursor', 1)
 
     " snippets
-    let snippets = zencoding#getResource(type, 'snippets', {})
-    if !empty(snippets) && has_key(snippets, tag_name)
-      let snippet = snippets[tag_name]
-      if use_pipe_for_cursor
-        let snippet = substitute(snippet, '|', '${cursor}', 'g')
+    let snippets = emmet#getResource(type, 'snippets', {})
+    if !empty(snippets)
+      let snippet_name = tag_name
+      if has_key(snippets, snippet_name)
+        let snippet = snippet_name
+        while has_key(snippets, snippet)
+          let snippet = snippets[snippet]
+        endwhile
+        if use_pipe_for_cursor
+          let snippet = substitute(snippet, '|', '${cursor}', 'g')
+        endif
+        let lines = split(snippet, "\n", 1)
+        call map(lines, 'substitute(v:val, "\\(    \\|\\t\\)", escape(indent, "\\\\"), "g")')
+        let current.snippet = join(lines, "\n")
+        let current.name = ''
       endif
-      let lines = split(snippet, "\n")
-      call map(lines, 'substitute(v:val, "\\(    \\|\\t\\)", escape(indent, "\\\\"), "g")')
-      let current.snippet = join(lines, "\n")
-      let current.name = ''
     endif
 
+    let custom_expands = emmet#getResource(type, 'custom_expands', {})
+    if empty(custom_expands) && has_key(settings, 'custom_expands')
+      let custom_expands = settings['custom_expands']
+    endif
+    for k in keys(custom_expands)
+      if tag_name =~ k
+        let current.snippet = '${' . tag_name . '}'
+        let current.name = ''
+        break
+      endif
+    endfor
+
     " default_attributes
-    let default_attributes = zencoding#getResource(type, 'default_attributes', {})
+    let default_attributes = emmet#getResource(type, 'default_attributes', {})
     if !empty(default_attributes)
       for pat in [current.name, tag_name]
         if has_key(default_attributes, pat)
@@ -161,7 +190,10 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
     if len(attributes)
       let attr = attributes
       while len(attr)
-        let item = matchstr(attr, '\(\%(\%(#[{}a-zA-Z0-9_\-\$]\+\)\|\%(\[[^\]]\+\]\)\|\%(\.[{}a-zA-Z0-9_\-\$]\+\)*\)\)')
+        let item = matchstr(attr, '\(\%(\%(#[{}a-zA-Z0-9_\-\$]\+\)\|\%(\[\%("[^"]*"\|[^"\]]*\)\+\]\)\|\%(\.[{}a-zA-Z0-9_\-\$]\+\)*\)\)')
+        if g:emmet_debug > 1
+          echomsg "attr=" . item
+        endif
         if len(item) == 0
           break
         endif
@@ -173,22 +205,43 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
         endif
         if item[0] == '['
           let atts = item[1:-2]
-          while len(atts)
-            let amat = matchstr(atts, '\(\w\+\%(="[^"]*"\|=''[^'']*''\|[^ ''"\]]*\)\{0,1}\)')
-            if len(amat) == 0
-              break
+          if matchstr(atts, '^\s*\zs[0-9a-zA-Z-:]\+\(="[^"]*"\|=''[^'']*''\|=[^ ''"]\+\)') == ''
+            let ks = []
+			if has_key(default_attributes, current.name)
+              let dfa = default_attributes[current.name]
+              let ks = type(dfa) == 3 ? keys(dfa[0]) : keys(dfa)
             endif
-            let key = split(amat, '=')[0]
-            let val = amat[len(key)+1:]
-            if val =~ '^["'']'
-              let val = val[1:-2]
+            if len(ks) == 0 && has_key(default_attributes, current.name . ':src')
+              let ks = keys(default_attributes[current.name . ':src'])
             endif
-            let current.attr[key] = val
-            if index(current.attrs_order, key) == -1
-              let current.attrs_order += [key]
+            if len(ks) > 0
+              let current.attr[ks[0]] = atts
+            else
+              let current.attr[atts] = ""
             endif
-            let atts = atts[stridx(atts, amat) + len(amat):]
-          endwhile
+          else
+            while len(atts)
+              let amat = matchstr(atts, '^\s*\zs\([0-9a-zA-Z-:]\+\%(="[^"]*"\|=''[^'']*''\|=[^ ''"]\+\|[^ ''"\]]*\)\{0,1}\)')
+              if len(amat) == 0
+                break
+              endif
+              let key = split(amat, '=')[0]
+              let Val = amat[len(key)+1:]
+              if key =~ '\.$' && Val == ''
+                let key = key[:-2]
+                unlet Val
+                let Val = function('emmet#types#true')
+              elseif Val =~ '^["'']'
+                let Val = Val[1:-2]
+              endif
+              let current.attr[key] = Val
+              if index(current.attrs_order, key) == -1
+                let current.attrs_order += [key]
+              endif
+              let atts = atts[stridx(atts, amat) + len(amat):]
+              unlet Val
+            endwhile
+          endif
         endif
         let attr = substitute(strpart(attr, len(item)), '^\s*', '', '')
       endwhile
@@ -201,6 +254,8 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
     else
       let current.value = value
     endif
+    let current.basedirect = basedirect
+    let current.basevalue = basevalue
     let current.multiplier = multiplier
 
     " parse step inside/outside
@@ -262,7 +317,14 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
           let cl = last.child
           let cls = []
           for c in range(n[1:])
-            let cls += cl
+            for cc in cl
+              if cc.multiplier > 1
+                let cc.basedirect = c + 1
+              else
+                let cc.basevalue = c + 1
+              endif
+            endfor
+            let cls += deepcopy(cl)
           endfor
           let last.child = cls
         endif
@@ -270,13 +332,14 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
     endif
     let abbr = abbr[stridx(abbr, match) + len(match):]
 
-    if g:zencoding_debug > 1
+    if g:emmet_debug > 1
       echomsg "str=".str
       echomsg "block_start=".block_start
       echomsg "tag_name=".tag_name
       echomsg "operator=".operator
       echomsg "attributes=".attributes
       echomsg "value=".value
+      echomsg "basevalue=".basevalue
       echomsg "multiplier=".multiplier
       echomsg "block_end=".block_end
       echomsg "abbr=".abbr
@@ -287,7 +350,17 @@ function! zencoding#lang#html#parseIntoTree(abbr, type)
   return root
 endfunction
 
-function! zencoding#lang#html#toString(settings, current, type, inline, filters, itemno, indent)
+function! s:dollar_add(base,no)
+  if a:base > 0
+    return a:base + a:no - 1
+  elseif a:base < 0
+    return a:base - a:no + 1
+  else
+    return a:no
+  endif
+endfunction
+
+function! emmet#lang#html#toString(settings, current, type, inline, filters, itemno, indent)
   let settings = a:settings
   let current = a:current
   let type = a:type
@@ -295,13 +368,15 @@ function! zencoding#lang#html#toString(settings, current, type, inline, filters,
   let filters = a:filters
   let itemno = a:itemno
   let indent = a:indent
-  let dollar_expr = zencoding#getResource(type, 'dollar_expr', 1)
+  let dollar_expr = emmet#getResource(type, 'dollar_expr', 1)
+  let q = emmet#getResource(type, 'quote_char', '"')
+  let ct = emmet#getResource(type, 'comment_type', 'both')
 
-  if zencoding#useFilter(filters, 'haml')
-    return zencoding#lang#haml#toString(settings, current, type, inline, filters, itemno, indent)
+  if emmet#useFilter(filters, 'haml')
+    return emmet#lang#haml#toString(settings, current, type, inline, filters, itemno, indent)
   endif
-  if zencoding#useFilter(filters, 'slim')
-    return zencoding#lang#slim#toString(settings, current, type, inline, filters, itemno, indent)
+  if emmet#useFilter(filters, 'slim')
+    return emmet#lang#slim#toString(settings, current, type, inline, filters, itemno, indent)
   endif
 
   let comment = ''
@@ -314,7 +389,13 @@ function! zencoding#lang#html#toString(settings, current, type, inline, filters,
   if len(current_name) == 0
     let text = current.value[1:-2]
     if dollar_expr
-      let text = substitute(text, '\%(\\\)\@\<!\(\$\+\)\([^{#]\|$\)', '\=printf("%0".len(submatch(1))."d", itemno+1).submatch(2)', 'g')
+      " TODO: regexp engine specified
+      let nr = itemno + 1
+      if exists('&regexpengine')
+        let text = substitute(text, '\%#=1\%(\\\)\@\<!\(\$\+\)\(@-\?[0-9]\+\)\{0,1}\([^{#]\|$\)', '\=printf("%0".len(submatch(1))."d",s:dollar_add(submatch(2)[1:],nr)).submatch(3)', 'g')
+      else
+        let text = substitute(text, '\%(\\\)\@\<!\(\$\+\)\(@-\?[0-9]\+\)\{0,1}\([^{#]\|$\)', '\=printf("%0".len(submatch(1))."d",s:dollar_add(submatch(2)[1:],nr).submatch(3)', 'g')
+      endif
       let text = substitute(text, '\${nr}', "\n", 'g')
       let text = substitute(text, '\\\$', '$', 'g')
     endif
@@ -322,24 +403,68 @@ function! zencoding#lang#html#toString(settings, current, type, inline, filters,
   endif
   if len(current_name) > 0
   let str .= '<' . current_name
-  for attr in current.attrs_order
+  for attr in emmet#util#unique(current.attrs_order + keys(current.attr))
     if !has_key(current.attr, attr)
       continue
     endif
-    let val = current.attr[attr]
-    if dollar_expr
-      while val =~ '\$\([^#{]\|$\)'
-        let val = substitute(val, '\(\$\+\)\([^{]\|$\)', '\=printf("%0".len(submatch(1))."d", itemno+1).submatch(2)', 'g')
-      endwhile
-      let attr = substitute(attr, '\$$', itemno+1, '')
+    let Val = current.attr[attr]
+    if type(Val) == 2 && Val == function('emmet#types#true')
+      unlet Val
+      let Val = 'true'
+      if g:emmet_html5
+        let str .= ' ' . attr
+      else
+        let str .= ' ' . attr . '=' . q . attr . q
+      endif
+      if emmet#useFilter(filters, 'c')
+        if attr == 'id' | let comment .= '#' . Val | endif
+        if attr == 'class' | let comment .= '.' . Val | endif
+      endif
+    else
+      if dollar_expr
+        while Val =~ '\$\([^#{]\|$\)'
+          " TODO: regexp engine specified
+          if exists('&regexpengine')
+            let Val = substitute(Val, '\%#=1\(\$\+\)\([^{#]\|$\)', '\=printf("%0".len(submatch(1))."d", itemno+1).submatch(2)', 'g')
+          else
+            let Val = substitute(Val, '\(\$\+\)\([^{#]\|$\)', '\=printf("%0".len(submatch(1))."d", itemno+1).submatch(2)', 'g')
+          endif
+        endwhile
+        let attr = substitute(attr, '\$$', itemno+1, '')
+      endif
+      if attr == 'class' && emmet#useFilter(filters, 'bem')
+        let vals = split(Val, '\s\+')
+        let Val = ''
+        let lead = ''
+        for _val in vals
+          if len(Val) > 0
+            let Val .= ' '
+          endif
+          if _val =~ '^\a_'
+            let lead = _val[0]
+            let Val .= lead . ' ' .  _val
+          elseif _val =~ '^_'
+            if len(lead) == 0
+              let pattr = current.parent.attr
+              if has_key(pattr, 'class')
+                let lead = pattr['class']
+              endif
+            endif
+            let Val .= lead . ' ' . lead . _val
+          else
+            let Val .= _val
+          endif
+        endfor
+      endif
+      let str .= ' ' . attr . '=' . q . Val . q
+      if emmet#useFilter(filters, 'c')
+        if attr == 'id' | let comment .= '#' . Val | endif
+        if attr == 'class' | let comment .= '.' . Val | endif
+      endif
     endif
-    let str .= ' ' . attr . '="' . val . '"'
-    if zencoding#useFilter(filters, 'c')
-      if attr == 'id' | let comment .= '#' . val | endif
-      if attr == 'class' | let comment .= '.' . val | endif
-    endif
+    unlet Val
   endfor
-  if len(comment) > 0
+  if len(comment) > 0 && ct == 'both'
     let str = "<!-- " . comment . " -->\n" . str
   endif
   if stridx(','.settings.html.empty_elements.',', ','.current_name.',') != -1
@@ -348,7 +473,13 @@ function! zencoding#lang#html#toString(settings, current, type, inline, filters,
     let str .= ">"
     let text = current.value[1:-2]
     if dollar_expr
-      let text = substitute(text, '\%(\\\)\@\<!\(\$\+\)\([^{#]\|$\)', '\=printf("%0".len(submatch(1))."d", itemno+1).submatch(2)', 'g')
+      " TODO: regexp engine specified
+      let nr = itemno + 1
+      if exists('&regexpengine')
+        let text = substitute(text, '\%#=1\%(\\\)\@\<!\(\$\+\)\(@-\?[0-9]\+\)\{0,1}\([^{#]\|$\)', '\=printf("%0".len(submatch(1))."d",s:dollar_add(submatch(2)[1:],nr)).submatch(3)', 'g')
+      else
+        let text = substitute(text, '\%(\\\)\@\<!\(\$\+\)\(@-\?[0-9]\+\)\{0,1}\([^{#]\|$\)', '\=printf("%0".len(submatch(1))."d",s:dollar_add(submatch(2)[1:],nr)).submatch(3)', 'g')
+      endif
       let text = substitute(text, '\${nr}', "\n", 'g')
       let text = substitute(text, '\\\$', '$', 'g')
       let str = substitute(str, '\("\zs$#\ze"\|\s\zs\$#"\|"\$#\ze\s\)', text, 'g')
@@ -371,7 +502,7 @@ function! zencoding#lang#html#toString(settings, current, type, inline, filters,
             let dr = 1
           endif
         endif
-        let inner = zencoding#toString(child, type, 0, filters, itemno)
+        let inner = emmet#toString(child, type, 0, filters, itemno, indent)
         let inner = substitute(inner, "^\n", "", 'g')
         let inner = substitute(inner, "\n", "\n" . escape(indent, '\'), 'g')
         let inner = substitute(inner, "\n" . escape(indent, '\') . '$', '', 'g')
@@ -386,7 +517,11 @@ function! zencoding#lang#html#toString(settings, current, type, inline, filters,
     let str .= "</" . current_name . ">"
   endif
   if len(comment) > 0
-    let str .= "\n<!-- /" . comment . " -->"
+    if ct == "lastonly"
+      let str .= "<!-- " . comment . " -->"
+    else
+      let str .= "\n<!-- /" . comment . " -->"
+    endif
   endif
   if len(current_name) > 0 && current.multiplier > 0 || stridx(','.settings.html.block_elements.',', ','.current_name.',') != -1
     let str .= "\n"
@@ -394,16 +529,16 @@ function! zencoding#lang#html#toString(settings, current, type, inline, filters,
   return str
 endfunction
 
-function! zencoding#lang#html#imageSize()
-  let img_region = zencoding#util#searchRegion('<img\s', '>')
-  if !zencoding#util#regionIsValid(img_region) || !zencoding#util#cursorInRegion(img_region)
+function! emmet#lang#html#imageSize()
+  let img_region = emmet#util#searchRegion('<img\s', '>')
+  if !emmet#util#regionIsValid(img_region) || !emmet#util#cursorInRegion(img_region)
     return
   endif
-  let content = zencoding#util#getContent(img_region)
+  let content = emmet#util#getContent(img_region)
   if content !~ '^<img[^><]\+>$'
     return
   endif
-  let current = zencoding#lang#html#parseTag(content)
+  let current = emmet#lang#html#parseTag(content)
   if empty(current) || !has_key(current.attr, 'src')
     return
   endif
@@ -414,28 +549,28 @@ function! zencoding#lang#html#imageSize()
     let fn = simplify(expand('%:h') . '/' . fn)
   endif
 
-  let [width, height] = zencoding#util#getImageSize(fn)
+  let [width, height] = emmet#util#getImageSize(fn)
   if width == -1 && height == -1
     return
   endif
   let current.attr.width = width
   let current.attr.height = height
   let current.attrs_order += ['width', 'height']
-  let html = substitute(zencoding#toString(current, 'html', 1), '\n', '', '')
+  let html = substitute(emmet#toString(current, 'html', 1), '\n', '', '')
   let html = substitute(html, '\${cursor}', '', '')
-  call zencoding#util#setContent(img_region, html)
+  call emmet#util#setContent(img_region, html)
 endfunction
 
-function! zencoding#lang#html#encodeImage()
-  let img_region = zencoding#util#searchRegion('<img\s', '>')
-  if !zencoding#util#regionIsValid(img_region) || !zencoding#util#cursorInRegion(img_region)
+function! emmet#lang#html#encodeImage()
+  let img_region = emmet#util#searchRegion('<img\s', '>')
+  if !emmet#util#regionIsValid(img_region) || !emmet#util#cursorInRegion(img_region)
     return
   endif
-  let content = zencoding#util#getContent(img_region)
+  let content = emmet#util#getContent(img_region)
   if content !~ '^<img[^><]\+>$'
     return
   endif
-  let current = zencoding#lang#html#parseTag(content)
+  let current = emmet#lang#html#parseTag(content)
   if empty(current) || !has_key(current.attr, 'src')
     return
   endif
@@ -444,18 +579,18 @@ function! zencoding#lang#html#encodeImage()
     let fn = simplify(expand('%:h') . '/' . fn)
   endif
 
-  let [width, height] = zencoding#util#getImageSize(fn)
+  let [width, height] = emmet#util#getImageSize(fn)
   if width == -1 && height == -1
     return
   endif
   let current.attr.width = width
   let current.attr.height = height
-  let html = zencoding#toString(current, 'html', 1)
-  call zencoding#util#setContent(img_region, html)
+  let html = emmet#toString(current, 'html', 1)
+  call emmet#util#setContent(img_region, html)
 endfunction
 
-function! zencoding#lang#html#parseTag(tag)
-  let current = { 'name': '', 'attr': {}, 'child': [], 'snippet': '', 'multiplier': 1, 'parent': {}, 'value': '', 'pos': 0, 'attrs_order': [] }
+function! emmet#lang#html#parseTag(tag)
+  let current = emmet#newNode()
   let mx = '<\([a-zA-Z][a-zA-Z0-9]*\)\(\%(\s[a-zA-Z][a-zA-Z0-9]\+=\%([^"'' \t]\+\|"[^"]\{-}"\|''[^'']\{-}''\)\s*\)*\)\(/\{0,1}\)>'
   let match = matchstr(a:tag, mx)
   let current.name = substitute(match, mx, '\1', 'i')
@@ -476,79 +611,84 @@ function! zencoding#lang#html#parseTag(tag)
   return current
 endfunction
 
-function! zencoding#lang#html#toggleComment()
-  let orgpos = getpos('.')
-  let curpos = getpos('.')
+function! emmet#lang#html#toggleComment()
+  let orgpos = emmet#util#getcurpos()
+  let curpos = emmet#util#getcurpos()
   let mx = '<\%#[^>]*>'
   while 1
-    let block = zencoding#util#searchRegion('<!--', '-->')
-    if zencoding#util#regionIsValid(block)
+    let block = emmet#util#searchRegion('<!--', '-->')
+    if emmet#util#regionIsValid(block)
       let block[1][1] += 2
-      let content = zencoding#util#getContent(block)
+      let content = emmet#util#getContent(block)
       let content = substitute(content, '^<!--\s\(.*\)\s-->$', '\1', '')
-      call zencoding#util#setContent(block, content)
+      call emmet#util#setContent(block, content)
       silent! call setpos('.', orgpos)
       return
     endif
-    let block = zencoding#util#searchRegion('<[^>]', '>')
-    if !zencoding#util#regionIsValid(block)
+    let block = emmet#util#searchRegion('<[^>]', '>')
+    if !emmet#util#regionIsValid(block)
       let pos1 = searchpos('<', 'bcW')
       if pos1[0] == 0 && pos1[1] == 0
         return
       endif
-      let curpos = getpos('.')
+      let curpos = emmet#util#getcurpos()
       continue
     endif
     let pos1 = block[0]
     let pos2 = block[1]
-    let content = zencoding#util#getContent(block)
+    let content = emmet#util#getContent(block)
     let tag_name = matchstr(content, '^<\zs/\{0,1}[^ \r\n>]\+')
     if tag_name[0] == '/'
       call setpos('.', [0, pos1[0], pos1[1], 0])
-      let pos2 = searchpairpos('<'. tag_name[1:] . '>', '', '</' . tag_name[1:] . '>', 'bnW')
+      let pos2 = searchpairpos('<'. tag_name[1:] . '\>[^>]*>', '', '</' . tag_name[1:] . '>', 'bnW')
       let pos1 = searchpos('>', 'cneW')
       let block = [pos2, pos1]
     elseif tag_name =~ '/$'
-      if !zencoding#util#pointInRegion(orgpos[1:2], block)
+      if !emmet#util#pointInRegion(orgpos[1:2], block)
         " it's broken tree
         call setpos('.', orgpos)
-        let block = zencoding#util#searchRegion('>', '<')
-        let content = '><!-- ' . zencoding#util#getContent(block)[1:-2] . ' --><'
-        call zencoding#util#setContent(block, content)
+        let block = emmet#util#searchRegion('>', '<')
+        let content = '><!-- ' . emmet#util#getContent(block)[1:-2] . ' --><'
+        call emmet#util#setContent(block, content)
         silent! call setpos('.', orgpos)
         return
       endif
     else
       call setpos('.', [0, pos2[0], pos2[1], 0])
-      let pos2 = searchpairpos('<'. tag_name . '>', '', '</' . tag_name . '>', 'nW')
-      call setpos('.', [0, pos2[0], pos2[1], 0])
-      let pos2 = searchpos('>', 'neW')
-      let block = [pos1, pos2]
+      let pos3 = searchpairpos('<'. tag_name . '\>[^>]*>', '', '</' . tag_name . '>', 'nW')
+      if pos3 == [0, 0]
+        let block = [pos1, pos2]
+      else
+        call setpos('.', [0, pos3[0], pos3[1], 0])
+        let pos2 = searchpos('>', 'neW')
+        let block = [pos1, pos2]
+      endif
     endif
-    if !zencoding#util#regionIsValid(block)
+    if !emmet#util#regionIsValid(block)
       silent! call setpos('.', orgpos)
       return
     endif
-    if zencoding#util#pointInRegion(curpos[1:2], block)
-      let content = '<!-- ' . zencoding#util#getContent(block) . ' -->'
-      call zencoding#util#setContent(block, content)
+    if emmet#util#pointInRegion(curpos[1:2], block)
+      let content = '<!-- ' . emmet#util#getContent(block) . ' -->'
+      call emmet#util#setContent(block, content)
       silent! call setpos('.', orgpos)
       return
     endif
   endwhile
 endfunction
 
-function! zencoding#lang#html#balanceTag(flag) range
-  let vblock = zencoding#util#getVisualBlock()
+function! emmet#lang#html#balanceTag(flag) range
+  let vblock = emmet#util#getVisualBlock()
   if a:flag == -2 || a:flag == 2
     let curpos = [0, line("'<"), col("'<"), 0]
   else
-    let curpos = getpos('.')
+    let curpos = emmet#util#getcurpos()
   endif
-  let settings = zencoding#getSettings()
+  let settings = emmet#getSettings()
 
   if a:flag > 0
-    let mx = '<\([a-zA-Z][a-zA-Z0-9:_\-]*\)[^>]*>'
+    let mx = '<\([a-zA-Z][a-zA-Z0-9:_\-]*\)[^>]*'
+    let last = curpos[1:2]
     while 1
       let pos1 = searchpos(mx, 'bW')
       let content = matchstr(getline(pos1[0])[pos1[1]-1:], mx)
@@ -556,16 +696,20 @@ function! zencoding#lang#html#balanceTag(flag) range
       if stridx(','.settings.html.empty_elements.',', ','.tag_name.',') != -1
         let pos2 = searchpos('>', 'nW')
       else
-        let pos2 = searchpairpos('<' . tag_name . '[^>]*>', '', '</'. tag_name . '>\zs', 'nW')
+        let pos2 = searchpairpos('<' . tag_name . '[^>]*>', '', '</'. tag_name . '\zs>', 'nW')
       endif
       let block = [pos1, pos2]
       if pos1[0] == 0 && pos1[1] == 0
         break
       endif
-      if zencoding#util#pointInRegion(curpos[1:2], block) && zencoding#util#regionIsValid(block)
-        call zencoding#util#selectRegion(block)
+      if emmet#util#pointInRegion(last, block) && emmet#util#regionIsValid(block)
+        call emmet#util#selectRegion(block)
         return
       endif
+      if pos1 == last
+        break
+      endif
+      let last = pos1
     endwhile
   else
     let mx = '<\([a-zA-Z][a-zA-Z0-9:_\-]*\)[^>]*>'
@@ -575,8 +719,8 @@ function! zencoding#lang#html#balanceTag(flag) range
         let pos1 = searchpos(mx . '\zs', 'W')
         let pos2 = searchpos('.\ze<', 'W')
         let block = [pos1, pos2]
-        if zencoding#util#regionIsValid(block)
-          call zencoding#util#selectRegion(block)
+        if emmet#util#regionIsValid(block)
+          call emmet#util#selectRegion(block)
           return
         endif
       endif
@@ -585,25 +729,35 @@ function! zencoding#lang#html#balanceTag(flag) range
       if stridx(','.settings.html.empty_elements.',', ','.tag_name.',') != -1
         let pos2 = searchpos('>', 'nW')
       else
-        let pos2 = searchpairpos('<' . tag_name . '[^>]*>', '', '</'. tag_name . '>\zs', 'nW')
+        let pos2 = searchpairpos('<' . tag_name . '[^>]*>', '', '</'. tag_name . '\zs>', 'nW')
       endif
       let block = [pos1, pos2]
       if pos1[0] == 0 && pos1[1] == 0
         break
       endif
-      if zencoding#util#regionIsValid(block)
-        call zencoding#util#selectRegion(block)
+      if emmet#util#regionIsValid(block)
+        call emmet#util#selectRegion(block)
         return
       endif
     endwhile
   endif
-  call setpos('.', curpos)
   if a:flag == -2 || a:flag == 2
     silent! exe "normal! gv"
+  else
+    call setpos('.', curpos)
   endif
 endfunction
 
-function! zencoding#lang#html#moveNextPrev(flag)
+function! emmet#lang#html#moveNextPrevItem(flag)
+  silent! exe "normal \<esc>"
+  let mx = '\%([0-9a-zA-Z-:]\+\%(="[^"]*"\|=''[^'']*''\|[^ ''">\]]*\)\{0,1}\)'
+  let pos = searchpos('\s'.mx.'\zs', '')
+  if pos != [0,0]
+    call feedkeys('v?\s\zs'.mx."\<cr>", '')
+  endif
+endfunction
+
+function! emmet#lang#html#moveNextPrev(flag)
   let pos = search('\%(</\w\+\)\@<!\zs><\/\|\(""\)\|^\(\s*\)$', a:flag ? 'Wpb' : 'Wp')
   if pos == 3
     startinsert!
@@ -613,17 +767,17 @@ function! zencoding#lang#html#moveNextPrev(flag)
   endif
 endfunction
 
-function! zencoding#lang#html#splitJoinTag()
-  let curpos = getpos('.')
+function! emmet#lang#html#splitJoinTag()
+  let curpos = emmet#util#getcurpos()
   while 1
     let mx = '<\(/\{0,1}[a-zA-Z][a-zA-Z0-9:_\-]*\)[^>]*>'
     let pos1 = searchpos(mx, 'bcnW')
     let content = matchstr(getline(pos1[0])[pos1[1]-1:], mx)
     let tag_name = substitute(content, '^<\(/\{0,1}[a-zA-Z][a-zA-Z0-9:_\-]*\).*$', '\1', '')
     let block = [pos1, [pos1[0], pos1[1] + len(content) - 1]]
-    if content[-2:] == '/>' && zencoding#util#cursorInRegion(block)
+    if content[-2:] == '/>' && emmet#util#cursorInRegion(block)
       let content = content[:-3] . "></" . tag_name . '>'
-      call zencoding#util#setContent(block, content)
+      call emmet#util#setContent(block, content)
       call setpos('.', [0, block[0][0], block[0][1], 0])
       return
     else
@@ -635,10 +789,10 @@ function! zencoding#lang#html#splitJoinTag()
         let pos2 = searchpos('</' . tag_name . '>', 'cneW')
       endif
       let block = [pos1, pos2]
-      let content = zencoding#util#getContent(block)
-      if zencoding#util#pointInRegion(curpos[1:2], block) && content[1:] !~ '<' . tag_name . '[^a-zA-Z0-9]*[^>]*>'
+      let content = emmet#util#getContent(block)
+      if emmet#util#pointInRegion(curpos[1:2], block) && content[1:] !~ '<' . tag_name . '[^a-zA-Z0-9]*[^>]*>'
         let content = matchstr(content, mx)[:-2] . '/>'
-        call zencoding#util#setContent(block, content)
+        call emmet#util#setContent(block, content)
         call setpos('.', [0, block[0][0], block[0][1], 0])
         return
       else
@@ -653,16 +807,16 @@ function! zencoding#lang#html#splitJoinTag()
   endwhile
 endfunction
 
-function! zencoding#lang#html#removeTag()
-  let curpos = getpos('.')
+function! emmet#lang#html#removeTag()
+  let curpos = emmet#util#getcurpos()
   while 1
-    let mx = '<\(/\{0,1}[a-zA-Z][a-zA-Z0-9:_\-]*\)[^>]*>'
+    let mx = '<\(/\{0,1}[a-zA-Z][a-zA-Z0-9:_\-]*\)[^>]*'
     let pos1 = searchpos(mx, 'bcnW')
     let content = matchstr(getline(pos1[0])[pos1[1]-1:], mx)
-    let tag_name = substitute(content, '^<\(/\{0,1}[a-zA-Z0-9:_\-]*\).*$', '\1', '')
+    let tag_name = matchstr(content, '^<\zs/\{0,1}[a-zA-Z0-9:_\-]*')
     let block = [pos1, [pos1[0], pos1[1] + len(content) - 1]]
-    if content[-2:] == '/>' && zencoding#util#cursorInRegion(block)
-      call zencoding#util#setContent(block, '')
+    if content[-2:] == '/>' && emmet#util#cursorInRegion(block)
+      call emmet#util#setContent(block, '')
       call setpos('.', [0, block[0][0], block[0][1], 0])
       return
     else
@@ -674,9 +828,9 @@ function! zencoding#lang#html#removeTag()
         let pos2 = searchpos('</' . tag_name . '>', 'cneW')
       endif
       let block = [pos1, pos2]
-      let content = zencoding#util#getContent(block)
-      if zencoding#util#pointInRegion(curpos[1:2], block) && content[1:] !~ '<' . tag_name . '[^a-zA-Z0-9]*[^>]*>'
-        call zencoding#util#setContent(block, '')
+      let content = emmet#util#getContent(block)
+      if emmet#util#pointInRegion(curpos[1:2], block) && content[1:] !~ '^<' . tag_name . '[^a-zA-Z0-9]'
+        call emmet#util#setContent(block, '')
         call setpos('.', [0, block[0][0], block[0][1], 0])
         return
       else

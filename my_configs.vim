@@ -214,6 +214,11 @@ nmap <leader>qq <ESC>:qa!<CR>
 " set shiftwidth=4
 let g:indentLine_char = '¦' "'┆┊'
 
+
+" emmet
+" nmap <C-Y> <Plug>(emmet-expand-abbr)
+
+
 " motion and reset
 unmap <C-B>
 unmap <C-H>
