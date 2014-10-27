@@ -24,7 +24,7 @@ set wildmenu
 "set mouse=a
 set ttymouse=xterm2
 " set listchars=eol:¬
-set listchars=tab:»»,trail:·,extends:▸ 
+set listchars=tab:»»,trail:·,extends:▸
 
 " color scheme selection
 let g:solarized_termcolors=256
@@ -52,7 +52,7 @@ endif
 " colorscheme ir_black
 " colorscheme elflord
 " colorscheme Tomorrow-Night-Eighties
-" colorscheme base16-3024 
+" colorscheme base16-3024
 " colorscheme molokai
 " colorscheme jellybeans
 
@@ -97,7 +97,7 @@ let g:syntastic_auto_loc_list = 1
 " let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_c_checkers = ['make', 'gcc']
-let g:syntastic_cpp_checkers = ['make', 'cppcheck'] 
+let g:syntastic_cpp_checkers = ['make', 'cppcheck']
 
 
 " multicursor
@@ -264,13 +264,16 @@ nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
 nmap <leader>iw :set wrap!<CR>
 nmap <leader>ip :set paste!<CR>
 nmap <leader>ii :nohlsearch<CR>
-" use 2 commands to switch line numbers as 
+" use 2 commands to switch line numbers as
 " there is a bug that option "number" and "relativenumber" are exclusive on same vim version
 nmap <leader>in :set nonumber<CR>:set relativenumber<CR>
 nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 
 
 " misc
+" reselect region after indent < >
+vnoremap < <gv
+vnoremap > >gv
 " execute current script (python/bash)
 nmap <leader>v <Esc>:w<CR>:!./%<CR>
 " insert a empty line
@@ -290,6 +293,10 @@ nnoremap <S-Tab> :bp<CR>
 nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 " nnoremap <leader>rw :'{,'}s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 
+noremap <up> <C-a>
+noremap <down> <C-x>
+noremap ; :
+nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
 
 " for reference
 " <CR> as command prefix
