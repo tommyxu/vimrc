@@ -268,6 +268,7 @@ nmap <leader>ii :nohlsearch<CR>
 " there is a bug that option "number" and "relativenumber" are exclusive on same vim version
 nmap <leader>in :set nonumber<CR>:set relativenumber<CR>
 nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
+nnoremap <leader>id :IndentLinesToggle<CR>
 
 
 " misc
@@ -293,10 +294,25 @@ nnoremap <S-Tab> :bp<CR>
 nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 " nnoremap <leader>rw :'{,'}s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 
+"increase and decease number
 noremap <up> <C-a>
 noremap <down> <C-x>
+" quick command line
 noremap ; :
+" trail tail whitespace
+command! CLEAN retab | %s/ \+$//
 nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
+" ctag enter
+nnoremap <Return> <C-]>
+" nnoremap <leader>b <C-o>
+
+" switch splits
+"noremap <Up> <c-w>k
+"noremap <Down> <c-w>j
+noremap <Right> <c-w>l
+noremap <Left> <c-w>h
+noremap ss :vsplit<CR>
+au VimResized * exe "normal! \<c-w>="
 
 " for reference
 " <CR> as command prefix
