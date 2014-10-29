@@ -57,6 +57,7 @@ gruvbox https://github.com/morhetz/gruvbox
 delimitMate https://github.com/Raimondi/delimitMate
 vim-gradle https://github.com/tfnico/vim-gradle
 emmet-vim https://github.com/mattn/emmet-vim
+vim-html-escape https://github.com/skwp/vim-html-escape
 """.strip()
 
 # jedi-vim https://github.com/davidhalter/jedi-vim
