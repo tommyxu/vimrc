@@ -58,6 +58,7 @@ delimitMate https://github.com/Raimondi/delimitMate
 vim-gradle https://github.com/tfnico/vim-gradle
 emmet-vim https://github.com/mattn/emmet-vim
 vim-html-escape https://github.com/skwp/vim-html-escape
+vim-jade https://github.com/digitaltoad/vim-jade
 """.strip()
 
 # jedi-vim https://github.com/davidhalter/jedi-vim
@@ -68,7 +69,6 @@ vim-html-escape https://github.com/skwp/vim-html-escape
 # vim-signature https://github.com/kshenoy/vim-signature
 # lusty https://github.com/sjbach/lusty
 PLUGINS = """
-vim-jade https://github.com/digitaltoad/vim-jade
 """.strip()
 
 
