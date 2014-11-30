@@ -59,6 +59,7 @@ vim-gradle https://github.com/tfnico/vim-gradle
 emmet-vim https://github.com/mattn/emmet-vim
 vim-html-escape https://github.com/skwp/vim-html-escape
 vim-jade https://github.com/digitaltoad/vim-jade
+vim-stylus https://github.com/vim-scripts/vim-stylus
 """.strip()
 
 # jedi-vim https://github.com/davidhalter/jedi-vim
@@ -68,8 +69,8 @@ vim-jade https://github.com/digitaltoad/vim-jade
 # vim-conque https://github.com/basepi/vim-conque
 # vim-signature https://github.com/kshenoy/vim-signature
 # lusty https://github.com/sjbach/lusty
-PLUGINS = """
-""".strip()
+#PLUGINS = """
+#""".strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
