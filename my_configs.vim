@@ -311,7 +311,7 @@ nnoremap <Return> <C-]>
 "noremap <Down> <c-w>j
 noremap <Right> <c-w>l
 noremap <Left> <c-w>h
-noremap ss :vsplit<CR>
+noremap vs :vsplit<CR>
 au VimResized * exe "normal! \<c-w>="
 
 " for reference
