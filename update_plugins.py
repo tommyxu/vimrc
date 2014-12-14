@@ -69,8 +69,9 @@ vim-stylus https://github.com/vim-scripts/vim-stylus
 # vim-conque https://github.com/basepi/vim-conque
 # vim-signature https://github.com/kshenoy/vim-signature
 # lusty https://github.com/sjbach/lusty
-#PLUGINS = """
-#""".strip()
+# vim-coffee-script https://github.com/kchmck/vim-coffee-script
+PLUGINS = """
+""".strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
