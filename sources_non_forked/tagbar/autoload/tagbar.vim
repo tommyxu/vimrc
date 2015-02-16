@@ -1158,7 +1158,7 @@ function! s:CheckFTCtags(bin, ftype) abort
     endif
 
     if exists('g:tagbar_type_' . a:ftype)
-        execute 'let userdef = ' . 'g:tagbar_type_' . a:ftype
+        let userdef = g:tagbar_type_{a:ftype}
         if has_key(userdef, 'ctagsbin')
             return userdef.ctagsbin
         else
@@ -1261,6 +1261,8 @@ function! s:BaseTag._getPrefix() abort dict
     if g:tagbar_show_visibility
         if has_key(self.fields, 'access')
             let prefix .= get(s:visibility_symbols, self.fields.access, ' ')
+        elseif has_key(self.fields, 'file')
+            let prefix .= s:visibility_symbols.private
         else
             let prefix .= ' '
         endif
@@ -1291,7 +1293,6 @@ endfunction
 " s:BaseTag.getClosedParentTline() {{{3
 function! s:BaseTag.getClosedParentTline() abort dict
     let tagline  = self.tline
-    let fileinfo = self.fileinfo
 
     " Find the first closed parent, starting from the top of the hierarchy.
     let parents   = []
@@ -1374,7 +1375,6 @@ endfunction
 
 " s:NormalTag.strfmt() {{{3
 function! s:NormalTag.strfmt() abort dict
-    let fileinfo = self.fileinfo
     let typeinfo = self.typeinfo
 
     let suffix = get(self.fields, 'signature', '')
@@ -1477,7 +1477,6 @@ endfunction
 
 " s:PseudoTag.strfmt() {{{3
 function! s:PseudoTag.strfmt() abort dict
-    let fileinfo = self.fileinfo
     let typeinfo = self.typeinfo
 
     let suffix = get(self.fields, 'signature', '')
@@ -2162,7 +2161,7 @@ function! s:ExecuteCtagsOnFile(fname, realfname, typeinfo) abort
                           \ '-',
                           \ '--format=2',
                           \ '--excmd=pattern',
-                          \ '--fields=nksSa',
+                          \ '--fields=nksSaf',
                           \ '--extra=',
                           \ '--sort=no',
                           \ '--append=no'
@@ -2205,6 +2204,8 @@ function! s:ExecuteCtagsOnFile(fname, realfname, typeinfo) abort
     let ctags_output = s:ExecuteCtags(ctags_cmd)
 
     if v:shell_error || ctags_output =~ 'Warning: cannot open source file'
+        call s:debug('Command output:')
+        call s:debug(ctags_output)
         " Only display an error message if the Tagbar window is open and we
         " haven't seen the error before.
         if bufwinnr("__Tagbar__") != -1 &&
@@ -2213,8 +2214,6 @@ function! s:ExecuteCtagsOnFile(fname, realfname, typeinfo) abort
             call s:warning('Tagbar: Could not execute ctags for ' . a:realfname . '!')
             echomsg 'Executed command: "' . ctags_cmd . '"'
             if !empty(ctags_output)
-                call s:debug('Command output:')
-                call s:debug(ctags_output)
                 echomsg 'Command output:'
                 for line in split(ctags_output, '\n')
                     echomsg line
@@ -2263,6 +2262,10 @@ function! s:ParseTagline(part1, part2, typeinfo, fileinfo) abort
         let key = strpart(field, 0, delimit)
         " Remove all tabs that may illegally be in the value
         let val = substitute(strpart(field, delimit + 1), '\t', '', 'g')
+        " File-restricted scoping
+        if key == "file"
+            let taginfo.fields[key] = 'yes'
+        endif
         if len(val) > 0
             if key == 'line' || key == 'column'
                 let taginfo.fields[key] = str2nr(val)
@@ -2835,7 +2838,7 @@ endfunction
 " s:PrintHelp() {{{2
 function! s:PrintHelp() abort
     if !g:tagbar_compact && s:short_help
-        silent 0put ='\" Press <F1> or ? for help'
+        silent 0put ='\" Press ' . s:get_map_str('help') . ' for help'
         silent  put _
     elseif !s:short_help
         silent 0put ='\" Tagbar keybindings'
@@ -3292,8 +3295,6 @@ endfunction
 
 " s:OpenParents() {{{2
 function! s:OpenParents(...) abort
-    let tagline = 0
-
     if a:0 == 1
         let tag = a:1
     else
@@ -3894,7 +3895,7 @@ function! s:QuitIfOnlyWindow() abort
     endif
 
     let curwinnr = winnr()
-    let prevwinnr = winnr('#')
+    let prevwinnr = winnr('#') == 0 ? curwinnr : winnr('#')
     call s:goto_win(tagbarwinnr, 1)
 
     " Check if there is more than one window

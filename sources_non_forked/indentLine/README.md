@@ -1,7 +1,7 @@
 indentLine
 ==========
 
-This plugin is used for displaying thin vertical lines at each indentation level for code indented with spaces. For code indented with tabs I think there is no need to support it, because you can use `:set list lcs=tab:\|\ ` (here is a space).
+This plugin is used for displaying thin vertical lines at each indentation level for code indented with spaces. For code indented with tabs I think there is no need to support it, because you can use `:set list lcs=tab:\|\ (here is a space)`.
 
 ## Requirements
 This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, so this plugin will not work with lower versions of Vim.
@@ -9,7 +9,7 @@ This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, 
 ## Installation
 To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/vimfiles` (Windows).
 
-If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Bundle 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
+If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Plugin 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
 
 ## Customization
 You can change the color of indentLines:  
@@ -52,3 +52,7 @@ If you think this script is helpful, follow the [GitHub repository][repository],
 ### Patched font
 ![Screenshot](http://i.imgur.com/2ZA7oaZ.png)
 
+### Leading Spaces
+![Screenshot](http://i.imgur.com/tLYkb79.png)
+
+![Screenshot](http://i.imgur.com/07Atrrs.png)
