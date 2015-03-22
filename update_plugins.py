@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import zipfile
 import shutil
@@ -13,7 +13,6 @@ PLUGINS = """
 ack.vim https://github.com/mileszs/ack.vim
 bufexplorer https://github.com/corntrace/bufexplorer
 ctrlp.vim https://github.com/kien/ctrlp.vim
-mayansmoke https://github.com/vim-scripts/mayansmoke
 nerdtree https://github.com/scrooloose/nerdtree
 nginx.vim https://github.com/vim-scripts/nginx.vim
 open_file_under_cursor.vim https://github.com/amix/open_file_under_cursor.vim
@@ -27,7 +26,6 @@ vim-colors-solarized https://github.com/altercation/vim-colors-solarized
 vim-indent-object https://github.com/michaeljsmith/vim-indent-object
 vim-less https://github.com/groenewege/vim-less
 vim-markdown https://github.com/tpope/vim-markdown
-vim-pyte https://github.com/therubymug/vim-pyte
 vim-snipmate https://github.com/garbas/vim-snipmate
 vim-snippets https://github.com/honza/vim-snippets
 vim-surround https://github.com/tpope/vim-surround
@@ -40,17 +38,14 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 syntastic https://github.com/scrooloose/syntastic
 vim-repeat https://github.com/tpope/vim-repeat
 vim-commentary https://github.com/tpope/vim-commentary
-vim-golang https://github.com/jnwhiteh/vim-golang
 base16-vim https://github.com/chriskempson/base16-vim
 jellybeans.vim https://github.com/nanotech/jellybeans.vim
 molokai https://github.com/tomasr/molokai
 tabular https://github.com/godlygeek/tabular
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
-vim-gitgutter https://github.com/airblade/vim-gitgutter
 vim-easymotion https://github.com/Lokaltog/vim-easymotion
 tagbar https://github.com/majutsushi/tagbar
-vim-kolor https://github.com/zeis/vim-kolor
 supertab https://github.com/ervandew/supertab
 indentLine https://github.com/Yggdroot/indentLine
 gruvbox https://github.com/morhetz/gruvbox
@@ -60,8 +55,15 @@ emmet-vim https://github.com/mattn/emmet-vim
 vim-html-escape https://github.com/skwp/vim-html-escape
 vim-jade https://github.com/digitaltoad/vim-jade
 vim-stylus https://github.com/vim-scripts/vim-stylus
+mru https://github.com/yegappan/mru
 """.strip()
 
+# vim-peepopen
+# mayansmoke https://github.com/vim-scripts/mayansmoke
+# vim-kolor https://github.com/zeis/vim-kolor
+# vim-gitgutter https://github.com/airblade/vim-gitgutter
+# vim-golang https://github.com/jnwhiteh/vim-golang
+# vim-pyte https://github.com/therubymug/vim-pyte
 # jedi-vim https://github.com/davidhalter/jedi-vim
 # peaksea https://github.com/vim-scripts/peaksea
 # vimim https://github.com/vimim/vimim
@@ -70,8 +72,8 @@ vim-stylus https://github.com/vim-scripts/vim-stylus
 # vim-signature https://github.com/kshenoy/vim-signature
 # lusty https://github.com/sjbach/lusty
 # vim-coffee-script https://github.com/kchmck/vim-coffee-script
-PLUGINS = """
-""".strip()
+# PLUGINS = """
+# """.strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
@@ -82,7 +84,7 @@ def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
     temp_zip_path = path.join(temp_dir, plugin_name)
 
     # Download and extract file in temp dir
-    print zip_path
+    print(zip_path)
 
     req = requests.get(zip_path)
     open(temp_zip_path, 'wb').write(req.content)
@@ -103,7 +105,7 @@ def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
 
     shutil.move(plugin_temp_path, plugin_dest_path)
 
-    print 'Updated %s' % plugin_name
+    print('Updated %s' % plugin_name)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,19 @@
 # vim-multiple-cursors [![Build Status](https://travis-ci.org/terryma/vim-multiple-cursors.svg)](https://travis-ci.org/terryma/vim-multiple-cursors)
 
+## Contents
+ - [About](#about)
+ - [Features](#features)
+ - [Installation](#installation)
+ - [Quick Start](#quick-start)
+ - [Mapping](#mapping)
+ - [Settings](#settings)
+ - [Interactions with other plugins](#interactions-with-other-plugins)
+ - [Highlight](#highlight)
+ - *[Known Issues](#known-issues)*
+ - [Changelog](#changelog)
+ - [Contributing](#contributing)
+ - [Credit](#credit) 
+
 ###Contributors
 - [eapache](https://github.com/eapache)
 - [aschrab](https://github.com/aschrab)
@@ -51,12 +65,12 @@ You can also add multiple cursors using a regular expression. The command `Multi
 
 ## Mapping
 Out of the box, only the single key `Ctrl-n` is mapped in regular Vim's Normal mode and Visual mode to provide the functionality mentioned above. `Ctrl-n`, `Ctrl-p`, `Ctrl-x`, and `<Esc>` are mapped in the special multicursor mode once you've added at least one virtual cursor to the buffer. If you don't like the plugin taking over your favorite key bindings, you can turn off the default with
-```
+```viml
 let g:multi_cursor_use_default_mapping=0
 ```
 
 You can then map the 'next', 'previous', 'skip', and 'exit' keys like the following:
-```
+```viml
 " Default mapping
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
@@ -65,13 +79,13 @@ let g:multi_cursor_quit_key='<Esc>'
 ```
 
 By default, the 'next' key is also used to enter multicursor mode. If you want to use a different key to start multicursor mode than for selecting the next location, do like the following:
-```
+```viml
 " Map start key separately from next key
 let g:multi_cursor_start_key='<F6>'
 ```
 
 Note that when multicursor mode is started, it selects current word without boundaries, i.e. it behaves like `g*`. If you want to use word boundaries in Normal mode (as `*` does) but still have old behaviour up your sleeve, you can do the following:
-```
+```viml
 let g:multi_cursor_start_key='g<C-n>'
 let g:multi_cursor_start_word_key='<C-n>'
 ```
@@ -83,10 +97,10 @@ In this configuration `<C-n>` will start multicursor mode using word boundaries 
 
 **NOTE:** Prior to version 1.3, the recommended way to map the keys is using the expression quote syntax in Vim, using something like `"\<C-n>"` or `"\<Esc>"` (see h: expr-quote). After 1.3, the recommended way is to use a raw string like above. If your key mappings don't appear to work, give the new syntax a try.
 
-## Setting
-Currently there're three additional global settings one can tweak:
-### ```g:multi_cursor_exit_from_visual_mode``` (Default: 1)
+## Settings
+Currently there are four additional global settings one can tweak:
 
+### ```g:multi_cursor_exit_from_visual_mode``` (Default: 1)
 If set to 0, then pressing `g:multi_cursor_quit_key` in _Visual_ mode will not quit and delete all existing cursors. This is useful if you want to press Escape and go back to Normal mode, and still be able to operate on all the cursors.
 
 ### ```g:multi_cursor_exit_from_insert_mode``` (Default: 1)
@@ -122,7 +136,7 @@ is entered.
 For example, if you are using [Neocomplete](https://github.com/Shougo/neocomplete.vim),
 add this to your vimrc to prevent conflict:
 
-```
+```viml
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
   if exists(':NeoCompleteLock')==2
@@ -143,20 +157,26 @@ With this locking and unlocking we prevent neocomplete to trigger it's function 
 ### Highlight
 The plugin uses the highlight group `multiple_cursors_cursor` and `multiple_cursors_visual` to highlight the virtual cursors and their visual selections respectively. You can customize them by putting something similar like the following in your vimrc:
 
-```
+```viml
 " Default highlighting (see help :highlight and help :highlight-link)
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 ```
 
-## Issues
+## Known Issues
 - Select mode is not implemented
+- I and A do not work in Visual mode yet (See #55)
+  
+ Single key command to switch to Insert mode such as c or s from Visual mode or i, a, I, A in Normal mode should work without any issues. **NOTE**: vim's Visual block mode also supports I and A commands, however they do not work in this plugin's Visual mode at the moment. For now, to use I and A, switch to normal mode by pressing v first.
 
 ## Changelog
 See [CHANGELOG.md](CHANGELOG.md)
 
 ## Contributing
 As one can see, there're still many issues to be resolved, patches and suggestions are always welcome! A list of open feature requests can be found [here](../../issues?labels=enhancement&state=open).
+
+Running the test suite requires ruby and rake as well as vim of course. On Mac
+OS, [MacVim](https://code.google.com/p/macvim/) is known to work.
 
 ## Credit
 Obviously inspired by Sublime Text's [multiple selection][sublime-multiple-selection] feature, also encouraged by Emac's [multiple cursors][emacs-multiple-cursors] implementation by Magnar Sveen

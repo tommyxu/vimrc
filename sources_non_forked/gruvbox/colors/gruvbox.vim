@@ -29,7 +29,11 @@ if !exists('g:gruvbox_bold')
 	let g:gruvbox_bold=1
 endif
 if !exists('g:gruvbox_italic')
-	let g:gruvbox_italic=1
+	if has('gui_running') || $TERM_ITALICS == 'true'
+		let g:gruvbox_italic=1
+	else
+		let g:gruvbox_italic=0
+	endif
 endif
 if !exists('g:gruvbox_undercurl')
 	let g:gruvbox_undercurl=1
@@ -643,6 +647,12 @@ else
 	call s:HL('GitGutterDelete', 'red', g:gruvbox_sign_column, 'inverse')
 	call s:HL('GitGutterChangeDelete', 'aqua', g:gruvbox_sign_column, 'inverse')
 endif
+
+" }}}
+" gitcommit highlighting "{{{
+
+call s:HL('gitcommitSelectedFile', 'green')
+call s:HL('gitcommitDiscardedFile', 'red')
 
 " }}}
 " Signify: {{{
