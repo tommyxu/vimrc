@@ -41,8 +41,8 @@ else
   " colorscheme solarized
 
   set background=dark
-  " colorscheme gruvbox
-  colorscheme molokai
+  colorscheme gruvbox
+  " colorscheme molokai
   " colorscheme Tomorrow-Night-Eighties
 endif
 
