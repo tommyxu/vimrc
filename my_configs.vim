@@ -21,14 +21,15 @@ set nonumber
 set relativenumber
 set cursorline
 set wildmenu
-"set mouse=a
 set ttymouse=xterm2
-" set listchars=eol:¬
 set listchars=tab:»»,trail:·,extends:▸
+set mouse=
+" set mouse=a
+" set listchars=eol:¬
 
 " color scheme selection
 let g:solarized_termcolors=256
-let g:gruvbox_italicize_comments=0
+" let g:gruvbox_italicize_comments=0
 
 if has("gui_running")
   set background=light
@@ -41,20 +42,19 @@ else
   " colorscheme solarized
 
   set background=dark
-  colorscheme gruvbox
+  " colorscheme gruvbox
   " colorscheme molokai
   " colorscheme Tomorrow-Night-Eighties
+  " colorscheme kolor
+  " colorscheme peaksea
+  " colorscheme default
+  " colorscheme ir_black
+  " colorscheme elflord
+  " colorscheme Tomorrow-Night-Eighties
+  " colorscheme base16-3024
+  " colorscheme molokai
+  colorscheme jellybeans
 endif
-
-" colorscheme kolor
-" colorscheme peaksea
-" colorscheme default
-" colorscheme ir_black
-" colorscheme elflord
-" colorscheme Tomorrow-Night-Eighties
-" colorscheme base16-3024
-" colorscheme molokai
-" colorscheme jellybeans
 
 
 " bufexplorer
@@ -98,6 +98,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_c_checkers = ['make', 'gcc']
 let g:syntastic_cpp_checkers = ['make', 'cppcheck']
+let g:syntastic_less_checkers = ['lessc']
 
 
 " multicursor
@@ -245,7 +246,7 @@ nnoremap <leader>cn :cn<CR>
 nnoremap <leader>cp :cp<CR>
 nnoremap <leader>ll :lop<CR>
 nnoremap <leader>lc :lcl<CR>
-" lnext and lpreve is already mapped
+" lnext and lprev is already mapped
 
 " location next/prev
 nnoremap <leader>ln :lnext<CR>
