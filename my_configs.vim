@@ -17,7 +17,8 @@ set softtabstop=2
 set cmdheight=1
 set showtabline=1
 set switchbuf=
-set nonumber
+set number
+" set nonumber
 set relativenumber
 set cursorline
 set wildmenu
@@ -173,7 +174,7 @@ map <leader>r :MRU<CR>
 
 " easymotion
 let g:EasyMotion_do_mapping=0
-map <leader>ge <Plug>(easymotion-prefix)
+" map <leader>ge <Plug>(easymotion-prefix)
 " map <leader>gl <Plug>(easymotion-bd-jk)
 map S <Plug>(easymotion-bd-W)
 map s <Plug>(easymotion-bd-w)
@@ -190,11 +191,6 @@ map <leader>y :YRShow<CR>
 
 " commentary
 let g:commentary_map_backslash = 0
-
-
-" vim-number
-nmap <leader>no :NumbersOnOff<CR>
-nmap <leader>nt :NumbersToggle<CR>
 
 
 " vimim
@@ -277,7 +273,7 @@ nnoremap <leader>id :IndentLinesToggle<CR>
 vnoremap < <gv
 vnoremap > >gv
 " execute current script (python/bash)
-nmap <leader>v <Esc>:w<CR>:!./%<CR>
+" nmap <leader>v <Esc>:w<CR>:!./%<CR>
 " insert a empty line
 nnoremap <C-L> o<ESC>
 " use <CR> to confirm omni-complete popup
@@ -293,11 +289,10 @@ nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 " replace current word
 nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
-" nnoremap <leader>rw :'{,'}s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 
 "increase and decease number
-noremap <up> <C-a>
-noremap <down> <C-x>
+" noremap <Up> <C-a>
+" noremap <Down> <C-x>
 " quick command line
 noremap ; :
 " trail tail whitespace
@@ -310,8 +305,8 @@ nnoremap <Return> <C-]>
 " switch splits
 "noremap <Up> <c-w>k
 "noremap <Down> <c-w>j
-noremap <Right> <c-w>l
-noremap <Left> <c-w>h
+" noremap <Right> <c-w>l
+" noremap <Left> <c-w>h
 noremap vs :vsplit<CR>
 au VimResized * exe "normal! \<c-w>="
 
