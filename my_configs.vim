@@ -43,7 +43,7 @@ else
 
   set background=dark
   " colorscheme gruvbox
-  " colorscheme molokai
+  colorscheme molokai
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme kolor
   " colorscheme peaksea
@@ -53,7 +53,7 @@ else
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme base16-3024
   " colorscheme molokai
-  colorscheme jellybeans
+  " colorscheme jellybeans
 endif
 
 
