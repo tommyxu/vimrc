@@ -33,8 +33,9 @@ let g:solarized_termcolors=256
 " let g:gruvbox_italicize_comments=0
 
 if has("gui_running")
-  set background=light
-  colorscheme solarized
+  " set background=light
+  colorscheme molokai
+  " colorscheme solarized
 else
   " set t_Co=16
   set t_Co=256
@@ -42,7 +43,7 @@ else
   " set background=light
   " colorscheme solarized
 
-  set background=dark
+  " set background=dark
   " colorscheme gruvbox
   colorscheme molokai
   " colorscheme Tomorrow-Night-Eighties
