@@ -28,7 +28,6 @@ open_file_under_cursor.vim https://github.com/amix/open_file_under_cursor.vim
 syntastic https://github.com/scrooloose/syntastic
 tabular https://github.com/godlygeek/tabular
 tagbar https://github.com/majutsushi/tagbar
-taglist.vim https://github.com/vim-scripts/taglist.vim
 tlib https://github.com/vim-scripts/tlib
 vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils
 vim-airline https://github.com/bling/vim-airline
@@ -53,6 +52,7 @@ vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-zenroom2 https://github.com/amix/vim-zenroom2
 """.strip()
 
+# taglist.vim https://github.com/vim-scripts/taglist.vim
 # vim-stylus https://github.com/vim-scripts/vim-stylus
 # vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
 # base16-vim https://github.com/chriskempson/base16-vim
@@ -62,7 +62,6 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # vim-peepopen
 # mayansmoke https://github.com/vim-scripts/mayansmoke
 # vim-kolor https://github.com/zeis/vim-kolor
-# vim-gitgutter https://github.com/airblade/vim-gitgutter
 # vim-golang https://github.com/jnwhiteh/vim-golang
 # vim-pyte https://github.com/therubymug/vim-pyte
 # jedi-vim https://github.com/davidhalter/jedi-vim
@@ -77,8 +76,9 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # YouCompleteMe https://github.com/Valloric/YouCompleteMe
 # vimshell.vim https://github.com/Shougo/vimshell.vim
 # accelerated-smooth-scroll https://github.com/yonchu/accelerated-smooth-scroll
-# PLUGINS = """
-# """.strip()
+PLUGINS = """
+vim-gitgutter https://github.com/airblade/vim-gitgutter
+""".strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
