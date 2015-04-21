@@ -77,8 +77,8 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # YouCompleteMe https://github.com/Valloric/YouCompleteMe
 # vimshell.vim https://github.com/Shougo/vimshell.vim
 # accelerated-smooth-scroll https://github.com/yonchu/accelerated-smooth-scroll
-PLUGINS = """
-""".strip()
+# PLUGINS = """
+# """.strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
