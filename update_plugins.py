@@ -11,7 +11,6 @@ from os import path
 #--- Globals ----------------------------------------------
 PLUGINS = """
 ack.vim https://github.com/mileszs/ack.vim
-base16-vim https://github.com/chriskempson/base16-vim
 bufexplorer https://github.com/corntrace/bufexplorer
 ctrlp.vim https://github.com/kien/ctrlp.vim
 delimitMate https://github.com/Raimondi/delimitMate
@@ -22,6 +21,7 @@ indentLine https://github.com/Yggdroot/indentLine
 jellybeans.vim https://github.com/nanotech/jellybeans.vim
 molokai https://github.com/tomasr/molokai
 mru https://github.com/yegappan/mru
+neocomplete.vim https://github.com/Shougo/neocomplete.vim
 nerdtree https://github.com/scrooloose/nerdtree
 nginx.vim https://github.com/vim-scripts/nginx.vim
 open_file_under_cursor.vim https://github.com/amix/open_file_under_cursor.vim
@@ -32,7 +32,6 @@ taglist.vim https://github.com/vim-scripts/taglist.vim
 tlib https://github.com/vim-scripts/tlib
 vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils
 vim-airline https://github.com/bling/vim-airline
-vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
 vim-coffee-script https://github.com/kchmck/vim-coffee-script
 vim-colors-solarized https://github.com/altercation/vim-colors-solarized
 vim-commentary https://github.com/tpope/vim-commentary
@@ -48,13 +47,15 @@ vim-markdown https://github.com/tpope/vim-markdown
 vim-multiple-cursors https://github.com/terryma/vim-multiple-cursors
 vim-repeat https://github.com/tpope/vim-repeat
 vim-snippets https://github.com/honza/vim-snippets
-vim-stylus https://github.com/vim-scripts/vim-stylus
 vim-surround https://github.com/tpope/vim-surround
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-zenroom2 https://github.com/amix/vim-zenroom2
 """.strip()
 
+# vim-stylus https://github.com/vim-scripts/vim-stylus
+# vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
+# base16-vim https://github.com/chriskempson/base16-vim
 # supertab https://github.com/ervandew/supertab
 # snipmate-snippets https://github.com/scrooloose/snipmate-snippets
 # vim-snipmate https://github.com/garbas/vim-snipmate
@@ -75,8 +76,8 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # ultisnips https://github.com/SirVer/ultisnips
 # YouCompleteMe https://github.com/Valloric/YouCompleteMe
 # vimshell.vim https://github.com/Shougo/vimshell.vim
+# accelerated-smooth-scroll https://github.com/yonchu/accelerated-smooth-scroll
 PLUGINS = """
-neocomplete.vim https://github.com/Shougo/neocomplete.vim
 """.strip()
 
 
