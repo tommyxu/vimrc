@@ -71,15 +71,15 @@ let g:airline#extensions#tabline#enabled=1
 
 
 " taglist
-map <leader>tl :TlistToggle<CR><leader>inn
+" map <leader>tl :TlistToggle<CR><leader>inn
 " let Tlist_Compact_Format = 1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_WinWidth = 42
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Exit_OnlyWindow = 1
+" let Tlist_File_Fold_Auto_Close = 1
+" let Tlist_GainFocus_On_ToggleOpen = 1
+" let Tlist_WinWidth = 42
+" let Tlist_Show_One_File = 1
+" let Tlist_Use_Right_Window = 1
+" let Tlist_Auto_Highlight_Tag = 1
+" let Tlist_Exit_OnlyWindow = 1
 
 
 " tagbar
@@ -134,7 +134,7 @@ hi default ShowMarksHLm cterm=reverse
 " git gutter
 let g:gitgutter_map_keys = 0
 nmap <leader>kk :GitGutterToggle<CR>
-nmap <leader>kt :GitGutterToggle<CR>
+" nmap <leader>kt :GitGutterToggle<CR>
 nmap <leader>kl :GitGutterLineHighlightsToggle<CR>
 nmap <leader>kn :GitGutterNextHunk<CR>
 nmap <leader>kp :GitGutterPrevHunk<CR>
@@ -246,6 +246,7 @@ nmap <leader><leader> <C-^>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
 map <leader>bd :bdelete<CR>
+map <leader>d :bdelete<CR>
 map <leader>bb :e  <LEFT>
 
 
