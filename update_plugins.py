@@ -50,6 +50,8 @@ vim-surround https://github.com/tpope/vim-surround
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-zenroom2 https://github.com/amix/vim-zenroom2
+vim-gitgutter https://github.com/airblade/vim-gitgutter
+ultisnips https://github.com/SirVer/ultisnips
 """.strip()
 
 # taglist.vim https://github.com/vim-scripts/taglist.vim
@@ -67,17 +69,13 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # jedi-vim https://github.com/davidhalter/jedi-vim
 # peaksea https://github.com/vim-scripts/peaksea
 # vimim https://github.com/vimim/vimim
-# numbers.vim https://github.com/myusuf3/numbers.vim
 # vim-conque https://github.com/basepi/vim-conque
 # vim-signature https://github.com/kshenoy/vim-signature
 # lusty https://github.com/sjbach/lusty
-# vim-coffee-script https://github.com/kchmck/vim-coffee-script
-# ultisnips https://github.com/SirVer/ultisnips
 # YouCompleteMe https://github.com/Valloric/YouCompleteMe
 # vimshell.vim https://github.com/Shougo/vimshell.vim
 # accelerated-smooth-scroll https://github.com/yonchu/accelerated-smooth-scroll
 PLUGINS = """
-vim-gitgutter https://github.com/airblade/vim-gitgutter
 """.strip()
 
 
