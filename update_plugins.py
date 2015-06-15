@@ -13,65 +13,70 @@ PLUGINS = """
 ack.vim https://github.com/mileszs/ack.vim
 bufexplorer https://github.com/corntrace/bufexplorer
 ctrlp.vim https://github.com/kien/ctrlp.vim
+delimitMate https://github.com/Raimondi/delimitMate
+emmet-vim https://github.com/mattn/emmet-vim
+goyo.vim https://github.com/junegunn/goyo.vim
+gruvbox https://github.com/morhetz/gruvbox
+indentLine https://github.com/Yggdroot/indentLine
+jellybeans.vim https://github.com/nanotech/jellybeans.vim
+molokai https://github.com/tomasr/molokai
+mru https://github.com/yegappan/mru
+neocomplete.vim https://github.com/Shougo/neocomplete.vim
 nerdtree https://github.com/scrooloose/nerdtree
 nginx.vim https://github.com/vim-scripts/nginx.vim
 open_file_under_cursor.vim https://github.com/amix/open_file_under_cursor.vim
-snipmate-snippets https://github.com/scrooloose/snipmate-snippets
-taglist.vim https://github.com/vim-scripts/taglist.vim
+syntastic https://github.com/scrooloose/syntastic
+tabular https://github.com/godlygeek/tabular
+tagbar https://github.com/majutsushi/tagbar
 tlib https://github.com/vim-scripts/tlib
 vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils
-vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
+vim-airline https://github.com/bling/vim-airline
 vim-coffee-script https://github.com/kchmck/vim-coffee-script
 vim-colors-solarized https://github.com/altercation/vim-colors-solarized
+vim-commentary https://github.com/tpope/vim-commentary
+vim-easymotion https://github.com/Lokaltog/vim-easymotion
+vim-expand-region https://github.com/terryma/vim-expand-region
+vim-fugitive https://github.com/tpope/vim-fugitive
+vim-gradle https://github.com/tfnico/vim-gradle
+vim-html-escape https://github.com/skwp/vim-html-escape
 vim-indent-object https://github.com/michaeljsmith/vim-indent-object
+vim-jade https://github.com/digitaltoad/vim-jade
 vim-less https://github.com/groenewege/vim-less
 vim-markdown https://github.com/tpope/vim-markdown
-vim-snipmate https://github.com/garbas/vim-snipmate
+vim-multiple-cursors https://github.com/terryma/vim-multiple-cursors
+vim-repeat https://github.com/tpope/vim-repeat
 vim-snippets https://github.com/honza/vim-snippets
 vim-surround https://github.com/tpope/vim-surround
-vim-expand-region https://github.com/terryma/vim-expand-region
-vim-multiple-cursors https://github.com/terryma/vim-multiple-cursors
-vim-fugitive https://github.com/tpope/vim-fugitive
-vim-airline https://github.com/bling/vim-airline
-goyo.vim https://github.com/junegunn/goyo.vim
-vim-zenroom2 https://github.com/amix/vim-zenroom2
-syntastic https://github.com/scrooloose/syntastic
-vim-repeat https://github.com/tpope/vim-repeat
-vim-commentary https://github.com/tpope/vim-commentary
-base16-vim https://github.com/chriskempson/base16-vim
-jellybeans.vim https://github.com/nanotech/jellybeans.vim
-molokai https://github.com/tomasr/molokai
-tabular https://github.com/godlygeek/tabular
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
-vim-easymotion https://github.com/Lokaltog/vim-easymotion
-tagbar https://github.com/majutsushi/tagbar
-supertab https://github.com/ervandew/supertab
-indentLine https://github.com/Yggdroot/indentLine
-gruvbox https://github.com/morhetz/gruvbox
-delimitMate https://github.com/Raimondi/delimitMate
-vim-gradle https://github.com/tfnico/vim-gradle
-emmet-vim https://github.com/mattn/emmet-vim
-vim-html-escape https://github.com/skwp/vim-html-escape
-vim-jade https://github.com/digitaltoad/vim-jade
-vim-stylus https://github.com/vim-scripts/vim-stylus
-mru https://github.com/yegappan/mru
+vim-zenroom2 https://github.com/amix/vim-zenroom2
+vim-gitgutter https://github.com/airblade/vim-gitgutter
+ultisnips https://github.com/SirVer/ultisnips
 """.strip()
 
+# taglist.vim https://github.com/vim-scripts/taglist.vim
+# vim-stylus https://github.com/vim-scripts/vim-stylus
+# vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
+# base16-vim https://github.com/chriskempson/base16-vim
+# supertab https://github.com/ervandew/supertab
+# snipmate-snippets https://github.com/scrooloose/snipmate-snippets
+# vim-snipmate https://github.com/garbas/vim-snipmate
 # vim-peepopen
 # mayansmoke https://github.com/vim-scripts/mayansmoke
 # vim-kolor https://github.com/zeis/vim-kolor
-# vim-gitgutter https://github.com/airblade/vim-gitgutter
 # vim-golang https://github.com/jnwhiteh/vim-golang
 # vim-pyte https://github.com/therubymug/vim-pyte
 # jedi-vim https://github.com/davidhalter/jedi-vim
 # peaksea https://github.com/vim-scripts/peaksea
 # vimim https://github.com/vimim/vimim
-# numbers.vim https://github.com/myusuf3/numbers.vim
 # vim-conque https://github.com/basepi/vim-conque
 # vim-signature https://github.com/kshenoy/vim-signature
 # lusty https://github.com/sjbach/lusty
+# YouCompleteMe https://github.com/Valloric/YouCompleteMe
+# vimshell.vim https://github.com/Shougo/vimshell.vim
+# accelerated-smooth-scroll https://github.com/yonchu/accelerated-smooth-scroll
 # vim-coffee-script https://github.com/kchmck/vim-coffee-script
+
 PLUGINS = """
 CoffeeTags https://github.com/lukaszkorecki/CoffeeTags
 """.strip()

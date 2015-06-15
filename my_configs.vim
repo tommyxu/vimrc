@@ -18,7 +18,8 @@ set softtabstop=2
 set cmdheight=1
 set showtabline=1
 set switchbuf=
-set nonumber
+set number
+" set nonumber
 set relativenumber
 set cursorline
 set wildmenu
@@ -33,8 +34,9 @@ let g:solarized_termcolors=256
 " let g:gruvbox_italicize_comments=0
 
 if has("gui_running")
-  set background=light
-  colorscheme solarized
+  " set background=light
+  colorscheme molokai
+  " colorscheme solarized
 else
   " set t_Co=16
   set t_Co=256
@@ -43,8 +45,10 @@ else
   " colorscheme solarized
 
   set background=dark
-  colorscheme gruvbox
+  " colorscheme gruvbox
   " colorscheme molokai
+  " colorscheme gruvbox
+  colorscheme molokai
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme kolor
   " colorscheme peaksea
@@ -70,15 +74,15 @@ let g:airline#extensions#tabline#enabled=1
 
 
 " taglist
-map <leader>tl :TlistToggle<CR><leader>inn
+" map <leader>tl :TlistToggle<CR><leader>inn
 " let Tlist_Compact_Format = 1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_WinWidth = 42
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Exit_OnlyWindow = 1
+" let Tlist_File_Fold_Auto_Close = 1
+" let Tlist_GainFocus_On_ToggleOpen = 1
+" let Tlist_WinWidth = 42
+" let Tlist_Show_One_File = 1
+" let Tlist_Use_Right_Window = 1
+" let Tlist_Auto_Highlight_Tag = 1
+" let Tlist_Exit_OnlyWindow = 1
 
 
 " tagbar
@@ -133,7 +137,7 @@ hi default ShowMarksHLm cterm=reverse
 " git gutter
 let g:gitgutter_map_keys = 0
 nmap <leader>kk :GitGutterToggle<CR>
-nmap <leader>kt :GitGutterToggle<CR>
+" nmap <leader>kt :GitGutterToggle<CR>
 nmap <leader>kl :GitGutterLineHighlightsToggle<CR>
 nmap <leader>kn :GitGutterNextHunk<CR>
 nmap <leader>kp :GitGutterPrevHunk<CR>
@@ -174,7 +178,7 @@ map <leader>r :MRU<CR>
 
 " easymotion
 let g:EasyMotion_do_mapping=0
-map <leader>ge <Plug>(easymotion-prefix)
+" map <leader>ge <Plug>(easymotion-prefix)
 " map <leader>gl <Plug>(easymotion-bd-jk)
 map S <Plug>(easymotion-bd-W)
 map s <Plug>(easymotion-bd-w)
@@ -191,11 +195,6 @@ map <leader>y :YRShow<CR>
 
 " commentary
 let g:commentary_map_backslash = 0
-
-
-" vim-number
-nmap <leader>no :NumbersOnOff<CR>
-nmap <leader>nt :NumbersToggle<CR>
 
 
 " vimim
@@ -221,6 +220,18 @@ let g:indentLine_char = '¦' "'┆┊'
 " nmap <C-Y> <Plug>(emmet-expand-abbr)
 
 
+" neocomplete
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_smart_case=1
+let g:neocomplete#sources#min_keyword_length=3
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
 " motion and reset
 unmap <C-B>
 unmap <C-H>
@@ -238,6 +249,7 @@ nmap <leader><leader> <C-^>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
 map <leader>bd :bdelete<CR>
+map <leader>d :bdelete<CR>
 map <leader>bb :e  <LEFT>
 
 
@@ -279,7 +291,7 @@ nnoremap <leader>id :IndentLinesToggle<CR>
 vnoremap < <gv
 vnoremap > >gv
 " execute current script (python/bash)
-nmap <leader>v <Esc>:w<CR>:!./%<CR>
+" nmap <leader>v <Esc>:w<CR>:!./%<CR>
 " insert a empty line
 nnoremap <C-L> o<ESC>
 " use <CR> to confirm omni-complete popup
@@ -295,11 +307,10 @@ nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 " replace current word
 nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
-" nnoremap <leader>rw :'{,'}s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 
 "increase and decease number
-noremap <up> <C-a>
-noremap <down> <C-x>
+" noremap <Up> <C-a>
+" noremap <Down> <C-x>
 " quick command line
 noremap ; :
 " trail tail whitespace
@@ -312,8 +323,8 @@ nnoremap <Return> <C-]>
 " switch splits
 "noremap <Up> <c-w>k
 "noremap <Down> <c-w>j
-noremap <Right> <c-w>l
-noremap <Left> <c-w>h
+" noremap <Right> <c-w>l
+" noremap <Left> <c-w>h
 noremap vs :vsplit<CR>
 au VimResized * exe "normal! \<c-w>="
 
