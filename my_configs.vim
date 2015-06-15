@@ -7,6 +7,7 @@ au FileType python setl nowrap
 au FileType json setl nowrap
 au FileType samba set commentstring=#%s
 
+set nowrap
 set nofoldenable
 set foldcolumn=0
 set textwidth=0
@@ -42,7 +43,7 @@ else
   " colorscheme solarized
 
   set background=dark
-  " colorscheme gruvbox
+  colorscheme gruvbox
   " colorscheme molokai
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme kolor
@@ -53,7 +54,7 @@ else
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme base16-3024
   " colorscheme molokai
-  colorscheme jellybeans
+  " colorscheme jellybeans
 endif
 
 
@@ -265,6 +266,7 @@ nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
 nmap <leader>iw :set wrap!<CR>
 nmap <leader>ip :set paste!<CR>
 nmap <leader>ii :nohlsearch<CR>
+nmap <leader>is :syntax off<CR>
 " use 2 commands to switch line numbers as
 " there is a bug that option "number" and "relativenumber" are exclusive on same vim version
 nmap <leader>in :set nonumber<CR>:set relativenumber<CR>

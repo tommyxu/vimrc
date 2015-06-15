@@ -72,8 +72,9 @@ mru https://github.com/yegappan/mru
 # vim-signature https://github.com/kshenoy/vim-signature
 # lusty https://github.com/sjbach/lusty
 # vim-coffee-script https://github.com/kchmck/vim-coffee-script
-# PLUGINS = """
-# """.strip()
+PLUGINS = """
+CoffeeTags https://github.com/lukaszkorecki/CoffeeTags
+""".strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
