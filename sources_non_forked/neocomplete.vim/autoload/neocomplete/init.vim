@@ -35,6 +35,12 @@ function! neocomplete#init#enable() "{{{
     return
   endif
 
+  if !(has('lua') && (v:version > 703 || v:version == 703 && has('patch885')))
+    echomsg 'neocomplete does not work with this version of Vim.'
+    echomsg 'It requires Vim 7.3.885 or later with Lua support ("+lua").'
+    return
+  endif
+
   if !exists('b:neocomplete')
     call neocomplete#init#_current_neocomplete()
   endif
@@ -117,8 +123,10 @@ function! neocomplete#init#_autocmds() "{{{
           \ call neocomplete#handler#_do_auto_complete('InsertEnter')
   endif
 
-  autocmd neocomplete CompleteDone *
-        \ call neocomplete#handler#_on_complete_done()
+  if exists('v:completed_item')
+    autocmd neocomplete CompleteDone *
+          \ call neocomplete#handler#_on_complete_done()
+  endif
 endfunction"}}}
 
 function! neocomplete#init#_others() "{{{
@@ -535,36 +543,6 @@ function! neocomplete#init#_variables() "{{{
         \ 'perl6', ['.', '::'])
   "}}}
 
-  " Initialize ctags arguments. "{{{
-  call neocomplete#util#set_default_dictionary(
-        \ 'g:neocomplete#ctags_arguments',
-        \ '_', '')
-  call neocomplete#util#set_default_dictionary(
-        \ 'g:neocomplete#ctags_arguments', 'vim',
-        \ '--language-force=vim --extra=fq --fields=afmiKlnsStz ' .
-        \ "--regex-vim='/function!? ([a-z#:_0-9A-Z]+)/\\1/function/'")
-  if neocomplete#util#is_mac()
-    call neocomplete#util#set_default_dictionary(
-          \ 'g:neocomplete#ctags_arguments', 'c',
-          \ '--c-kinds=+p --fields=+iaS --extra=+q
-          \ -I__DARWIN_ALIAS,__DARWIN_ALIAS_C,__DARWIN_ALIAS_I,__DARWIN_INODE64
-          \ -I__DARWIN_1050,__DARWIN_1050ALIAS,__DARWIN_1050ALIAS_C,__DARWIN_1050ALIAS_I,__DARWIN_1050INODE64
-          \ -I__DARWIN_EXTSN,__DARWIN_EXTSN_C
-          \ -I__DARWIN_LDBL_COMPAT,__DARWIN_LDBL_COMPAT2')
-  else
-    call neocomplete#util#set_default_dictionary(
-          \ 'g:neocomplete#ctags_arguments', 'c',
-          \ '-R --sort=1 --c-kinds=+p --fields=+iaS --extra=+q ' .
-          \ '-I __wur,__THROW,__attribute_malloc__,__nonnull+,'.
-          \   '__attribute_pure__,__attribute_warn_unused_result__,__attribute__+')
-  endif
-  call neocomplete#util#set_default_dictionary(
-        \ 'g:neocomplete#ctags_arguments', 'cpp',
-        \ '--language-force=C++ -R --sort=1 --c++-kinds=+p --fields=+iaS --extra=+q '.
-        \ '-I __wur,__THROW,__attribute_malloc__,__nonnull+,'.
-        \   '__attribute_pure__,__attribute_warn_unused_result__,__attribute__+')
-  "}}}
-
   " Initialize text mode filetypes. "{{{
   call neocomplete#util#set_default_dictionary(
         \ 'g:neocomplete#text_mode_filetypes',
@@ -627,13 +605,16 @@ function! neocomplete#init#_current_neocomplete() "{{{
         \ 'start_time' : reltime(),
         \ 'linenr' : 0,
         \ 'completeopt' : &completeopt,
-        \ 'completed_item' : {},
         \ 'overlapped_items' : {},
         \ 'sources' : [],
         \ 'sources_filetype' : '',
         \ 'within_comment' : 0,
         \ 'is_auto_complete' : 0,
         \ 'indent_text' : '',
+        \ 'default_matchers' : neocomplete#init#_filters(
+        \  (g:neocomplete#enable_fuzzy_completion ?
+        \   ['matcher_fuzzy'] : ['matcher_head'])
+        \  + ['matcher_length']),
         \}
 endfunction"}}}
 
@@ -694,10 +675,7 @@ function! neocomplete#init#_source(source) "{{{
         \ 'disabled_filetypes' : {},
         \ 'hooks' : {},
         \ 'mark' : '',
-        \ 'matchers' :
-        \        (g:neocomplete#enable_fuzzy_completion ?
-        \          ['matcher_fuzzy'] : ['matcher_head'])
-        \      + ['matcher_length'],
+        \ 'matchers' : [],
         \ 'sorters' : ['sorter_rank'],
         \ 'converters' : [
         \      'converter_remove_overlap',

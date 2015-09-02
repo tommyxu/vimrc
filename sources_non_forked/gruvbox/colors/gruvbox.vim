@@ -3,7 +3,7 @@
 " Description: Retro groove color scheme for Vim
 " Author: morhetz <morhetz@gmail.com>
 " Source: https://github.com/morhetz/gruvbox
-" Last Modified: 10 Nov 2014
+" Last Modified: 20 Aug 2015
 " -----------------------------------------------------------------------------
 
 " Supporting code -------------------------------------------------------------
@@ -40,6 +40,9 @@ if !exists('g:gruvbox_undercurl')
 endif
 if !exists('g:gruvbox_underline')
 	let g:gruvbox_underline=1
+endif
+if !exists('g:gruvbox_guisp_fallback') || index(['fg', 'bg'], g:gruvbox_guisp_fallback) == -1
+	let g:gruvbox_guisp_fallback='none'
 endif
 
 if !exists('g:gruvbox_italicize_comments')
@@ -228,7 +231,11 @@ function! s:HL(group, fg, ...)
 
 	let histring = 'hi ' . a:group . ' '
 
-	if strlen(a:fg)
+	" if (Foreground override enabled) && (    We were passed a guisp value     )
+	if g:gruvbox_guisp_fallback == 'fg' && a:0 >= 3 && strlen(a:3) && a:3 != 'none'
+		let c = get(s:gb, a:3)
+		let histring .= 'guifg=#' . c[0] . ' ctermfg=' . c[1] . ' '
+	elseif strlen(a:fg)
 		if a:fg == 'fg'
 			let histring .= 'guifg=fg ctermfg=fg '
 		elseif a:fg == 'bg'
@@ -241,7 +248,11 @@ function! s:HL(group, fg, ...)
 		endif
 	endif
 
-	if a:0 >= 1 && strlen(a:1)
+	" if (Background override enabled) && (    We were passed a guisp value     )
+	if g:gruvbox_guisp_fallback == 'bg' && a:0 >= 3 && strlen(a:3) && a:3 != 'none'
+		let c = get(s:gb, a:3)
+		let histring .= 'guibg=#' . c[0] . ' ctermbg=' . c[1] . ' '
+	elseif a:0 >= 1 && strlen(a:1)
 		if a:1 == 'bg'
 			let histring .= 'guibg=bg ctermbg=bg '
 		elseif a:fg == 'fg'
@@ -590,21 +601,29 @@ hi! link SneakStreakStatusLine Search
 " }}}
 " Indent Guides: {{{
 
-let g:indent_guides_auto_colors = 0
+if !exists('g:indent_guides_auto_colors')
+	let g:indent_guides_auto_colors = 0
+endif
 
-if g:gruvbox_invert_indent_guides == 0
-	call s:HL('IndentGuidesOdd', 'bg', 'dark2')
-	call s:HL('IndentGuidesEven', 'bg', 'dark1')
-else
-	call s:HL('IndentGuidesOdd', 'bg', 'dark2', 'inverse')
-	call s:HL('IndentGuidesEven', 'bg', 'dark3', 'inverse')
+if g:indent_guides_auto_colors == 0
+	if g:gruvbox_invert_indent_guides == 0
+		call s:HL('IndentGuidesOdd', 'bg', 'dark2')
+		call s:HL('IndentGuidesEven', 'bg', 'dark1')
+	else
+		call s:HL('IndentGuidesOdd', 'bg', 'dark2', 'inverse')
+		call s:HL('IndentGuidesEven', 'bg', 'dark3', 'inverse')
+	endif
 endif
 
 " }}}
 " IndentLine: {{{
 
-let g:indentLine_color_term = s:gb.dark2[1]
-let g:indentLine_color_gui = '#' . s:gb.dark2[0]
+if !exists('g:indentLine_color_term')
+	let g:indentLine_color_term = s:gb.dark2[1]
+endif
+if !exists('g:indentLine_color_gui')
+	let g:indentLine_color_gui = '#' . s:gb.dark2[0]
+endif
 
 " }}}
 " Rainbow Parentheses: {{{
@@ -915,13 +934,69 @@ call s:HL('cssGeneratedContentProp', 'aqua')
 " }}}
 " JavaScript: {{{
 
-call s:HL('javaScriptBraces', 'orange')
+call s:HL('javaScriptBraces', 'light1')
 call s:HL('javaScriptFunction', 'aqua')
 call s:HL('javaScriptIdentifier', 'red')
 call s:HL('javaScriptMember', 'blue')
 call s:HL('javaScriptNumber', 'purple')
 call s:HL('javaScriptNull', 'purple')
 call s:HL('javaScriptParens', 'light3')
+
+" }}}
+" YAJS: {{{
+
+call s:HL('javascriptImport', 'aqua')
+call s:HL('javascriptExport', 'aqua')
+call s:HL('javascriptClassKeyword', 'aqua')
+call s:HL('javascriptClassExtends', 'aqua')
+call s:HL('javascriptDefault', 'aqua')
+
+call s:HL('javascriptClassName', 'yellow')
+call s:HL('javascriptClassSuperName', 'yellow')
+call s:HL('javascriptGlobal', 'yellow')
+
+call s:HL('javascriptEndColons', 'light1')
+call s:HL('javascriptFuncArg', 'light1')
+call s:HL('javascriptGlobalMethod', 'light1')
+call s:HL('javascriptNodeGlobal', 'light1')
+
+" call s:HL('javascriptVariable', 'orange')
+call s:HL('javascriptVariable', 'red')
+" call s:HL('javascriptIdentifier', 'orange')
+" call s:HL('javascriptClassSuper', 'orange')
+call s:HL('javascriptIdentifier', 'orange')
+call s:HL('javascriptClassSuper', 'orange')
+
+" call s:HL('javascriptFuncKeyword', 'orange')
+" call s:HL('javascriptAsyncFunc', 'orange')
+call s:HL('javascriptFuncKeyword', 'aqua')
+call s:HL('javascriptAsyncFunc', 'aqua')
+call s:HL('javascriptClassStatic', 'orange')
+
+call s:HL('javascriptOperator', 'red')
+call s:HL('javascriptForOperator', 'red')
+call s:HL('javascriptYield', 'red')
+call s:HL('javascriptExceptions', 'red')
+call s:HL('javascriptMessage', 'red')
+
+call s:HL('javascriptTemplateSB', 'aqua')
+call s:HL('javascriptTemplateSubstitution', 'light1')
+
+" call s:HL('javascriptLabel', 'blue')
+" call s:HL('javascriptObjectLabel', 'blue')
+" call s:HL('javascriptPropertyName', 'blue')
+call s:HL('javascriptLabel', 'light1')
+call s:HL('javascriptObjectLabel', 'light1')
+call s:HL('javascriptPropertyName', 'light1')
+
+call s:HL('javascriptLogicSymbols', 'light1')
+call s:HL('javascriptArrowFunc', 'light1')
+
+call s:HL('javascriptDocParamName', 'light4')
+call s:HL('javascriptDocTags', 'light4')
+call s:HL('javascriptDocNotation', 'light4')
+call s:HL('javascriptDocParamType', 'light4')
+call s:HL('javascriptDocNamedParamType', 'light4')
 
 " }}}
 " CoffeeScript: {{{
@@ -1047,6 +1122,49 @@ call s:HL('markdownLinkText', 'medium', 'none', 'underline')
 call s:HL('markdownIdDeclaration', 'medium', 'none', 'underline')
 
 " }}}
+" Haskell: {{{
+
+" call s:HL('haskellType', 'yellow')
+" call s:HL('haskellOperators', 'orange')
+" call s:HL('haskellConditional', 'aqua')
+" call s:HL('haskellLet', 'orange')
+"
+call s:HL('haskellType', 'light1')
+call s:HL('haskellIdentifier', 'light1')
+call s:HL('haskellSeparator', 'light1')
+call s:HL('haskellDelimiter', 'light4')
+call s:HL('haskellOperators', 'blue')
+"
+call s:HL('haskellBacktick', 'orange')
+call s:HL('haskellStatement', 'orange')
+call s:HL('haskellConditional', 'orange')
+
+call s:HL('haskellLet', 'aqua')
+call s:HL('haskellDefault', 'aqua')
+call s:HL('haskellWhere', 'aqua')
+call s:HL('haskellBottom', 'aqua')
+call s:HL('haskellBlockKeywords', 'aqua')
+call s:HL('haskellImportKeywords', 'aqua')
+call s:HL('haskellDeclKeyword', 'aqua')
+call s:HL('haskellDeriving', 'aqua')
+call s:HL('haskellAssocType', 'aqua')
+
+call s:HL('haskellNumber', 'purple')
+call s:HL('haskellPragma', 'purple')
+
+call s:HL('haskellString', 'green')
+call s:HL('haskellChar', 'green')
+
+" }}}
+" Json: {{{
+
+call s:HL('jsonKeyword', 'green')
+call s:HL('jsonQuote', 'green')
+call s:HL('jsonBraces', 'light1')
+call s:HL('jsonString', 'light1')
+
+" }}}
+
 
 " Functions -------------------------------------------------------------------
 " Search Highlighting Cursor {{{

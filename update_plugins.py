@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import zipfile
 import shutil
@@ -76,10 +76,10 @@ ultisnips https://github.com/SirVer/ultisnips
 # vimshell.vim https://github.com/Shougo/vimshell.vim
 # accelerated-smooth-scroll https://github.com/yonchu/accelerated-smooth-scroll
 # vim-coffee-script https://github.com/kchmck/vim-coffee-script
+# CoffeeTags https://github.com/lukaszkorecki/CoffeeTags
 
-PLUGINS = """
-CoffeeTags https://github.com/lukaszkorecki/CoffeeTags
-""".strip()
+# PLUGINS = """
+# """.strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
