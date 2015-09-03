@@ -13,6 +13,7 @@ set foldcolumn=0
 set textwidth=0
 set nolbr
 set shiftwidth=2
+" set shiftwidth=4
 set tabstop=2
 set softtabstop=2
 set cmdheight=1
@@ -25,9 +26,9 @@ set cursorline
 set wildmenu
 set ttymouse=xterm2
 set listchars=tab:»»,trail:·,extends:▸
+" set listchars=eol:¬
 set mouse=
 " set mouse=a
-" set listchars=eol:¬
 
 " color scheme selection
 let g:solarized_termcolors=256
@@ -63,8 +64,8 @@ endif
 " bufexplorer
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowRelativePath=0
-" let g:bufExplorerSortBy='number'
 let g:bufExplorerSortBy='mru'
+" let g:bufExplorerSortBy='number'
 
 
 " airline
@@ -113,13 +114,13 @@ let g:multi_cursor_next_key = '<C-E>'
 " let g:multi_cursor_prev_key = '<C-z>'
 
 
-" signature
-let g:SignatureMap = {
-  \ 'Leader'            : "m",
-  \ 'PlaceNextMark'     : "m",
-  \ 'GotoNextSpotByPos' : "mn",
-  \ 'GotoPrevSpotByPos' : "mp",
-  \ }
+" signature (disabled)
+" let g:SignatureMap = {
+"   \ 'Leader'            : "m",
+"   \ 'PlaceNextMark'     : "m",
+"   \ 'GotoNextSpotByPos' : "mn",
+"   \ 'GotoPrevSpotByPos' : "mp",
+"   \ }
 
 
 " showmarks
@@ -127,8 +128,8 @@ let g:showmarks_textlower="#"
 let g:showmarks_hlline_lower=1
 let g:showmarks_include="abcdefgjknzxvqwrt"
 let g:showmarks_enable=0
-hi default ShowMarksHLl cterm=reverse
-hi default ShowMarksHLm cterm=reverse
+" hi default ShowMarksHLl cterm=reverse
+" hi default ShowMarksHLm cterm=reverse
 " let g:showmarks_textother="-"
 
 
@@ -143,21 +144,21 @@ nmap <leader>ku <Plug>GitGutterRevertHunk
 nmap <leader>kv <Plug>GitGutterPreviewHunk
 
 
-" git fugitive
-nmap <leader>ks :Gstatus<CR>
-nmap <leader>kd :Gdiff<CR>
-nmap <leader>kc :Gcommit<CR>
+" git fugitive 
+" nmap <leader>ks :Gstatus<CR>
+" nmap <leader>kd :Gdiff<CR>
+" nmap <leader>kc :Gcommit<CR>
 
 
-" jedi
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#goto_assignments_command = "<leader>ga"
-let g:jedi#goto_definitions_command = "<leader>gd"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>gu"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>gr"
-let g:jedi#show_call_signatures = "1"
+" jedi (disabled)
+" let g:jedi#use_tabs_not_buffers = 0
+" let g:jedi#goto_assignments_command = "<leader>ga"
+" let g:jedi#goto_definitions_command = "<leader>gd"
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>gu"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>gr"
+" let g:jedi#show_call_signatures = "1"
 
 
 " ack
@@ -200,7 +201,7 @@ let g:vimim_toggle="wubi,pinyin"
 
 
 " peepopen (disable)
-let g:peepopen_loaded=1
+" let g:peepopen_loaded=1
 
 
 " system
@@ -210,7 +211,6 @@ nmap <leader>qq <ESC>:qa!<CR>
 
 
 " indentLine
-" set shiftwidth=4
 let g:indentLine_char = '¦' "'┆┊'
 
 
@@ -247,8 +247,10 @@ nmap <leader><leader> <C-^>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
 map <leader>bd :bdelete<CR>
-map <leader>d :bdelete<CR>
 map <leader>bb :e  <LEFT>
+" switch buffer with Tab key
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
 
 
 " quickfix and location list
@@ -257,8 +259,6 @@ nnoremap <leader>cn :cn<CR>
 nnoremap <leader>cp :cp<CR>
 nnoremap <leader>ll :lop<CR>
 nnoremap <leader>lc :lcl<CR>
-" lnext and lprev is already mapped
-
 " location next/prev
 nnoremap <leader>ln :lnext<CR>
 nnoremap <leader>lp :lprev<CR>
@@ -284,47 +284,57 @@ nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 nnoremap <leader>id :IndentLinesToggle<CR>
 
 
-" misc
+
+" misc (not plugin) mapping configuration
+
 " reselect region after indent < >
 vnoremap < <gv
 vnoremap > >gv
+
 " execute current script (python/bash)
 " nmap <leader>v <Esc>:w<CR>:!./%<CR>
+"
 " insert a empty line
 nnoremap <C-L> o<ESC>
+
 " use <CR> to confirm omni-complete popup
 inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
+
 " select last inserted text
 nnoremap gV `[v`]
+
 " quick quit the input mode
 imap jj <esc>
+cmap jj <esc>
+
 " sudo write
 nmap <leader>W :W<CR>:set nomodified<CR>
-" switch buffer with Tab key
-nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
+
 " replace current word
 nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 
 "increase and decease number
 " noremap <Up> <C-a>
 " noremap <Down> <C-x>
+"
 " quick command line
 noremap ; :
+
 " trail tail whitespace
 command! CLEAN retab | %s/ \+$//
 nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
+
 " ctag enter
-nnoremap <Return> <C-]>
+" nnoremap <Return> <C-]>
 " nnoremap <leader>b <C-o>
 
 " switch splits
-"noremap <Up> <c-w>k
-"noremap <Down> <c-w>j
+" noremap <Up> <c-w>k
+" noremap <Down> <c-w>j
 " noremap <Right> <c-w>l
 " noremap <Left> <c-w>h
-noremap vs :vsplit<CR>
-au VimResized * exe "normal! \<c-w>="
+" noremap vs :vsplit<CR>
+" au VimResized * exe "normal! \<c-w>="
 
 " for reference
 " <CR> as command prefix

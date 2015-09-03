@@ -38,6 +38,7 @@ vim-colors-solarized https://github.com/altercation/vim-colors-solarized
 vim-commentary https://github.com/tpope/vim-commentary
 vim-easymotion https://github.com/Lokaltog/vim-easymotion
 vim-expand-region https://github.com/terryma/vim-expand-region
+vim-fugitive https://github.com/tpope/vim-fugitive
 vim-gitgutter https://github.com/airblade/vim-gitgutter
 vim-gradle https://github.com/tfnico/vim-gradle
 vim-html-escape https://github.com/skwp/vim-html-escape
@@ -68,10 +69,8 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
 # vim-coffee-script https://github.com/kchmck/vim-coffee-script
 # vim-conque https://github.com/basepi/vim-conque
-# vim-fugitive https://github.com/tpope/vim-fugitive
 # vim-golang https://github.com/jnwhiteh/vim-golang
 # vim-kolor https://github.com/zeis/vim-kolor
-# vim-peepopen
 # vim-pyte https://github.com/therubymug/vim-pyte
 # vim-signature https://github.com/kshenoy/vim-signature
 # vim-snipmate https://github.com/garbas/vim-snipmate
