@@ -45,11 +45,9 @@ else
   " colorscheme solarized
 
   set background=dark
-  colorscheme mongo
-  " colorscheme gruvbox
+  " colorscheme mongo
   " colorscheme molokai
-  " colorscheme gruvbox
-  " colorscheme molokai
+  colorscheme gruvbox
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme kolor
   " colorscheme peaksea
@@ -58,7 +56,6 @@ else
   " colorscheme elflord
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme base16-3024
-  " colorscheme molokai
   " colorscheme jellybeans
 endif
 
