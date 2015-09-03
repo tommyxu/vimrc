@@ -78,8 +78,9 @@ ultisnips https://github.com/SirVer/ultisnips
 # vim-coffee-script https://github.com/kchmck/vim-coffee-script
 # CoffeeTags https://github.com/lukaszkorecki/CoffeeTags
 
-# PLUGINS = """
-# """.strip()
+PLUGINS = """
+CSApprox https://github.com/vim-scripts/CSApprox
+""".strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
