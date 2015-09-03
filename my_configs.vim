@@ -45,10 +45,11 @@ else
   " colorscheme solarized
 
   set background=dark
+  colorscheme mongo
   " colorscheme gruvbox
   " colorscheme molokai
   " colorscheme gruvbox
-  colorscheme molokai
+  " colorscheme molokai
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme kolor
   " colorscheme peaksea
