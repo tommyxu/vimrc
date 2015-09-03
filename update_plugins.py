@@ -13,6 +13,7 @@ PLUGINS = """
 ack.vim https://github.com/mileszs/ack.vim
 bufexplorer https://github.com/corntrace/bufexplorer
 ctrlp.vim https://github.com/kien/ctrlp.vim
+dash.vim https://github.com/rizzatti/dash.vim
 delimitMate https://github.com/Raimondi/delimitMate
 emmet-vim https://github.com/mattn/emmet-vim
 goyo.vim https://github.com/junegunn/goyo.vim
@@ -29,6 +30,7 @@ syntastic https://github.com/scrooloose/syntastic
 tabular https://github.com/godlygeek/tabular
 tagbar https://github.com/majutsushi/tagbar
 tlib https://github.com/vim-scripts/tlib
+ultisnips https://github.com/SirVer/ultisnips
 vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils
 vim-airline https://github.com/bling/vim-airline
 vim-coffee-script https://github.com/kchmck/vim-coffee-script
@@ -36,7 +38,7 @@ vim-colors-solarized https://github.com/altercation/vim-colors-solarized
 vim-commentary https://github.com/tpope/vim-commentary
 vim-easymotion https://github.com/Lokaltog/vim-easymotion
 vim-expand-region https://github.com/terryma/vim-expand-region
-vim-fugitive https://github.com/tpope/vim-fugitive
+vim-gitgutter https://github.com/airblade/vim-gitgutter
 vim-gradle https://github.com/tfnico/vim-gradle
 vim-html-escape https://github.com/skwp/vim-html-escape
 vim-indent-object https://github.com/michaeljsmith/vim-indent-object
@@ -50,34 +52,32 @@ vim-surround https://github.com/tpope/vim-surround
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-zenroom2 https://github.com/amix/vim-zenroom2
-vim-gitgutter https://github.com/airblade/vim-gitgutter
-ultisnips https://github.com/SirVer/ultisnips
 """.strip()
 
-# taglist.vim https://github.com/vim-scripts/taglist.vim
-# vim-stylus https://github.com/vim-scripts/vim-stylus
-# vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
-# base16-vim https://github.com/chriskempson/base16-vim
-# supertab https://github.com/ervandew/supertab
-# snipmate-snippets https://github.com/scrooloose/snipmate-snippets
-# vim-snipmate https://github.com/garbas/vim-snipmate
-# vim-peepopen
-# mayansmoke https://github.com/vim-scripts/mayansmoke
-# vim-kolor https://github.com/zeis/vim-kolor
-# vim-golang https://github.com/jnwhiteh/vim-golang
-# vim-pyte https://github.com/therubymug/vim-pyte
-# jedi-vim https://github.com/davidhalter/jedi-vim
-# peaksea https://github.com/vim-scripts/peaksea
-# vimim https://github.com/vimim/vimim
-# vim-conque https://github.com/basepi/vim-conque
-# vim-signature https://github.com/kshenoy/vim-signature
-# lusty https://github.com/sjbach/lusty
-# YouCompleteMe https://github.com/Valloric/YouCompleteMe
-# vimshell.vim https://github.com/Shougo/vimshell.vim
-# accelerated-smooth-scroll https://github.com/yonchu/accelerated-smooth-scroll
-# vim-coffee-script https://github.com/kchmck/vim-coffee-script
-# CoffeeTags https://github.com/lukaszkorecki/CoffeeTags
 # CSApprox https://github.com/vim-scripts/CSApprox
+# CoffeeTags https://github.com/lukaszkorecki/CoffeeTags
+# YouCompleteMe https://github.com/Valloric/YouCompleteMe
+# base16-vim https://github.com/chriskempson/base16-vim
+# jedi-vim https://github.com/davidhalter/jedi-vim
+# lusty https://github.com/sjbach/lusty
+# mayansmoke https://github.com/vim-scripts/mayansmoke
+# peaksea https://github.com/vim-scripts/peaksea
+# snipmate-snippets https://github.com/scrooloose/snipmate-snippets
+# supertab https://github.com/ervandew/supertab
+# taglist.vim https://github.com/vim-scripts/taglist.vim
+# vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
+# vim-coffee-script https://github.com/kchmck/vim-coffee-script
+# vim-conque https://github.com/basepi/vim-conque
+# vim-fugitive https://github.com/tpope/vim-fugitive
+# vim-golang https://github.com/jnwhiteh/vim-golang
+# vim-kolor https://github.com/zeis/vim-kolor
+# vim-peepopen
+# vim-pyte https://github.com/therubymug/vim-pyte
+# vim-signature https://github.com/kshenoy/vim-signature
+# vim-snipmate https://github.com/garbas/vim-snipmate
+# vim-stylus https://github.com/vim-scripts/vim-stylus
+# vimim https://github.com/vimim/vimim
+# vimshell.vim https://github.com/Shougo/vimshell.vim
 
 PLUGINS = """
 """.strip()
