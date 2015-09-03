@@ -30,6 +30,7 @@ set listchars=tab:»»,trail:·,extends:▸
 set mouse=
 " set mouse=a
 
+
 " color scheme selection
 let g:solarized_termcolors=256
 " let g:gruvbox_italicize_comments=0
@@ -230,6 +231,12 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 
+
+" dash
+nmap <silent> <leader>d <Plug>DashSearch
+" nmap <leader>d :Dash<CR>
+
+
 " motion and reset
 unmap <C-B>
 unmap <C-H>
@@ -298,7 +305,10 @@ vnoremap > >gv
 nnoremap <C-L> o<ESC>
 
 " use <CR> to confirm omni-complete popup
-inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
+inoremap <expr><CR> pumvisible() ? "\<C-Y>":"\<CR>"
+" inoremap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
 
 " select last inserted text
 nnoremap gV `[v`]
