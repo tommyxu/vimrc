@@ -53,6 +53,7 @@ vim-surround https://github.com/tpope/vim-surround
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-zenroom2 https://github.com/amix/vim-zenroom2
+vim-abolish https://github.com/tpope/vim-abolish
 """.strip()
 
 # CSApprox https://github.com/vim-scripts/CSApprox
