@@ -13,7 +13,6 @@ set foldcolumn=0
 set textwidth=0
 set nolbr
 set shiftwidth=2
-" set shiftwidth=4
 set tabstop=2
 set softtabstop=2
 set cmdheight=1
@@ -45,20 +44,28 @@ else
 
   " set background=light
   " colorscheme solarized
+  " let g:airline_theme="solarized"
 
   set background=dark
+
+  " colorscheme default
+  
+  colorscheme molokai
+  let g:airline_theme="molokai"
+
   " colorscheme mongo
-  " colorscheme molokai
-  colorscheme gruvbox
+  " colorscheme gruvbox
   " colorscheme Tomorrow-Night-Eighties
   " colorscheme kolor
   " colorscheme peaksea
-  " colorscheme default
   " colorscheme ir_black
   " colorscheme elflord
-  " colorscheme Tomorrow-Night-Eighties
   " colorscheme base16-3024
+  
   " colorscheme jellybeans
+  " let g:airline_theme="jellybeans"
+
+  " let g:airline_theme="powerlineish"
 endif
 
 
@@ -98,9 +105,7 @@ let g:tagbar_indent = 1
 
 " syntastic
 let g:syntastic_auto_loc_list = 1
-" let g:syntastic_python_checkers = ['python']
-" let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
 let g:syntastic_c_checkers = ['make', 'gcc']
 let g:syntastic_cpp_checkers = ['make', 'cppcheck']
 let g:syntastic_less_checkers = ['lessc']
@@ -145,7 +150,7 @@ nmap <leader>ku <Plug>GitGutterRevertHunk
 nmap <leader>kv <Plug>GitGutterPreviewHunk
 
 
-" git fugitive 
+" git fugitive
 " nmap <leader>ks :Gstatus<CR>
 " nmap <leader>kd :Gdiff<CR>
 " nmap <leader>kc :Gcommit<CR>
@@ -224,6 +229,7 @@ let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_smart_case=1
 let g:neocomplete#sources#min_keyword_length=3
 
+
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -231,10 +237,14 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 
-
 " dash
 nmap <silent> <leader>d <Plug>DashSearch
 " nmap <leader>d :Dash<CR>
+
+
+" fileBeagle
+let g:filebeagle_suppress_keymaps=1
+map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
 
 
 " motion and reset
