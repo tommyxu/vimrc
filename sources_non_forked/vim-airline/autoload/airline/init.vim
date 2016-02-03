@@ -1,4 +1,4 @@
-" MIT License. Copyright (c) 2013-2015 Bailey Ling.
+" MIT License. Copyright (c) 2013-2016 Bailey Ling.
 " vim: et ts=2 sts=2 sw=2
 
 function! s:check_defined(variable, default)
@@ -56,11 +56,11 @@ function! airline#init#bootstrap()
 
   call s:check_defined('g:airline_symbols', {})
   call extend(g:airline_symbols, {
-        \ 'paste': get(g:, 'airline_paste_symbol', 'PASTE'),
-        \ 'readonly': get(g:, 'airline_readonly_symbol', get(g:, 'airline_powerline_fonts', 0) ? "\ue0a2" : 'RO'),
+        \ 'paste': 'PASTE',
+        \ 'readonly': get(g:, 'airline_powerline_fonts', 0) ? "\ue0a2" : 'RO',
         \ 'whitespace': get(g:, 'airline_powerline_fonts', 0) ? "\u2739" : '!',
-        \ 'linenr': get(g:, 'airline_linecolumn_prefix', get(g:, 'airline_powerline_fonts', 0) ? "\ue0a1" : ':' ),
-        \ 'branch': get(g:, 'airline_branch_prefix', get(g:, 'airline_powerline_fonts', 0) ? "\ue0a0" : ''),
+        \ 'linenr': get(g:, 'airline_powerline_fonts', 0) ? "\ue0a1" : ':',
+        \ 'branch': get(g:, 'airline_powerline_fonts', 0) ? "\ue0a0" : '',
         \ 'modified': '+',
         \ 'space': ' ',
         \ 'crypt': get(g:, 'airline_crypt_symbol', nr2char(0x1F512)),
@@ -79,9 +79,13 @@ function! airline#init#bootstrap()
         \ 'accent': 'red',
         \ })
   call airline#parts#define_raw('file', '%f%m')
-  call airline#parts#define_raw('linenr', '%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#')
+  call airline#parts#define_raw('path', '%F%m')
+  call airline#parts#define('linenr', {
+        \ 'raw': '%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#',
+        \ 'accent': 'bold'})
   call airline#parts#define_function('ffenc', 'airline#parts#ffenc')
-  call airline#parts#define_empty(['hunks', 'branch', 'tagbar', 'syntastic', 'eclim', 'whitespace','windowswap'])
+  call airline#parts#define_empty(['hunks', 'branch', 'tagbar', 'syntastic',
+        \ 'eclim', 'whitespace','windowswap', 'ycm_error_count', 'ycm_warning_count'])
   call airline#parts#define_text('capslock', '')
 
   unlet g:airline#init#bootstrapping
@@ -96,7 +100,11 @@ function! airline#init#sections()
     let g:airline_section_b = airline#section#create(['hunks', 'branch'])
   endif
   if !exists('g:airline_section_c')
-    let g:airline_section_c = airline#section#create(['%<', 'file', spc, 'readonly'])
+    if exists("+autochdir") && &autochdir == 1
+      let g:airline_section_c = airline#section#create(['%<', 'path', spc, 'readonly'])
+    else
+      let g:airline_section_c = airline#section#create(['%<', 'file', spc, 'readonly'])
+    endif
   endif
   if !exists('g:airline_section_gutter')
     let g:airline_section_gutter = airline#section#create(['%='])
@@ -110,8 +118,11 @@ function! airline#init#sections()
   if !exists('g:airline_section_z')
     let g:airline_section_z = airline#section#create(['windowswap', '%3p%%'.spc, 'linenr', ':%3v '])
   endif
+  if !exists('g:airline_section_error')
+    let g:airline_section_error = airline#section#create(['ycm_error_count', 'syntastic', 'eclim'])
+  endif
   if !exists('g:airline_section_warning')
-    let g:airline_section_warning = airline#section#create(['syntastic', 'eclim', 'whitespace'])
+    let g:airline_section_warning = airline#section#create(['ycm_warning_count', 'whitespace'])
   endif
 endfunction
 

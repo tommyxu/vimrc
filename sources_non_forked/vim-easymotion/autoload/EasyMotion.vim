@@ -16,7 +16,12 @@ let s:DIRECTION = { 'forward': 0, 'backward': 1, 'bidirection': 2}
 
 
 " Init: {{{
+let s:loaded = s:FALSE
 function! EasyMotion#init()
+    if s:loaded
+        return
+    endif
+    let s:loaded = s:TRUE
     call EasyMotion#highlight#load()
     " Store previous motion info
     let s:previous = {}
@@ -138,6 +143,13 @@ function! EasyMotion#S(num_strokes, visualmode, direction) " {{{
     call s:EasyMotion(re, a:direction, a:visualmode ? visualmode() : '', is_inclusive)
     return s:EasyMotion_is_cancelled
 endfunction " }}}
+function! EasyMotion#OverwinF(num_strokes) " {{{
+    let re = s:findMotion(a:num_strokes, s:DIRECTION.bidirection)
+    call EasyMotion#reset()
+    if re isnot# ''
+        return EasyMotion#overwin#move(re)
+    endif
+endfunction "}}}
 function! EasyMotion#T(num_strokes, visualmode, direction) " {{{
     if a:direction == 1
         let is_inclusive = 0
@@ -205,8 +217,8 @@ function! EasyMotion#JK(visualmode, direction) " {{{
     if g:EasyMotion_startofline
         call s:EasyMotion('^\(\w\|\s*\zs\|$\)', a:direction, a:visualmode ? visualmode() : '', 0)
     else
-        let c = col('.')
-        let pattern = printf('^.\{-}\zs\(\%%<%dv.\%%>%dv\|$\)', c + 1, c)
+        let vcol  = EasyMotion#helper#vcol('.')
+        let pattern = printf('^.\{-}\zs\(\%%<%dv.\%%>%dv\|$\)', vcol + 1, vcol)
         call s:EasyMotion(pattern, a:direction, a:visualmode ? visualmode() : '', 0)
     endif
     return s:EasyMotion_is_cancelled
@@ -272,7 +284,8 @@ let s:config = {
 \   'visualmode': s:FALSE,
 \   'direction': s:DIRECTION.forward,
 \   'inclusive': s:FALSE,
-\   'accept_cursor_pos': s:FALSE
+\   'accept_cursor_pos': s:FALSE,
+\   'overwin': s:FALSE
 \ }
 
 function! s:default_config() abort
@@ -284,9 +297,13 @@ endfunction
 
 function! EasyMotion#go(...) abort
     let c = extend(s:default_config(), get(a:, 1, {}))
-    let s:current.is_operator = mode(1) ==# 'no' ? 1: 0
-    call s:EasyMotion(c.pattern, c.direction, c.visualmode ? visualmode() : '', c.inclusive, c)
-    return s:EasyMotion_is_cancelled
+    if c.overwin
+        return EasyMotion#overwin#move(c.pattern)
+    else
+        let s:current.is_operator = mode(1) ==# 'no' ? 1: 0
+        call s:EasyMotion(c.pattern, c.direction, c.visualmode ? visualmode() : '', c.inclusive, c)
+        return s:EasyMotion_is_cancelled
+    endif
 endfunction
 function! EasyMotion#User(pattern, visualmode, direction, inclusive, ...) " {{{
     let s:current.is_operator = mode(1) ==# 'no' ? 1: 0
@@ -391,7 +408,13 @@ endfunction " }}}
 " Helper Functions: {{{
 " -- Message -----------------------------
 function! s:Message(message) " {{{
-    echo 'EasyMotion: ' . a:message
+    if g:EasyMotion_verbose
+        echo 'EasyMotion: ' . a:message
+    else
+        " Make the current message dissapear
+        echo ''
+        " redraw
+    endif
 endfunction " }}}
 function! s:Prompt(message) " {{{
     echohl Question
@@ -453,16 +476,28 @@ function! s:SetLines(lines, key) " {{{
 endfunction " }}}
 
 " -- Get characters from user input ------
-function! s:GetChar() " {{{
-    let char = getchar()
-    if char == 27
-        " Escape key pressed
-        redraw
-        call s:Message('Cancelled')
-        return ''
-    endif
-    return nr2char(char)
-endfunction " }}}
+function! s:GetChar(...) abort "{{{
+    let mode = get(a:, 1, 0)
+    while 1
+        " Workaround for https://github.com/osyo-manga/vital-over/issues/53
+        try
+            let char = call('getchar', a:000)
+        catch /^Vim:Interrupt$/
+            let char = 3 " <C-c>
+        endtry
+        if char == 27 || char == 3
+            " Escape or <C-c> key pressed
+            redraw
+            call s:Message('Cancelled')
+            return ''
+        endif
+        " Workaround for the <expr> mappings
+        if string(char) !=# "\x80\xfd`"
+            return mode == 1 ? !!char
+            \    : type(char) == type(0) ? nr2char(char) : char
+        endif
+    endwhile
+endfunction "}}}
 
 " -- Find Motion Helper ------------------
 function! s:findMotion(num_strokes, direction) "{{{
@@ -1369,7 +1404,7 @@ function! s:EasyMotion(regexp, direction, visualmode, is_inclusive, ...) " {{{
         " if you just use cursor(s:current.cursor_position) to jump back,
         " current line will become middle of line window
         if ! empty(a:visualmode)
-            keepjumps call winrestview({'lnum' : win_first_line, 'topline' : win_first_line})
+            keepjumps call winrestview({'lnum' : s:current.cursor_position[0], 'topline' : win_first_line})
         else
             " for adjusting cursorline
             keepjumps call cursor(s:current.cursor_position)
@@ -1517,7 +1552,8 @@ function! s:EasyMotion(regexp, direction, visualmode, is_inclusive, ...) " {{{
         redraw
 
         " Show exception message
-        if g:EasyMotion_ignore_exception != 1
+        " The verbose option will take precedence
+        if g:EasyMotion_verbose == 1 && g:EasyMotion_ignore_exception != 1
             echo v:exception
         endif
 

@@ -61,6 +61,9 @@ function! neocomplete#mappings#define_default_mappings() "{{{
       inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
     endif
   endif
+
+  inoremap <silent> <Plug>(neocomplete_auto_refresh)
+        \ <C-r>=neocomplete#mappings#refresh()<CR>
 endfunction"}}}
 
 function! neocomplete#mappings#auto_complete() "{{{
@@ -74,6 +77,9 @@ function! neocomplete#mappings#auto_complete() "{{{
   let neocomplete.candidates = neocomplete#complete#_get_words(
         \ neocomplete.complete_sources, complete_pos, base)
   let neocomplete.complete_str = base
+  if empty(neocomplete.candidates)
+    return ''
+  endif
 
   " Start auto complete.
   call complete(complete_pos+1, neocomplete.candidates)
@@ -94,6 +100,9 @@ function! neocomplete#mappings#manual_complete() "{{{
   let neocomplete.candidates = neocomplete#complete#_get_words(
         \ complete_sources, complete_pos, base)
   let neocomplete.complete_str = base
+  if empty(neocomplete.candidates)
+    return ''
+  endif
 
   " Start auto complete.
   call complete(complete_pos+1, neocomplete.candidates)
@@ -107,7 +116,8 @@ endfunction
 function! neocomplete#mappings#close_popup() "{{{
   let neocomplete = neocomplete#get_current_neocomplete()
   let neocomplete.complete_str = ''
-  let neocomplete.skip_next_complete = 2
+  let neocomplete.old_cur_text = neocomplete#get_cur_text(1)
+  let neocomplete.skip_next_complete = 1
 
   return pumvisible() ? "\<C-y>" : ''
 endfunction
@@ -115,6 +125,12 @@ endfunction
 function! neocomplete#mappings#cancel_popup() "{{{
   let neocomplete = neocomplete#get_current_neocomplete()
   let neocomplete.complete_str = ''
+  let neocomplete.old_cur_text = neocomplete#get_cur_text(1)
+  let neocomplete.old_complete_pos = col('.')
+  if mode() !=# 'i'
+    let neocomplete.old_complete_pos += 1
+  endif
+  let neocomplete.old_linenr = line('.')
   let neocomplete.skip_next_complete = 1
 
   return pumvisible() ? "\<C-e>" : ''
@@ -135,13 +151,16 @@ function! neocomplete#mappings#undo_completion() "{{{
 
   " Get cursor word.
   let complete_str =
-        \ neocomplete#helper#match_word(neocomplete#get_cur_text(1))[1]
+        \ (!exists('v:completed_item') || empty(v:completed_item)) ?
+        \ neocomplete#helper#match_word(neocomplete#get_cur_text(1))[1] :
+        \ v:completed_item.word
+
   let old_keyword_str = neocomplete.complete_str
   let neocomplete.complete_str = complete_str
 
   return (!pumvisible() ? '' :
         \ complete_str ==# old_keyword_str ? "\<C-e>" : "\<C-y>")
-        \. repeat("\<BS>", len(complete_str)) . old_keyword_str
+        \. repeat("\<BS>", strchars(complete_str)) . old_keyword_str
 endfunction"}}}
 
 function! neocomplete#mappings#complete_common_string() "{{{
@@ -154,7 +173,6 @@ function! neocomplete#mappings#complete_common_string() "{{{
   let neocomplete.event = 'mapping'
   let complete_str =
         \ neocomplete#helper#match_word(neocomplete#get_cur_text(1))[1]
-  let neocomplete.event = ''
 
   if complete_str == ''
     return ''
@@ -178,7 +196,6 @@ function! neocomplete#mappings#complete_common_string() "{{{
           \   'complete_str' : complete_str})
 
     if empty(candidates)
-      let &ignorecase = ignorecase_save
       return ''
     endif
 
@@ -198,12 +215,11 @@ function! neocomplete#mappings#complete_common_string() "{{{
 
   if common_str == ''
         \ || complete_str ==? common_str
-        \ || len(common_str) == len(candidates[0].word)
     return ''
   endif
 
   return (pumvisible() ? "\<C-e>" : '')
-        \ . repeat("\<BS>", len(complete_str)) . common_str
+        \ . repeat("\<BS>", strchars(complete_str)) . common_str
 endfunction"}}}
 
 function! neocomplete#mappings#fallback(i) "{{{
@@ -212,6 +228,12 @@ function! neocomplete#mappings#fallback(i) "{{{
         \                   && &l:omnifunc == '')) ? "" :
         \ (mapping . (neocomplete#util#is_complete_select() ?
         \             "" : "\<C-p>"))
+endfunction"}}}
+
+function! neocomplete#mappings#refresh() "{{{
+  let neocomplete = neocomplete#get_current_neocomplete()
+  let neocomplete.refresh = 1
+  return pumvisible() ? "\<C-e>" : ''
 endfunction"}}}
 
 " Manual complete wrapper.
