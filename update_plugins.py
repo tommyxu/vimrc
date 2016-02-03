@@ -40,6 +40,7 @@ vim-colors-solarized https://github.com/altercation/vim-colors-solarized
 vim-commentary https://github.com/tpope/vim-commentary
 vim-easymotion https://github.com/Lokaltog/vim-easymotion
 vim-expand-region https://github.com/terryma/vim-expand-region
+vim-filebeagle https://github.com/jeetsukumaran/vim-filebeagle
 vim-fugitive https://github.com/tpope/vim-fugitive
 vim-gitgutter https://github.com/airblade/vim-gitgutter
 vim-go https://github.com/fatih/vim-go
@@ -79,8 +80,8 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # vim-snipmate https://github.com/garbas/vim-snipmate
 # vim-stylus https://github.com/vim-scripts/vim-stylus
 
+# vim-airline-themes https://github.com/vim-airline/vim-airline-themes
 PLUGINS = """
-vim-airline-themes https://github.com/vim-airline/vim-airline-themes
 """.strip()
 
 
