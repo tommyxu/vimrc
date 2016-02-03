@@ -31,6 +31,7 @@ tabular https://github.com/godlygeek/tabular
 tagbar https://github.com/majutsushi/tagbar
 tlib https://github.com/vim-scripts/tlib
 ultisnips https://github.com/SirVer/ultisnips
+vim-abolish https://github.com/tpope/vim-abolish
 vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils
 vim-airline https://github.com/bling/vim-airline
 vim-coffee-script https://github.com/kchmck/vim-coffee-script
@@ -41,6 +42,7 @@ vim-expand-region https://github.com/terryma/vim-expand-region
 vim-fugitive https://github.com/tpope/vim-fugitive
 vim-gitgutter https://github.com/airblade/vim-gitgutter
 vim-gradle https://github.com/tfnico/vim-gradle
+vim-go https://github.com/fatih/vim-go
 vim-html-escape https://github.com/skwp/vim-html-escape
 vim-indent-object https://github.com/michaeljsmith/vim-indent-object
 vim-jade https://github.com/digitaltoad/vim-jade
@@ -53,7 +55,6 @@ vim-surround https://github.com/tpope/vim-surround
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-zenroom2 https://github.com/amix/vim-zenroom2
-vim-abolish https://github.com/tpope/vim-abolish
 """.strip()
 
 # CSApprox https://github.com/vim-scripts/CSApprox
@@ -79,8 +80,8 @@ vim-abolish https://github.com/tpope/vim-abolish
 # vimim https://github.com/vimim/vimim
 # vimshell.vim https://github.com/Shougo/vimshell.vim
 
-PLUGINS = """
-""".strip()
+# PLUGINS = """
+# """.strip()
 
 
 GITHUB_ZIP = '%s/archive/master.zip'
