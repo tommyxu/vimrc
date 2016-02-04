@@ -82,6 +82,7 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 
 # vim-airline-themes https://github.com/vim-airline/vim-airline-themes
 PLUGINS = """
+ag.vim https://github.com/rking/ag.vim
 """.strip()
 
 
