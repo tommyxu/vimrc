@@ -49,7 +49,7 @@ else
   set background=dark
 
   " colorscheme default
-  
+
   colorscheme molokai
   let g:airline_theme="molokai"
 
@@ -61,7 +61,7 @@ else
   " colorscheme ir_black
   " colorscheme elflord
   " colorscheme base16-3024
-  
+
   " colorscheme jellybeans
   " let g:airline_theme="jellybeans"
 
@@ -247,6 +247,12 @@ let g:filebeagle_suppress_keymaps=1
 map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
 
 
+" indent lines
+nnoremap <leader>id :IndentLinesToggle<CR>
+
+
+" misc (not plugin) mapping configuration
+
 " motion and reset
 unmap <C-B>
 unmap <C-H>
@@ -259,7 +265,6 @@ nnoremap <space> <C-F>
 
 
 " buffer
-" nmap <leader><leader> :e #<CR>
 nmap <leader><leader> <C-^>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
@@ -268,15 +273,18 @@ map <leader>bb :e  <LEFT>
 " switch buffer with Tab key
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
+" nmap <leader><leader> :e #<CR>
 
 
-" quickfix and location list
+" quickfix
 nnoremap <leader>cl :ccl<CR>
 nnoremap <leader>cn :cn<CR>
 nnoremap <leader>cp :cp<CR>
+
+
+" location
 nnoremap <leader>ll :lop<CR>
 nnoremap <leader>lc :lcl<CR>
-" location next/prev
 nnoremap <leader>ln :lnext<CR>
 nnoremap <leader>lp :lprev<CR>
 
@@ -298,21 +306,19 @@ nmap <leader>is :syntax off<CR>
 " there is a bug that option "number" and "relativenumber" are exclusive on same vim version
 nmap <leader>in :set nonumber<CR>:set relativenumber<CR>
 nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
-nnoremap <leader>id :IndentLinesToggle<CR>
 
-
-
-" misc (not plugin) mapping configuration
 
 " reselect region after indent < >
 vnoremap < <gv
 vnoremap > >gv
 
+
 " execute current script (python/bash)
 " nmap <leader>v <Esc>:w<CR>:!./%<CR>
 "
 " insert a empty line
-nnoremap <C-L> o<ESC>
+nnoremap oo o<ESC>
+
 
 " use <CR> to confirm omni-complete popup
 inoremap <expr><CR> pumvisible() ? "\<C-Y>":"\<CR>"
@@ -323,12 +329,15 @@ inoremap <expr><CR> pumvisible() ? "\<C-Y>":"\<CR>"
 " select last inserted text
 nnoremap gV `[v`]
 
+
 " quick quit the input mode
 imap jj <esc>
 cmap jj <esc>
 
+
 " sudo write
 nmap <leader>W :W<CR>:set nomodified<CR>
+
 
 " replace current word
 nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
@@ -340,9 +349,12 @@ nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 " quick command line
 noremap ; :
 
+
 " trail tail whitespace
 command! CLEAN retab | %s/ \+$//
 nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
+
+
 
 " ctag enter
 " nnoremap <Return> <C-]>

@@ -57,6 +57,7 @@ vim-surround https://github.com/tpope/vim-surround
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-zenroom2 https://github.com/amix/vim-zenroom2
+ag.vim https://github.com/rking/ag.vim
 """.strip()
 
 # CSApprox https://github.com/vim-scripts/CSApprox
@@ -82,7 +83,7 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 
 # vim-airline-themes https://github.com/vim-airline/vim-airline-themes
 PLUGINS = """
-ag.vim https://github.com/rking/ag.vim
+ctrlsf.vim https://github.com/dyng/ctrlsf.vim
 """.strip()
 
 
