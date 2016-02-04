@@ -7,6 +7,7 @@ au FileType python setl nowrap
 au FileType json setl nowrap
 au FileType samba set commentstring=#%s
 
+
 set nowrap
 set nofoldenable
 set foldcolumn=0
@@ -33,6 +34,7 @@ set mouse=
 " color scheme selection
 let g:solarized_termcolors=256
 " let g:gruvbox_italicize_comments=0
+
 
 if has("gui_running")
   " set background=light
@@ -251,6 +253,10 @@ map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
 nnoremap <leader>id :IndentLinesToggle<CR>
 
 
+" expand-region (use + and _ )
+vnoremap + <Plug>(expand_region_shrink)
+
+
 " misc (not plugin) mapping configuration
 
 " motion and reset
@@ -317,7 +323,7 @@ vnoremap > >gv
 " nmap <leader>v <Esc>:w<CR>:!./%<CR>
 "
 " insert a empty line
-nnoremap oo o<ESC>
+nnoremap KK o<ESC>
 
 
 " use <CR> to confirm omni-complete popup
