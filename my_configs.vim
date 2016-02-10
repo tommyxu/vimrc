@@ -37,18 +37,17 @@ let g:solarized_termcolors=256
 
 
 if has("gui_running")
-  " set background=light
+  set background=light
   colorscheme molokai
-  " colorscheme solarized
 else
-  " set t_Co=16
   set t_Co=256
+  set background=dark
 
+  " set t_Co=16
   " set background=light
   " colorscheme solarized
   " let g:airline_theme="solarized"
 
-  set background=dark
 
   " colorscheme default
 
@@ -63,7 +62,7 @@ else
   " colorscheme ir_black
   " colorscheme elflord
   " colorscheme base16-3024
-
+  " colorscheme solarized
   " colorscheme jellybeans
   " let g:airline_theme="jellybeans"
 
@@ -80,7 +79,8 @@ let g:bufExplorerSortBy='mru'
 
 " airline
 let g:airline#extensions#tabline#enabled=1
-
+" let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " taglist
 " map <leader>tl :TlistToggle<CR><leader>inn
@@ -255,6 +255,11 @@ nnoremap <leader>id :IndentLinesToggle<CR>
 
 " expand-region (use + and _ )
 vnoremap + <Plug>(expand_region_shrink)
+
+
+" undotree
+let g:undotree_SplitWidth=40
+nnoremap <leader>u :UndotreeToggle<CR>
 
 
 " misc (not plugin) mapping configuration

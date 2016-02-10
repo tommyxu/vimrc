@@ -11,8 +11,10 @@ from os import path
 #--- Globals ----------------------------------------------
 PLUGINS = """
 ack.vim https://github.com/mileszs/ack.vim
+ag.vim https://github.com/rking/ag.vim
 bufexplorer https://github.com/corntrace/bufexplorer
 ctrlp.vim https://github.com/kien/ctrlp.vim
+ctrlsf.vim https://github.com/dyng/ctrlsf.vim
 dash.vim https://github.com/rizzatti/dash.vim
 delimitMate https://github.com/Raimondi/delimitMate
 emmet-vim https://github.com/mattn/emmet-vim
@@ -31,6 +33,7 @@ tabular https://github.com/godlygeek/tabular
 tagbar https://github.com/majutsushi/tagbar
 tlib https://github.com/vim-scripts/tlib
 ultisnips https://github.com/SirVer/ultisnips
+undotree https://github.com/mbbill/undotree
 vim-abolish https://github.com/tpope/vim-abolish
 vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils
 vim-airline https://github.com/bling/vim-airline
@@ -56,8 +59,8 @@ vim-snippets https://github.com/honza/vim-snippets
 vim-surround https://github.com/tpope/vim-surround
 vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
+vim-tomorrow-theme https://github.com/chriskempson/vim-tomorrow-theme
 vim-zenroom2 https://github.com/amix/vim-zenroom2
-ag.vim https://github.com/rking/ag.vim
 """.strip()
 
 # CSApprox https://github.com/vim-scripts/CSApprox
@@ -80,10 +83,9 @@ ag.vim https://github.com/rking/ag.vim
 # vim-signature https://github.com/kshenoy/vim-signature
 # vim-snipmate https://github.com/garbas/vim-snipmate
 # vim-stylus https://github.com/vim-scripts/vim-stylus
-
 # vim-airline-themes https://github.com/vim-airline/vim-airline-themes
+
 PLUGINS = """
-ctrlsf.vim https://github.com/dyng/ctrlsf.vim
 """.strip()
 
 
@@ -95,7 +97,7 @@ def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):
     temp_zip_path = path.join(temp_dir, plugin_name)
 
     # Download and extract file in temp dir
-    print(zip_path)
+    print('ZIP: {0}'.format(zip_path))
 
     req = requests.get(zip_path)
     open(temp_zip_path, 'wb').write(req.content)
