@@ -10,8 +10,6 @@ from os import path
 
 #--- Globals ----------------------------------------------
 PLUGINS = """
-ack.vim https://github.com/mileszs/ack.vim
-ag.vim https://github.com/rking/ag.vim
 bufexplorer https://github.com/corntrace/bufexplorer
 ctrlp.vim https://github.com/kien/ctrlp.vim
 ctrlsf.vim https://github.com/dyng/ctrlsf.vim
@@ -84,8 +82,11 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # vim-snipmate https://github.com/garbas/vim-snipmate
 # vim-stylus https://github.com/vim-scripts/vim-stylus
 # vim-airline-themes https://github.com/vim-airline/vim-airline-themes
+# ack.vim https://github.com/mileszs/ack.vim
+# ag.vim https://github.com/rking/ag.vim
 
 PLUGINS = """
+vim-textobj-entire https://github.com/kana/vim-textobj-entire
 """.strip()
 
 

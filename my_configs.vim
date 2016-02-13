@@ -24,6 +24,7 @@ set number
 set relativenumber
 set cursorline
 set wildmenu
+set wildmode=full
 set ttymouse=xterm2
 set listchars=tab:»»,trail:·,extends:▸
 " set listchars=eol:¬
@@ -170,10 +171,16 @@ nmap <leader>kv <Plug>GitGutterPreviewHunk
 
 
 " ack
-map <leader>a :Ack '' %<LEFT><LEFT><LEFT>
-map <leader>aa :Ack ''<LEFT>
-map <leader>as :Ack <cword><CR>
+" map <leader>a :Ack '' %<LEFT><LEFT><LEFT>
+" map <leader>aa :Ack ''<LEFT>
+" map <leader>as :Ack <cword><CR>
 
+" ctrlsf
+nmap <leader>a <Plug>CtrlSFPrompt
+nmap <leader>ar :CtrlSF -R  <LEFT>
+nmap <leader>aa <Plug>CtrlSFCwordPath
+vmap <leader>aa <Plug>CtrlSFVwordPath
+let g:ctrlsf_winsize = '40%'
 
 " ctrl-p find-files
 let g:ctrlp_map = '<leader>f'
@@ -193,7 +200,7 @@ map s <Plug>(easymotion-bd-w)
 
 " tabularize
 map <leader>al :Tab /=
-map <leader>ar :s/ *\(=\) */ \1 /
+" map <leader>ar :s/ *\(=\) */ \1 /
 
 
 " yankring
@@ -210,6 +217,10 @@ let g:vimim_toggle="wubi,pinyin"
 
 " peepopen (disable)
 " let g:peepopen_loaded=1
+
+
+" nerdtree
+let g:NERDTreeWinSize = 45
 
 
 " system
@@ -240,8 +251,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 
 " dash
-nmap <silent> <leader>d <Plug>DashSearch
-" nmap <leader>d :Dash<CR>
+nmap <silent> <leader>dd <Plug>DashSearch
 
 
 " fileBeagle
@@ -276,22 +286,26 @@ nnoremap <space> <C-F>
 
 
 " buffer
-nmap <leader><leader> <C-^>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
-map <leader>bd :bdelete<CR>
+nmap <leader>bd :bdelete<CR>
+nmap <leader>d :bdelete<CR>
 map <leader>bb :e  <LEFT>
 " switch buffer with Tab key
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 " nmap <leader><leader> :e #<CR>
 
+" switch location
+nnoremap <leader><leader> ''
+nnoremap <leader>. '.
+
 
 " quickfix
+nnoremap <leader>cc :cc<CR>
 nnoremap <leader>cl :ccl<CR>
 nnoremap <leader>cn :cn<CR>
 nnoremap <leader>cp :cp<CR>
-
 
 " location
 nnoremap <leader>ll :lop<CR>
@@ -319,9 +333,10 @@ nmap <leader>in :set nonumber<CR>:set relativenumber<CR>
 nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 
 
+" we can use dot command to repeat last command
 " reselect region after indent < >
-vnoremap < <gv
-vnoremap > >gv
+" vnoremap < <gv
+" vnoremap > >gv
 
 
 " execute current script (python/bash)
@@ -358,13 +373,15 @@ nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 " noremap <Down> <C-x>
 "
 " quick command line
-noremap ; :
+noremap ;; :
 
+" ex command
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
 
 " trail tail whitespace
 command! CLEAN retab | %s/ \+$//
 nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
-
 
 
 " ctag enter
@@ -377,6 +394,9 @@ nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
 " noremap <Right> <c-w>l
 " noremap <Left> <c-w>h
 " noremap vs :vsplit<CR>
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+noremap <leader>j <C-w><C-w>
 " au VimResized * exe "normal! \<c-w>="
 
 " for reference
