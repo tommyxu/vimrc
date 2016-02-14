@@ -131,17 +131,6 @@ let g:multi_cursor_next_key = '<C-E>'
 "   \ 'GotoPrevSpotByPos' : "mp",
 "   \ }
 
-
-" showmarks
-let g:showmarks_textlower="#"
-let g:showmarks_hlline_lower=1
-let g:showmarks_include="abcdefgjknzxvqwrt"
-let g:showmarks_enable=0
-" hi default ShowMarksHLl cterm=reverse
-" hi default ShowMarksHLm cterm=reverse
-" let g:showmarks_textother="-"
-
-
 " git gutter
 let g:gitgutter_map_keys = 0
 nmap <leader>kk :GitGutterToggle<CR>
@@ -297,8 +286,7 @@ nnoremap <S-Tab> :bp<CR>
 " nmap <leader><leader> :e #<CR>
 
 " switch location
-nnoremap <leader><leader> ''
-nnoremap <leader>. '.
+nnoremap <leader><leader> '.
 
 
 " quickfix
@@ -378,6 +366,11 @@ noremap ;; :
 " ex command
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
+
+" quick marks
+" use mm to mark the line as mark M
+" use mt to go to mark M
+nnoremap mt 'm
 
 " trail tail whitespace
 command! CLEAN retab | %s/ \+$//
