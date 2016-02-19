@@ -1,11 +1,13 @@
 syntax enable
 
-au BufRead,BufNewFile Makefile* setlocal filetype=make
-
-au FileType javascript setl nofoldenable nowrap
+" au == autocmd, setl == setlocal
 au FileType python setl nowrap
 au FileType json setl nowrap
-au FileType samba set commentstring=#%s
+au FileType javascript setl nofoldenable nowrap
+au FileType samba setl commentstring=#%s
+
+" file type detector
+au BufRead,BufNewFile Makefile* setlocal filetype=make
 
 
 set nowrap
@@ -20,16 +22,15 @@ set cmdheight=1
 set showtabline=1
 set switchbuf=
 set number
-" set nonumber
 set relativenumber
 set cursorline
 set wildmenu
 set wildmode=full
 set ttymouse=xterm2
-set listchars=tab:»»,trail:·,extends:▸
-" set listchars=eol:¬
+set listchars=tab:»»,trail:·,extends:▸,eol:¬
 set mouse=
 " set mouse=a
+" set noignorecase
 
 
 " color scheme selection
@@ -263,6 +264,9 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
 " misc (not plugin) mapping configuration
 
+" search with \v
+nnoremap / /\v
+
 " motion and reset
 unmap <C-B>
 unmap <C-H>
@@ -303,8 +307,8 @@ nnoremap <leader>lp :lprev<CR>
 
 
 " copy/paste from system clipboard
+" imap <C-K>v <C-O>"+P
 " under insert mode, it is the same as <C-R>* or <C-R>+
-imap <C-K>v <C-O>"+P
 nmap <C-K>v "+P
 vmap <C-K>c "+y
 
@@ -313,11 +317,13 @@ vmap <C-K>c "+y
 nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
 nmap <leader>iw :set wrap!<CR>
 nmap <leader>ip :set paste!<CR>
+nmap <leader>ic :set ignorecase!<CR>
+
 nmap <leader>ii :nohlsearch<CR>
 nmap <leader>is :syntax off<CR>
 " use 2 commands to switch line numbers as
 " there is a bug that option "number" and "relativenumber" are exclusive on same vim version
-nmap <leader>in :set nonumber<CR>:set relativenumber<CR>
+nmap <leader>in :set number<CR>:set relativenumber<CR>
 nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 
 
