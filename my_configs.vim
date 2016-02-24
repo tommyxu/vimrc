@@ -135,7 +135,6 @@ let g:multi_cursor_next_key = '<C-E>'
 " git gutter
 let g:gitgutter_map_keys = 0
 nmap <leader>kk :GitGutterToggle<CR>
-" nmap <leader>kt :GitGutterToggle<CR>
 nmap <leader>kl :GitGutterLineHighlightsToggle<CR>
 nmap <leader>kn :GitGutterNextHunk<CR>
 nmap <leader>kp :GitGutterPrevHunk<CR>
@@ -294,8 +293,9 @@ nnoremap <leader><leader> '.
 
 
 " quickfix
-nnoremap <leader>cc :cc<CR>
-nnoremap <leader>cl :ccl<CR>
+nnoremap <leader>cm :w<BAR>make<CR>
+nnoremap <leader>co :copen<CR>
+nnoremap <leader>cl :cclose<CR>
 nnoremap <leader>cn :cn<CR>
 nnoremap <leader>cp :cp<CR>
 
