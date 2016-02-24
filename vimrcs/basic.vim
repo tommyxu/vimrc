@@ -44,7 +44,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=700
+set history=500
 
 " Enable filetype plugins
 filetype plugin on
@@ -72,6 +72,12 @@ command W w !sudo tee % > /dev/null
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
+" Avoid garbled characters in Chinese language windows OS
+let $LANG='en' 
+set langmenu=en
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
 " Turn on the WiLd menu
 set wildmenu
 
@@ -95,6 +101,11 @@ set hid
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
 
 " Ignore case when searching
 set ignorecase
@@ -135,10 +146,10 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable 
 
-" try
-"     colorscheme desert
-" catch
-" endtry
+try
+    colorscheme desert
+catch
+endtry
 
 set background=dark
 
@@ -218,10 +229,10 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+map <leader>ba :bufdo bd<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -229,6 +240,12 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
 map <leader>t<leader> :tabnext 
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -239,18 +256,18 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers 
 try
-  " set switchbuf=useopen,usetab,newtab
-  " set stal=2
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
 catch
 endtry
 
 " Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+" autocmd BufReadPost *
+"      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"      \   exe "normal! g`\"" |
+"      \ endif
 " Remember info about open buffers on close
-set viminfo^=%
+" set viminfo^=%
 
 
 """"""""""""""""""""""""""""""
@@ -284,30 +301,30 @@ endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
-  " exe "normal mz"
+  exe "normal mz"
   %s/\s\+$//ge
-  " exe "normal `z"
+  exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ack searching and cope displaying
-"    requires ack.vim - it's much better than vimgrep/grep
+" => Ag searching and cope displaying
+"    requires ag.vim - it's much better than vimgrep/grep
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you Ack after the selected text
+" When you press gv you Ag after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
-" Open Ack and put the cursor in the right position
-map <leader>g :Ack 
+" Open Ag and put the cursor in the right position
+map <leader>g :Ag 
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
-" When you search with Ack, display your results in cope by doing:
+" When you search with Ag, display your results in cope by doing:
 "   <leader>cc
 "
 " To go to the next search result do:
@@ -352,6 +369,7 @@ map <leader>pp :setlocal paste!<cr>
 
 
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -371,7 +389,7 @@ function! VisualSelection(direction, extra_filter) range
     if a:direction == 'b'
         execute "normal ?" . l:pattern . "^M"
     elseif a:direction == 'gv'
-        call CmdLine("Ack \"" . l:pattern . "\" " )
+        call CmdLine("Ag \"" . l:pattern . "\" " )
     elseif a:direction == 'replace'
         call CmdLine("%s" . '/'. l:pattern . '/')
     elseif a:direction == 'f'
@@ -387,7 +405,7 @@ endfunction
 function! HasPaste()
     if &paste
         return 'PASTE MODE  '
-    en
+    endif
     return ''
 endfunction
 
