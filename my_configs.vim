@@ -173,10 +173,12 @@ let g:ctrlsf_winsize = '40%'
 
 " ctrl-p find-files
 let g:ctrlp_map = '<leader>f'
+let g:ctrlp_custom_ignore = '^\.svn\|^\.DS_Store\|^\.git\|^\.cvs'
 
 
 " MRU
 map <leader>r :MRU<CR>
+unmap <leader>f
 
 
 " easymotion
