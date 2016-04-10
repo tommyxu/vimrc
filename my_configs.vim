@@ -291,7 +291,8 @@ nnoremap <S-Tab> :bp<CR>
 " nmap <leader><leader> :e #<CR>
 
 " switch location
-nnoremap <leader><leader> '.
+nnoremap ,, '.
+nnoremap ;; '`
 
 
 " quickfix
@@ -320,7 +321,7 @@ nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
 nmap <leader>iw :set wrap!<CR>
 nmap <leader>ip :set paste!<CR>
 nmap <leader>ic :set ignorecase!<CR>
-
+nmap <leader>it :set filetype=plain<CR>
 nmap <leader>ii :nohlsearch<CR>
 nmap <leader>is :syntax off<CR>
 " use 2 commands to switch line numbers as
@@ -369,7 +370,7 @@ nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 " noremap <Down> <C-x>
 "
 " quick command line
-noremap ;; :
+" noremap ;; :
 
 " ex command
 cnoremap <C-n> <Down>
