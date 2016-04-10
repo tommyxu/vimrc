@@ -1,8 +1,8 @@
 " ============================================================================
-" Description: An ack/ag powered code search and view tool.
+" Description: An ack/ag/pt powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.40
+" Version: 1.6.1
 " ============================================================================
 
 " option list of CtrlSF
@@ -13,6 +13,7 @@ let s:option_list = {
     \ '-filetype'   : {'args': 1},
     \ '-filematch'  : {'args': 1},
     \ '-ignorecase' : {'args': 0},
+    \ '-ignoredir'  : {'args': 1},
     \ '-literal'    : {'args': 0},
     \ '-matchcase'  : {'args': 0},
     \ '-regex'      : {'args': 0},
@@ -45,11 +46,11 @@ func! ctrlsf#opt#OptionNames() abort
     return keys(s:option_list)
 endf
 
-" IsOptGiven()
+" HasOpt()
 "
 " Return whether user has given a specific option
 "
-func! ctrlsf#opt#IsOptGiven(name) abort
+func! ctrlsf#opt#HasOpt(name) abort
     return has_key(s:options, a:name)
 endf
 
@@ -74,7 +75,7 @@ func! ctrlsf#opt#GetContext() abort
 
     " user specific
     for opt in ['after', 'before', 'context']
-        if ctrlsf#opt#IsOptGiven(opt)
+        if ctrlsf#opt#HasOpt(opt)
             let options[opt] = ctrlsf#opt#GetOpt(opt)
         endif
     endfo
@@ -111,7 +112,7 @@ endf
 "
 func! ctrlsf#opt#GetCaseSensitive() abort
     for opt in ['matchcase', 'ignorecase', 'smartcase']
-        if ctrlsf#opt#IsOptGiven(opt)
+        if ctrlsf#opt#HasOpt(opt)
             return opt
         endif
     endfo
@@ -163,13 +164,23 @@ endf
 " If both of 'literal' and 'regex' are given, prefer 'literal' than 'regex'.
 "
 func! ctrlsf#opt#GetRegex() abort
-    if ctrlsf#opt#IsOptGiven('literal')
+    if ctrlsf#opt#HasOpt('literal')
         return 0
-    elseif ctrlsf#opt#IsOptGiven('regex')
+    elseif ctrlsf#opt#HasOpt('regex')
         return 1
     else
         return g:ctrlsf_regex_pattern
     endif
+endf
+
+" GetIgnoreDir()
+"
+func! ctrlsf#opt#GetIgnoreDir() abort
+    let ignore_dir = copy(g:ctrlsf_ignore_dir)
+    if ctrlsf#opt#HasOpt("ignoredir")
+        call add(ignore_dir, ctrlsf#opt#GetOpt("ignoredir"))
+    endif
+    return ignore_dir
 endf
 
 """""""""""""""""""""""""""""""""

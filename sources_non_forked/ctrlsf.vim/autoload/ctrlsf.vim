@@ -1,8 +1,8 @@
 " ============================================================================
-" Description: An ack/ag powered code search and view tool.
+" Description: An ack/ag/pt powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.40
+" Version: 1.6.1
 " ============================================================================
 
 """""""""""""""""""""""""""""""""
@@ -278,4 +278,16 @@ endf
 "
 func! ctrlsf#ClearSelectedLine() abort
     call ctrlsf#hl#ClearSelectedLine()
+endf
+
+" ToggleMap()
+"
+func! ctrlsf#ToggleMap() abort
+    call ctrlsf#buf#ToggleMap()
+
+    if b:ctrlsf_map_enabled
+        echo "Maps enabled."
+    else
+        echo "Maps disabled."
+    endif
 endf

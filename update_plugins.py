@@ -48,7 +48,6 @@ vim-go https://github.com/fatih/vim-go
 vim-gradle https://github.com/tfnico/vim-gradle
 vim-html-escape https://github.com/skwp/vim-html-escape
 vim-indent-object https://github.com/michaeljsmith/vim-indent-object
-vim-jade https://github.com/digitaltoad/vim-jade
 vim-less https://github.com/groenewege/vim-less
 vim-markdown https://github.com/tpope/vim-markdown
 vim-multiple-cursors https://github.com/terryma/vim-multiple-cursors
@@ -59,8 +58,11 @@ vim-textobj-line https://github.com/kana/vim-textobj-line
 vim-textobj-user https://github.com/kana/vim-textobj-user
 vim-tomorrow-theme https://github.com/chriskempson/vim-tomorrow-theme
 vim-zenroom2 https://github.com/amix/vim-zenroom2
+vim-textobj-entire https://github.com/kana/vim-textobj-entire
+typescript-vim https://github.com/leafgarland/typescript-vim
 """.strip()
 
+# vim-jade https://github.com/digitaltoad/vim-jade
 # CSApprox https://github.com/vim-scripts/CSApprox
 # CoffeeTags https://github.com/lukaszkorecki/CoffeeTags
 # YouCompleteMe https://github.com/Valloric/YouCompleteMe
@@ -86,7 +88,18 @@ vim-zenroom2 https://github.com/amix/vim-zenroom2
 # ag.vim https://github.com/rking/ag.vim
 
 PLUGINS = """
+vim-less https://github.com/groenewege/vim-less
+vim-markdown https://github.com/tpope/vim-markdown
+vim-multiple-cursors https://github.com/terryma/vim-multiple-cursors
+vim-repeat https://github.com/tpope/vim-repeat
+vim-snippets https://github.com/honza/vim-snippets
+vim-surround https://github.com/tpope/vim-surround
+vim-textobj-line https://github.com/kana/vim-textobj-line
+vim-textobj-user https://github.com/kana/vim-textobj-user
+vim-tomorrow-theme https://github.com/chriskempson/vim-tomorrow-theme
+vim-zenroom2 https://github.com/amix/vim-zenroom2
 vim-textobj-entire https://github.com/kana/vim-textobj-entire
+typescript-vim https://github.com/leafgarland/typescript-vim
 """.strip()
 
 
