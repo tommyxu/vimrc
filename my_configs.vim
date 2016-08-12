@@ -113,6 +113,7 @@ let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
 let g:syntastic_c_checkers = ['make', 'gcc']
 let g:syntastic_cpp_checkers = ['make', 'cppcheck']
 let g:syntastic_less_checkers = ['lessc']
+let g:syntastic_java_checkers = []
 
 
 " multicursor
