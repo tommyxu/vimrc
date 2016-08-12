@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.6.1
+" Version: 1.7.2
 " ============================================================================
 
 " WriteString()
@@ -80,8 +80,8 @@ func! ctrlsf#buf#ToggleMap(...) abort
         \ "prevw" : "ctrlsf#JumpTo('preview')",
         \ "popen" : "ctrlsf#JumpTo('preview')",
         \ "quit"  : "ctrlsf#Quit()",
-        \ "next"  : "ctrlsf#NextMatch(1)",
-        \ "prev"  : "ctrlsf#NextMatch(0)",
+        \ "next"  : "ctrlsf#NextMatch(-1, 1)",
+        \ "prev"  : "ctrlsf#NextMatch(-1, 0)",
         \ "llist" : "ctrlsf#OpenLocList()",
         \ }
 

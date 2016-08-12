@@ -60,6 +60,11 @@ vim-tomorrow-theme https://github.com/chriskempson/vim-tomorrow-theme
 vim-zenroom2 https://github.com/amix/vim-zenroom2
 vim-textobj-entire https://github.com/kana/vim-textobj-entire
 typescript-vim https://github.com/leafgarland/typescript-vim
+YankRing.vim https://github.com/vim-scripts/YankRing.vim.git
+""".strip()
+
+PLUGINS = """
+YankRing.vim https://github.com/vim-scripts/YankRing.vim
 """.strip()
 
 # vim-jade https://github.com/digitaltoad/vim-jade
@@ -86,22 +91,6 @@ typescript-vim https://github.com/leafgarland/typescript-vim
 # vim-airline-themes https://github.com/vim-airline/vim-airline-themes
 # ack.vim https://github.com/mileszs/ack.vim
 # ag.vim https://github.com/rking/ag.vim
-
-# PLUGINS = """
-# vim-less https://github.com/groenewege/vim-less
-# vim-markdown https://github.com/tpope/vim-markdown
-# vim-multiple-cursors https://github.com/terryma/vim-multiple-cursors
-# vim-repeat https://github.com/tpope/vim-repeat
-# vim-snippets https://github.com/honza/vim-snippets
-# vim-surround https://github.com/tpope/vim-surround
-# vim-textobj-line https://github.com/kana/vim-textobj-line
-# vim-textobj-user https://github.com/kana/vim-textobj-user
-# vim-tomorrow-theme https://github.com/chriskempson/vim-tomorrow-theme
-# vim-zenroom2 https://github.com/amix/vim-zenroom2
-# vim-textobj-entire https://github.com/kana/vim-textobj-entire
-# typescript-vim https://github.com/leafgarland/typescript-vim
-# """.strip()
-
 
 GITHUB_ZIP = '%s/archive/master.zip'
 SOURCE_DIR = path.join(path.dirname(__file__), 'sources_non_forked')

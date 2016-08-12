@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.6.1
+" Version: 1.7.2
 " ============================================================================
 
 """""""""""""""""""""""""""""""""
@@ -11,12 +11,13 @@
 
 " remember what user is searching
 let s:current_query = ''
+let s:only_quickfix = 0
 
 " s:ExecSearch()
 "
 " Basic process: query, parse, render and display.
 "
-func! s:ExecSearch(args) abort
+func! s:ExecSearch(args, only_quickfix) abort
     try
         call ctrlsf#opt#ParseOptions(a:args)
     catch /ParseOptionsException/
@@ -35,11 +36,19 @@ func! s:ExecSearch(args) abort
     endif
 
     call ctrlsf#db#ParseAckprgResult(output)
+
+    " Only populate and open the quickfix window
+    if a:only_quickfix
+      call setqflist(ctrlsf#db#MatchListQF())
+      botright copen
+      return
+    endif
+
     call ctrlsf#win#OpenMainWindow()
     call ctrlsf#win#Draw()
     call ctrlsf#buf#ClearUndoHistory()
     call ctrlsf#hl#HighlightMatch()
-    call cursor(1, 1)
+    call ctrlsf#NextMatch(0, 1)
 
     " populate quickfix and location list
     if g:ctrlsf_populate_qflist
@@ -50,7 +59,7 @@ endf
 
 " Search()
 "
-func! ctrlsf#Search(args) abort
+func! ctrlsf#Search(args, only_quickfix) abort
     let args = a:args
 
     " If no pattern is given, use word under the cursor
@@ -59,8 +68,9 @@ func! ctrlsf#Search(args) abort
     endif
 
     let s:current_query = args
+    let s:only_quickfix = a:only_quickfix
 
-    call s:ExecSearch(s:current_query)
+    call s:ExecSearch(s:current_query, s:only_quickfix)
 endf
 
 " Update()
@@ -69,7 +79,7 @@ func! ctrlsf#Update() abort
     if empty(s:current_query)
         return -1
     endif
-    call s:ExecSearch(s:current_query)
+    call s:ExecSearch(s:current_query, s:only_quickfix)
 endf
 
 " Open()
@@ -163,8 +173,12 @@ endf
 
 " s:NextMatch()
 "
-func! ctrlsf#NextMatch(forward) abort
-    let cur_vlnum     = line('.')
+" Move cursor to the next match after a line specified by 'lnum'.
+"
+" If given line number is -1, use current line instead.
+"
+func! ctrlsf#NextMatch(lnum, forward) abort
+    let cur_vlnum     = a:lnum == -1 ? line('.') : a:lnum
     let [vlnum, vcol] = ctrlsf#view#FindNextMatch(cur_vlnum, a:forward)
 
     if vlnum > 0

@@ -49,7 +49,8 @@ function! emmet#getIndentation(...) abort
   elseif has_key(s:emmet_settings.variables, 'indentation')
     let indent = s:emmet_settings.variables.indentation
   else
-    let indent = (&l:expandtab || &l:tabstop !=# shiftwidth()) ? repeat(' ', shiftwidth()) : "\t"
+    let sw = exists('*shiftwidth') ? shiftwidth() : &l:shiftwidth
+    let indent = (&l:expandtab || &l:tabstop !=# sw) ? repeat(' ', sw) : "\t"
   endif
   return indent
 endfunction
@@ -176,7 +177,7 @@ function! emmet#mergeConfig(lhs, rhs) abort
 endfunction
 
 function! emmet#newNode() abort
-  return { 'name': '', 'attr': {}, 'child': [], 'snippet': '', 'basevalue': 0, 'basedirect': 1, 'multiplier': 1, 'parent': {}, 'value': '', 'pos': 0, 'important': 0, 'attrs_order': ['id', 'class'] }
+  return { 'name': '', 'attr': {}, 'child': [], 'snippet': '', 'basevalue': 0, 'basedirect': 1, 'multiplier': 1, 'parent': {}, 'value': '', 'pos': 0, 'important': 0, 'attrs_order': ['id', 'class'], 'block': 0 }
 endfunction
 
 function! s:itemno(itemno, current) abort
@@ -1832,7 +1833,7 @@ let s:emmet_settings = {
 \        },
 \        'empty_elements': 'area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,keygen,command',
 \        'block_elements': 'address,applet,blockquote,button,center,dd,del,dir,div,dl,dt,fieldset,form,frameset,hr,iframe,ins,isindex,li,link,map,menu,noframes,noscript,object,ol,p,pre,script,table,tbody,td,tfoot,th,thead,tr,ul,h1,h2,h3,h4,h5,h6',
-\        'inline_elements': 'a,abbr,acronym,applet,b,basefont,bdo,big,br,button,cite,code,del,dfn,em,font,i,iframe,img,input,ins,kbd,label,map,object,q,s,samp,script,select,small,span,strike,strong,sub,sup,textarea,tt,u,var',
+\        'inline_elements': 'a,abbr,acronym,applet,b,basefont,bdo,big,br,button,cite,code,del,dfn,em,font,i,iframe,img,input,ins,kbd,label,map,object,q,s,samp,script,small,span,strike,strong,sub,sup,textarea,tt,u,var',
 \        'empty_element_suffix': g:emmet_html5 ? '>' : ' />',
 \        'indent_blockelement': 0,
 \    },
@@ -1891,6 +1892,9 @@ let s:emmet_settings = {
 \                    ."\tbody\n\t\t${child}|",
 \        },
 \    },
+\    'pug': {
+\        'extends': 'jade',
+\    },
 \    'xsl': {
 \        'extends': 'html',
 \        'default_attributes': {
@@ -1931,7 +1935,7 @@ let s:emmet_settings = {
 \    },
 \    'jsx': {
 \        'extends': 'html',
-\        'attribute_name': {'class': 'className'},
+\        'attribute_name': {'class': 'className', 'for': 'htmlFor'},
 \    },
 \    'xslt': {
 \        'extends': 'xsl',
