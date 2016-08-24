@@ -2,12 +2,22 @@ syntax enable
 
 " au == autocmd, setl == setlocal
 au FileType python setl nowrap
-au FileType json setl nowrap
+au FileType json setl conceallevel=0
 au FileType javascript setl nofoldenable nowrap
+au FileType typescript setl commentstring=//%s
 au FileType samba setl commentstring=#%s
+
+" au FileType netrw setl bufhidden=wipe
+" autocmd FileType netrw setl bufhidden=delete
+
+" let g:netrw_liststyle=2
+
+" au Filetype typescript setlocal makeprg=tsc
 
 " file type detector
 au BufRead,BufNewFile Makefile* setlocal filetype=make
+
+" au BufWritePost *.ts make
 
 
 set nowrap
@@ -66,7 +76,6 @@ else
   " colorscheme base16-3024
   "
   " let g:airline_theme="powerlineish"
-  
 endif
 
 
@@ -79,8 +88,30 @@ let g:bufExplorerSortBy='mru'
 
 " airline
 let g:airline#extensions#tabline#enabled=1
-" let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_detect_modified=1
+let g:airline_inactive_collapse=1
+let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+let g:airline#extensions#tabline#show_buffers = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 2
+let g:airline#extensions#tabline#show_tabs = 1
+"let g:airline#extensions#tabline#show_tab_nr = 1
+"let g:airline#extensions#tabline#tab_nr_type = 2
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#tabline#left_sep = '|'
 
 " taglist
 " map <leader>tl :TlistToggle<CR><leader>inn
@@ -108,10 +139,15 @@ let g:tagbar_indent = 1
 " syntastic
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
-let g:syntastic_c_checkers = ['make', 'gcc']
-let g:syntastic_cpp_checkers = ['make', 'cppcheck']
-let g:syntastic_less_checkers = ['lessc']
+"let g:syntastic_c_checkers = ['make', 'gcc']
+"jlet g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_less_checkers = ['lessc']
+let g:tsuquyomi_disable_quickfix = 1
+" let g:syntastic_typescript_tsc_args = ['tsuquyomi']
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_java_checkers = []
+"let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 
 " multicursor
@@ -142,9 +178,9 @@ nmap <leader>kv <Plug>GitGutterPreviewHunk
 
 
 " git fugitive
-" nmap <leader>ks :Gstatus<CR>
-" nmap <leader>kd :Gdiff<CR>
-" nmap <leader>kc :Gcommit<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gsdiff<CR>
+nmap <leader>gc :Gcommit<CR>
 
 
 " jedi (disabled)
@@ -163,21 +199,29 @@ nmap <leader>kv <Plug>GitGutterPreviewHunk
 " map <leader>aa :Ack ''<LEFT>
 " map <leader>as :Ack <cword><CR>
 
+
 " ctrlsf
-nmap <leader>a <Plug>CtrlSFPrompt
-nmap <leader>ar :CtrlSF -R  <LEFT>
-nmap <leader>aa <Plug>CtrlSFCwordPath
-vmap <leader>aa <Plug>CtrlSFVwordPath
-let g:ctrlsf_winsize = '40%'
+" nmap <leader>a <Plug>CtrlSFPrompt
+" nmap <leader>ar :CtrlSF -R  <LEFT>
+" nmap <leader>aa <Plug>CtrlSFCwordPath
+" vmap <leader>aa <Plug>CtrlSFVwordPath
+" let g:ctrlsf_winsize = '40%'
 
 " ctrl-p find-files
-let g:ctrlp_map = '<leader>f'
-let g:ctrlp_custom_ignore = '^\.svn\|^\.DS_Store\|^\.git\|^\.cvs'
+" let g:ctrlp_map = '<leader>f'
+" let g:ctrlp_custom_ignore = '^\.svn\|^\.DS_Store\|^\.git\|^\.cvs'
+
+
+" Unite
+nnoremap <leader>f :Unite -no-split file<cr>
+nnoremap <leader>g :Unite grep:.<cr>
+nnoremap <leader>o :Unite buffer<cr>
+" let g:unite_source_history_yank_enable = 1
+" nnoremap <leader>y :Unite history/yank<cr>
 
 
 " MRU
-" map <leader>r :MRU<CR>
-" unmap <leader>f
+map <leader>r :MRU<CR>
 
 
 " easymotion
@@ -189,7 +233,10 @@ map s <Plug>(easymotion-bd-w)
 
 
 " tabularize
-map <leader>al :Tab /=
+nmap <leader>a= :Tab /=
+vmap <leader>a= :Tab /=
+nmap <leader>a: :Tab /:\zs
+vmap <leader>a: :Tab /:\zs
 " map <leader>ar :s/ *\(=\) */ \1 /
 
 
@@ -210,8 +257,11 @@ let g:vimim_toggle="wubi,pinyin"
 
 
 " nerdtree
-let g:NERDTreeWinSize = 45
-
+let g:NERDTreeWinSize = 55
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeChDirMode = 2
+map <leader>nn :NERDTreeToggle<cr>
+map <leader>n :NERDTreeToggle<cr>
 
 " system
 nmap <leader>x :x<CR>
@@ -220,10 +270,13 @@ nmap <leader>qq <ESC>:qa!<CR>
 
 
 " indentLine
-let g:indentLine_color_term = 239
-let g:indentLine_char = '┆' "'┆┊'
-nnoremap <leader>id :IndentLinesToggle<CR>
+" let g:indentLine_color_term = 239
+" let g:indentLine_char = '┆' "'┆┊'
+" let g:indentLine_concealcursor = ''
+" nnoremap <leader>id :IndentLinesToggle<CR>
 
+" let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
 
 " emmet
 " nmap <C-Y> <Plug>(emmet-expand-abbr)
@@ -319,9 +372,10 @@ nmap <leader>ip :set paste!<CR>
 nmap <leader>ic :set ignorecase!<CR>
 nmap <leader>it :set filetype=plain<CR>
 nmap <leader>ii :nohlsearch<CR>
+" <leader>ig is indent-guides
 " nmap <leader>is :syntax off<CR>
 " use 2 commands to switch line numbers as
-" there is a bug that option "number" and "relativenumber" are exclusive on same vim version
+" there is a bug that option "number" and "relativenumber" are exclusive on some vim version
 nmap <leader>in :set number<CR>:set relativenumber<CR>
 nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 
@@ -397,7 +451,7 @@ map <leader>ee :e! ~/.vimrc<cr>
 " noremap <C-h> <C-w>h
 " noremap <C-l> <C-w>l
 " noremap <leader>j <C-w><C-w>
-" au VimResized * exe "normal! \<c-w>="
+" au VimResized * exec "normal! \<c-w>="
 
 " for reference
 " <CR> as command prefix
