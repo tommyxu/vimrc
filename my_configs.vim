@@ -21,40 +21,40 @@ set softtabstop=2
 set cmdheight=1
 set showtabline=1
 set switchbuf=
-set number
-set relativenumber
+" set number
+" set relativenumber
 set cursorline
 set wildmenu
 set wildmode=full
-set ttymouse=xterm2
+" set ttymouse=xterm2
 set listchars=tab:»»,trail:·,extends:▸,eol:¬
-set mouse=
+" set mouse=
 " set mouse=a
 " set noignorecase
 
 
 " color scheme selection
 let g:solarized_termcolors=256
-" let g:gruvbox_italicize_comments=0
+set background=dark
 
-
+" colorscheme default
 if has("gui_running")
   set background=light
   colorscheme molokai
 else
   set t_Co=256
-  set background=dark
 
-  " set t_Co=16
+  " set t_Co=1
   " set background=light
   " colorscheme solarized
   " let g:airline_theme="solarized"
 
+  " set background=dark
+  " colorscheme molokai
+  " let g:airline_theme="molokai"
 
-  " colorscheme default
-
-  colorscheme molokai
-  let g:airline_theme="molokai"
+  colorscheme jellybeans
+  let g:airline_theme="jellybeans"
 
   " colorscheme mongo
   " colorscheme gruvbox
@@ -64,11 +64,9 @@ else
   " colorscheme ir_black
   " colorscheme elflord
   " colorscheme base16-3024
-  " colorscheme solarized
-  " colorscheme jellybeans
-  " let g:airline_theme="jellybeans"
-
+  "
   " let g:airline_theme="powerlineish"
+  
 endif
 
 
@@ -178,8 +176,8 @@ let g:ctrlp_custom_ignore = '^\.svn\|^\.DS_Store\|^\.git\|^\.cvs'
 
 
 " MRU
-map <leader>r :MRU<CR>
-unmap <leader>f
+" map <leader>r :MRU<CR>
+" unmap <leader>f
 
 
 " easymotion
@@ -222,7 +220,9 @@ nmap <leader>qq <ESC>:qa!<CR>
 
 
 " indentLine
-let g:indentLine_char = '¦' "'┆┊'
+let g:indentLine_color_term = 239
+let g:indentLine_char = '┆' "'┆┊'
+nnoremap <leader>id :IndentLinesToggle<CR>
 
 
 " emmet
@@ -233,7 +233,6 @@ let g:indentLine_char = '¦' "'┆┊'
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_smart_case=1
 let g:neocomplete#sources#min_keyword_length=3
-
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -251,12 +250,8 @@ let g:filebeagle_suppress_keymaps=1
 map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
 
 
-" indent lines
-nnoremap <leader>id :IndentLinesToggle<CR>
-
-
 " expand-region (use + and _ )
-vnoremap + <Plug>(expand_region_shrink)
+" vnoremap + <Plug>(expand_region_shrink)
 
 
 " undotree
@@ -270,9 +265,9 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap / /\v
 
 " motion and reset
-unmap <C-B>
-unmap <C-H>
-unmap <C-J>
+" silent! unmap <C-B>
+" unmap <C-H>
+" unmap <C-J>
 unmap 0
 nnoremap 0 ^
 nnoremap 00 0
@@ -324,7 +319,7 @@ nmap <leader>ip :set paste!<CR>
 nmap <leader>ic :set ignorecase!<CR>
 nmap <leader>it :set filetype=plain<CR>
 nmap <leader>ii :nohlsearch<CR>
-nmap <leader>is :syntax off<CR>
+" nmap <leader>is :syntax off<CR>
 " use 2 commands to switch line numbers as
 " there is a bug that option "number" and "relativenumber" are exclusive on same vim version
 nmap <leader>in :set number<CR>:set relativenumber<CR>
@@ -341,7 +336,7 @@ nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 " nmap <leader>v <Esc>:w<CR>:!./%<CR>
 "
 " insert a empty line
-nnoremap KK o<ESC>
+" nnoremap KK o<ESC>
 
 
 " use <CR> to confirm omni-complete popup
@@ -386,6 +381,8 @@ nnoremap mt 'm
 command! CLEAN retab | %s/ \+$//
 nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
 
+map <leader>e :e! ~/.vim_runtime/my_configs.vim<cr>
+map <leader>ee :e! ~/.vimrc<cr>
 
 " ctag enter
 " nnoremap <Return> <C-]>
@@ -397,9 +394,9 @@ nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
 " noremap <Right> <c-w>l
 " noremap <Left> <c-w>h
 " noremap vs :vsplit<CR>
-noremap <C-h> <C-w>h
-noremap <C-l> <C-w>l
-noremap <leader>j <C-w><C-w>
+" noremap <C-h> <C-w>h
+" noremap <C-l> <C-w>l
+" noremap <leader>j <C-w><C-w>
 " au VimResized * exe "normal! \<c-w>="
 
 " for reference
@@ -418,4 +415,3 @@ noremap <leader>j <C-w><C-w>
 " imap <c-l><c-g> <c-k>g* " Gamma
 " imap <c-l><c-d> <c-k>d* " Delta
 " imap <c-l><c-e> <c-k>e* " Epslion
-
