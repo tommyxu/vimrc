@@ -1,3 +1,7 @@
+let s:vimrc_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let s:vimrc_dir = s:vimrc_path
+" echom s:vimrc_dir
+
 " set runtimepath+=~/.vim_runtime
 
 "dein Scripts-----------------------------
@@ -6,10 +10,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/tommy/projects/vim/./repos/github.com/Shougo/dein.vim
+execute 'set runtimepath+='.s:vimrc_dir.'/dein/repos/github.com/Shougo/dein.vim'
 
 " Required:
-call dein#begin('/Users/tommy/projects/vim/.')
+call dein#begin('/home/tommy/projects/remote.vimrc/dein')
 
 " Let dein manage dein
 " Required:
@@ -48,13 +52,14 @@ call dein#add('Quramy/tsuquyomi')
 call dein#add('pangloss/vim-javascript')
 
 call dein#add('scrooloose/syntastic')
-call dein#add('Valloric/YouCompleteMe', {'build' : './pyinstall.sh'})
 
 call dein#add('rizzatti/dash.vim')
 
-call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('flazz/vim-colorschemes')
+
+call dein#add('vim-airline/vim-airline')
+call dein#add('Valloric/YouCompleteMe', {'build' : './pyinstall.sh'})
 
 " call dein#add('altercation/vim-colors-solarized')
 " call dein#add('ervandew/supertab')
@@ -77,12 +82,12 @@ endif
 
 "End dein Scripts-------------------------
 
-source ~/.vim_runtime/vimrcs/basic.vim
+"try
+execute "source ".s:vimrc_dir."/vimrcs/basic.vim"
 " source ~/.vim_runtime/vimrcs/filetypes.vim
 " source ~/.vim_runtime/vimrcs/plugins_config.vim
 " source ~/.vim_runtime/vimrcs/extended.vim
-
-"try
-source ~/.vim_runtime/my_configs.vim
+execute "source ".s:vimrc_dir."/my_configs.vim"
 "catch
 "endtry
+
