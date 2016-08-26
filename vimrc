@@ -23,13 +23,16 @@ call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/neocomplete.vim')
+
 call dein#add('Shougo/vimshell')
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-call dein#add('Shougo/unite.vim')
+
+" call dein#add('Shougo/unite.vim')
 " call dein#add('Shougo/neomru.vim')
 " call dein#add('Shougo/neoyank.vim')
 
+call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('yegappan/mru')
+
 call dein#add('vim-scripts/YankRing.vim')
 
 call dein#add('ntpeters/vim-better-whitespace')
@@ -59,6 +62,8 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('flazz/vim-colorschemes')
 
 call dein#add('vim-airline/vim-airline')
+
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Valloric/YouCompleteMe', {'build' : './pyinstall.sh'})
 
 " call dein#add('altercation/vim-colors-solarized')

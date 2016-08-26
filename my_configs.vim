@@ -208,14 +208,20 @@ nmap <leader>gc :Gcommit<CR>
 " let g:ctrlsf_winsize = '40%'
 
 " ctrl-p find-files
-" let g:ctrlp_map = '<leader>f'
-" let g:ctrlp_custom_ignore = '^\.svn\|^\.DS_Store\|^\.git\|^\.cvs'
+let g:ctrlp_custom_ignore = '^\.svn\|^\.DS_Store\|^\.git\|^\.cvs'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_root_markers = ['node_modules', '.p4ignore']
+let g:ctrlp_by_filename = 1
+let g:ctrlp_match_window = 'max:20'
 
+let g:ctrlp_map = '<leader>f'
+map <leader>fb :CtrlPBuffer<cr>
+map <leader>fr :CtrlPMRUFiles<cr>
 
 " Unite
-nnoremap <leader>f :Unite -no-split file<cr>
-nnoremap <leader>g :Unite grep:.<cr>
-nnoremap <leader>o :Unite buffer<cr>
+" nnoremap <leader>g :Unite -no-split file<cr>
+" nnoremap <leader>a :Unite grep:.<cr>
+" nnoremap <leader>o :Unite buffer<cr>
 " let g:unite_source_history_yank_enable = 1
 " nnoremap <leader>y :Unite history/yank<cr>
 
@@ -311,6 +317,8 @@ map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
 let g:undotree_SplitWidth=40
 nnoremap <leader>u :UndotreeToggle<CR>
 
+" fzf
+set rtp+=/usr/local/opt/fzf
 
 " misc (not plugin) mapping configuration
 
@@ -337,6 +345,7 @@ map <leader>bb :e  <LEFT>
 " switch buffer with Tab key
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
+nnoremap <BS> :bp<CR>
 " nmap <leader><leader> :e #<CR>
 
 " switch location
