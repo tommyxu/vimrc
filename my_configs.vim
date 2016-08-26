@@ -1,24 +1,25 @@
 syntax enable
 
+au VimResized * exec "normal! \<c-w>="
+" au FocusLost * :w
+
+" file type detector
+au BufRead,BufNewFile Makefile* setlocal filetype=make
+
 " au == autocmd, setl == setlocal
 au FileType python setl nowrap
 au FileType json setl conceallevel=0
 au FileType javascript setl nofoldenable nowrap
 au FileType typescript setl commentstring=//%s
+au FileType typescript NeoCompleteLock
 au FileType samba setl commentstring=#%s
 
-" au FileType netrw setl bufhidden=wipe
-" autocmd FileType netrw setl bufhidden=delete
-
-" let g:netrw_liststyle=2
 
 " au Filetype typescript setlocal makeprg=tsc
-
-" file type detector
-au BufRead,BufNewFile Makefile* setlocal filetype=make
-
+" au FileType netrw setl bufhidden=wipe
+" autocmd FileType netrw setl bufhidden=delete
+" let g:netrw_liststyle=2
 " au BufWritePost *.ts make
-
 
 set nowrap
 set nofoldenable
@@ -31,21 +32,20 @@ set softtabstop=2
 set cmdheight=1
 set showtabline=1
 set switchbuf=
-" set number
-" set relativenumber
 set cursorline
 set wildmenu
 set wildmode=full
-" set ttymouse=xterm2
 set listchars=tab:»»,trail:·,extends:▸,eol:¬
+" set number
+" set relativenumber
+" set ttymouse=xterm2
 " set mouse=
 " set mouse=a
 " set noignorecase
 
 
 " color scheme selection
-let g:solarized_termcolors=256
-set background=dark
+
 
 " colorscheme default
 if has("gui_running")
@@ -53,9 +53,11 @@ if has("gui_running")
   colorscheme molokai
 else
   set t_Co=256
+  set background=dark
 
-  " set t_Co=1
   " set background=light
+
+  " let g:solarized_termcolors=256
   " colorscheme solarized
   " let g:airline_theme="solarized"
 
@@ -80,10 +82,13 @@ endif
 
 
 " bufexplorer
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowRelativePath=0
-let g:bufExplorerSortBy='mru'
+" let g:bufExplorerShowRelativePath=0
 " let g:bufExplorerSortBy='number'
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerSortBy='mru'
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerSplitBelow=1
+nmap <leader>b :ToggleBufExplorer<cr>j
 
 
 " airline
@@ -112,6 +117,11 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#ycm#enabled = 1
 let g:airline#extensions#tabline#left_sep = '|'
+
+
+" whitespace
+nmap <leader>sw :StripWhitespace<cr>
+
 
 " taglist
 " map <leader>tl :TlistToggle<CR><leader>inn
@@ -167,6 +177,7 @@ let g:multi_cursor_next_key = '<C-E>'
 "   \ 'GotoPrevSpotByPos' : "mp",
 "   \ }
 
+
 " git gutter
 let g:gitgutter_map_keys = 0
 nmap <leader>kk :GitGutterToggle<CR>
@@ -207,16 +218,20 @@ nmap <leader>gc :Gcommit<CR>
 " vmap <leader>aa <Plug>CtrlSFVwordPath
 " let g:ctrlsf_winsize = '40%'
 
+
 " ctrl-p find-files
+let g:ctrlp_max_files = 500
+let g:ctrlp_max_depth = 20
 let g:ctrlp_custom_ignore = '^\.svn\|^\.DS_Store\|^\.git\|^\.cvs'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_root_markers = ['node_modules', '.p4ignore']
 let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window = 'max:20'
-
+let g:ctrlp_brief_prompt=1
 let g:ctrlp_map = '<leader>f'
 map <leader>fb :CtrlPBuffer<cr>
 map <leader>fr :CtrlPMRUFiles<cr>
+
 
 " Unite
 " nnoremap <leader>g :Unite -no-split file<cr>
@@ -258,21 +273,12 @@ let g:commentary_map_backslash = 0
 let g:vimim_toggle="wubi,pinyin"
 
 
-" peepopen (disable)
-" let g:peepopen_loaded=1
-
-
 " nerdtree
 let g:NERDTreeWinSize = 55
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeChDirMode = 2
 map <leader>nn :NERDTreeToggle<cr>
-map <leader>n :NERDTreeToggle<cr>
-
-" system
-nmap <leader>x :x<CR>
-nmap <leader>q <ESC>:q!<CR>
-nmap <leader>qq <ESC>:qa!<CR>
+" map <leader>n :NERDTreeToggle<cr>
 
 
 " indentLine
@@ -306,7 +312,7 @@ nmap <silent> <leader>dd <Plug>DashSearch
 
 " fileBeagle
 let g:filebeagle_suppress_keymaps=1
-map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
+" map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
 
 
 " expand-region (use + and _ )
@@ -317,10 +323,17 @@ map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
 let g:undotree_SplitWidth=40
 nnoremap <leader>u :UndotreeToggle<CR>
 
+
 " fzf
-set rtp+=/usr/local/opt/fzf
+" set rtp+=/usr/local/opt/fzf
+
 
 " misc (not plugin) mapping configuration
+
+" system
+nmap <leader>x :x<CR>
+nmap <leader>q <ESC>:q!<CR>
+nmap <leader>qq <ESC>:qa!<CR>
 
 " search with \v
 nnoremap / /\v
@@ -337,16 +350,18 @@ nnoremap <space> <C-F>
 
 
 " buffer
+" nmap <leader>b :ls<CR>:b
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprev<CR>
 nmap <leader>bd :bdelete<CR>
 nmap <leader>d :bdelete<CR>
-map <leader>bb :e  <LEFT>
+nmap <leader>bb :e #<CR>
+" map <leader>be :e  <LEFT>
+
 " switch buffer with Tab key
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 nnoremap <BS> :bp<CR>
-" nmap <leader><leader> :e #<CR>
 
 " switch location
 nnoremap ,, '.
@@ -379,10 +394,13 @@ nmap <leader>il :set cursorcolumn!<CR>:set list!<CR>
 nmap <leader>iw :set wrap!<CR>
 nmap <leader>ip :set paste!<CR>
 nmap <leader>ic :set ignorecase!<CR>
+nmap <leader>is :set spell!<CR>
 nmap <leader>it :set filetype=plain<CR>
+nmap <leader>iy :syntax off<CR>
 nmap <leader>ii :nohlsearch<CR>
+
 " <leader>ig is indent-guides
-" nmap <leader>is :syntax off<CR>
+
 " use 2 commands to switch line numbers as
 " there is a bug that option "number" and "relativenumber" are exclusive on some vim version
 nmap <leader>in :set number<CR>:set relativenumber<CR>
@@ -397,9 +415,10 @@ nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 
 " execute current script (python/bash)
 " nmap <leader>v <Esc>:w<CR>:!./%<CR>
-"
+
+
 " insert a empty line
-" nnoremap KK o<ESC>
+nnoremap <C-L> o<ESC>
 
 
 " use <CR> to confirm omni-complete popup
@@ -444,6 +463,7 @@ nnoremap mt 'm
 command! CLEAN retab | %s/ \+$//
 nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
 
+" vim rc quick access
 map <leader>e :e! ~/.vim_runtime/my_configs.vim<cr>
 map <leader>ee :e! ~/.vimrc<cr>
 
@@ -452,20 +472,19 @@ map <leader>ee :e! ~/.vimrc<cr>
 " nnoremap <leader>b <C-o>
 
 " switch splits
-" noremap <Up> <c-w>k
-" noremap <Down> <c-w>j
-" noremap <Right> <c-w>l
-" noremap <Left> <c-w>h
+" nnoremap <Up> <c-w>k
+" nnoremap <Down> <c-w>j
+nnoremap <Right> <c-w>l
+nnoremap <Left> <c-w>h
+
 " noremap vs :vsplit<CR>
 " noremap <C-h> <C-w>h
 " noremap <C-l> <C-w>l
 " noremap <leader>j <C-w><C-w>
-" au VimResized * exec "normal! \<c-w>="
 
 " for reference
 " <CR> as command prefix
 " nnoremap <CR> :
-" au FocusLost * :w
 " set exrc   "enable per-directory .vimrc files
 " set secure "disable unsafe commands in local .vimrc files
 " noremap <c-up> <c-w>+
@@ -478,3 +497,4 @@ map <leader>ee :e! ~/.vimrc<cr>
 " imap <c-l><c-g> <c-k>g* " Gamma
 " imap <c-l><c-d> <c-k>d* " Delta
 " imap <c-l><c-e> <c-k>e* " Epslion
+
