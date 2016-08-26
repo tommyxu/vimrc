@@ -1,6 +1,6 @@
 let s:vimrc_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let s:vimrc_dir = s:vimrc_path
-" echom s:vimrc_dir
+" echo s:vimrc_dir
 
 " set runtimepath+=~/.vim_runtime
 
@@ -13,7 +13,7 @@ endif
 execute 'set runtimepath+='.s:vimrc_dir.'/dein/repos/github.com/Shougo/dein.vim'
 
 " Required:
-call dein#begin('/home/tommy/projects/remote.vimrc/dein')
+call dein#begin(s:vimrc_dir.'/dein')
 
 " Let dein manage dein
 " Required:
@@ -90,4 +90,3 @@ execute "source ".s:vimrc_dir."/vimrcs/basic.vim"
 execute "source ".s:vimrc_dir."/my_configs.vim"
 "catch
 "endtry
-
