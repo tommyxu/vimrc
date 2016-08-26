@@ -11,4 +11,6 @@ vimrc_name=$script_dir/vimrc
 
 cd ~
 ln -sn $vimrc_name .vimrc
-ls -l ~/.vimrc
+ln -snf $script_dir .vim_runtime
+ls -l ~/.vimrc ~/.vim_runtime
+
