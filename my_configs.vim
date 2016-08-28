@@ -498,3 +498,6 @@ nnoremap <Left> <c-w>h
 " imap <c-l><c-d> <c-k>d* " Delta
 " imap <c-l><c-e> <c-k>e* " Epslion
 
+" eclim
+let g:EclimCompletionMethod = 'omnifunc'
+
