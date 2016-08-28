@@ -56,14 +56,13 @@ call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Valloric/YouCompleteMe', {'build' : './pyinstall.sh'})
 
 call dein#add('rizzatti/dash.vim')
+" call dein#add('ervandew/supertab')
 
 " call dein#add('Shougo/vimshell')
 " call dein#add('Shougo/unite.vim')
 " call dein#add('Shougo/neomru.vim')
 " call dein#add('Shougo/neoyank.vim')
-
 " call dein#add('Xuyuanp/nerdtree-git-plugin')
-" call dein#add('ervandew/supertab')
 
 " You can specify revision/branch/tag.
 " call dein#add('Shougo/vimshell', { 'rev': '3787e5' })

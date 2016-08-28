@@ -146,6 +146,10 @@ let g:tagbar_indent = 1
 " autocmd VimEnter * nested :TagbarOpen
 
 
+" supertab
+let g:SuperTabDefaultCompletionType = "<c-m>"
+
+
 " syntastic
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_python_checkers = ['pyflakes', 'pylint', 'python']
@@ -499,5 +503,5 @@ nnoremap <Left> <c-w>h
 " imap <c-l><c-e> <c-k>e* " Epslion
 
 " eclim
-let g:EclimCompletionMethod = 'omnifunc'
+" let g:EclimCompletionMethod = 'omnifunc'
 
