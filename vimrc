@@ -46,16 +46,24 @@ call dein#add('tpope/vim-commentary')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive.git')
 
-call dein#add('scrooloose/syntastic')
+call dein#add('mattn/emmet-vim')
 call dein#add('plasticboy/vim-markdown')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('Quramy/tsuquyomi')
 call dein#add('pangloss/vim-javascript')
+call dein#add('scrooloose/syntastic')
+
+call dein#add('rking/ag.vim')
+call dein#add('Chun-Yang/vim-action-ag')
 
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Valloric/YouCompleteMe', {'build' : './pyinstall.sh'})
 
+call dein#add('junegunn/fzf', {'build': './install --all'})
+call dein#add('junegunn/fzf.vim')
+
 call dein#add('rizzatti/dash.vim')
+
 " call dein#add('ervandew/supertab')
 
 " call dein#add('Shougo/vimshell')
