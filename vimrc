@@ -59,10 +59,10 @@ call dein#add('Chun-Yang/vim-action-ag')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Valloric/YouCompleteMe', {'build' : './pyinstall.sh'})
 
-call dein#add('junegunn/fzf', {'build': './install --all'})
-call dein#add('junegunn/fzf.vim')
-
 call dein#add('rizzatti/dash.vim')
+
+" call dein#add('junegunn/fzf', {'build': './install --all'})
+" call dein#add('junegunn/fzf.vim')
 
 " call dein#add('ervandew/supertab')
 
