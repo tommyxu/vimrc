@@ -13,7 +13,7 @@ au FileType javascript setl nofoldenable nowrap
 au FileType typescript setl commentstring=//%s
 au FileType typescript NeoCompleteLock
 au FileType samba setl commentstring=#%s
-
+au FileType markdown setl foldmethod=manual
 
 " au Filetype typescript setlocal makeprg=tsc
 " au FileType netrw setl bufhidden=wipe
@@ -53,15 +53,14 @@ if has("gui_running")
   colorscheme molokai
 else
   set t_Co=256
-  set background=dark
 
+  set background=dark
   " set background=light
 
   " let g:solarized_termcolors=256
   " colorscheme solarized
   " let g:airline_theme="solarized"
 
-  " set background=dark
   " colorscheme molokai
   " let g:airline_theme="molokai"
 
@@ -160,6 +159,7 @@ let g:tsuquyomi_disable_quickfix = 1
 " let g:syntastic_typescript_tsc_args = ['tsuquyomi']
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_java_checkers = []
+let g:syntastic_javascript_checkers = ['eslint']
 "let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -267,6 +267,8 @@ vmap <leader>a: :Tab /:\zs
 
 " yankring
 map <leader>y :YRShow<CR>
+" let g:yankring_persist = 0
+let g:yankring_history_dir = '/tmp'
 
 
 " commentary
@@ -291,8 +293,12 @@ map <leader>nn :NERDTreeToggle<cr>
 " let g:indentLine_concealcursor = ''
 " nnoremap <leader>id :IndentLinesToggle<CR>
 
+
+" indent guide
+nmap <leader>id :IndentGuidesToggle
 " let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_enable_on_vim_startup = 1
+
 
 " emmet
 " nmap <C-Y> <Plug>(emmet-expand-abbr)
@@ -390,6 +396,7 @@ nnoremap <leader>lp :lprev<CR>
 " imap <C-K>v <C-O>"+P
 " under insert mode, it is the same as <C-R>* or <C-R>+
 nmap <C-K>v "+P
+imap <C-K>v <C-O>"+p
 vmap <C-K>c "+y
 
 

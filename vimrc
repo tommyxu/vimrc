@@ -47,6 +47,7 @@ call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive.git')
 
 call dein#add('scrooloose/syntastic')
+call dein#add('mattn/emmet-vim')
 call dein#add('plasticboy/vim-markdown')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('Quramy/tsuquyomi')
