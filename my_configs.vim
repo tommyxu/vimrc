@@ -8,10 +8,16 @@ au BufRead,BufNewFile Makefile* setlocal filetype=make
 
 " au == autocmd, setl == setlocal
 au FileType python setl nowrap
+
 au FileType json setl conceallevel=0
+
 au FileType javascript setl nofoldenable nowrap
+au FileType javascript setl suffixesadd=.js,.jsx,.ts,.tsx
+
 au FileType typescript setl commentstring=//%s
+au FileType typescript setl suffixesadd=.ts,.tsx,.js,.jsx
 au FileType typescript NeoCompleteLock
+
 au FileType samba setl commentstring=#%s
 au FileType markdown setl foldmethod=manual
 
@@ -104,6 +110,10 @@ let g:airline#extensions#tabline#show_tabs = 1
 "let g:airline#extensions#tabline#show_tab_nr = 1
 "let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#tabline#left_sep = '|'
+
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -113,9 +123,6 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#ycm#enabled = 1
-let g:airline#extensions#tabline#left_sep = '|'
 
 
 " whitespace
@@ -162,6 +169,7 @@ let g:syntastic_java_checkers = []
 let g:syntastic_javascript_checkers = ['eslint']
 "let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_html_tidy_ignore_errors = [ 'trimming empty' ]
 
 
 " multicursor
@@ -210,9 +218,19 @@ nmap <leader>gc :Gcommit<CR>
 
 
 " ack
+let g:ackprg = "ag --vimgrep"
+let g:ack_use_cword_for_empty_search = 1
 " map <leader>a :Ack '' %<LEFT><LEFT><LEFT>
 " map <leader>aa :Ack ''<LEFT>
-" map <leader>as :Ack <cword><CR>
+nmap <leader>a :Ack! ''<LEFT>
+nmap <leader>aa :Ack! <cword><CR>
+" echo expand("<cword>")
+
+
+" ag
+" nmap * <Plug>AgActionWord
+" vmap * <Plug>AgActionVisual
+" nmap <leader>gw :Ag <C-R><C-W>
 
 
 " ctrlsf

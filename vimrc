@@ -28,6 +28,7 @@ call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('flazz/vim-colorschemes')
 
+call dein#add('mileszs/ack.vim')
 call dein#add('mbbill/undotree')
 call dein#add('scrooloose/nerdtree')
 call dein#add('jlanzarotta/bufexplorer')
@@ -50,13 +51,20 @@ call dein#add('scrooloose/syntastic')
 call dein#add('mattn/emmet-vim')
 call dein#add('plasticboy/vim-markdown')
 call dein#add('leafgarland/typescript-vim')
-call dein#add('Quramy/tsuquyomi')
 call dein#add('pangloss/vim-javascript')
+call dein#add('Quramy/tsuquyomi')
 
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Valloric/YouCompleteMe', {'build' : './pyinstall.sh'})
 
 call dein#add('rizzatti/dash.vim')
+
+" call dein#add('rking/ag.vim')
+" call dein#add('Chun-Yang/vim-action-ag')
+
+" call dein#add('junegunn/fzf', {'build': './install --all'})
+" call dein#add('junegunn/fzf.vim')
+
 " call dein#add('ervandew/supertab')
 
 " call dein#add('Shougo/vimshell')
