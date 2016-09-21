@@ -52,18 +52,16 @@ call dein#add('mattn/emmet-vim')
 call dein#add('plasticboy/vim-markdown')
 call dein#add('leafgarland/typescript-vim')
 call dein#add('pangloss/vim-javascript')
-call dein#add('Quramy/tsuquyomi')
+call dein#add('docker/docker')
 
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('Quramy/tsuquyomi')
 call dein#add('Valloric/YouCompleteMe', {'build' : './pyinstall.sh'})
 
 call dein#add('rizzatti/dash.vim')
-
-" call dein#add('rking/ag.vim')
-" call dein#add('Chun-Yang/vim-action-ag')
+call dein#add('junegunn/fzf')
 
 " call dein#add('junegunn/fzf', {'build': './install --all'})
-" call dein#add('junegunn/fzf.vim')
 
 " call dein#add('ervandew/supertab')
 
@@ -71,6 +69,7 @@ call dein#add('rizzatti/dash.vim')
 " call dein#add('Shougo/unite.vim')
 " call dein#add('Shougo/neomru.vim')
 " call dein#add('Shougo/neoyank.vim')
+
 " call dein#add('Xuyuanp/nerdtree-git-plugin')
 
 " You can specify revision/branch/tag.
@@ -86,6 +85,8 @@ filetype plugin indent on
 if dein#check_install()
   call dein#install()
 endif
+
+" call dein#update()
 
 "End dein Scripts-------------------------
 

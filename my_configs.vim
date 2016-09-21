@@ -250,10 +250,13 @@ let g:ctrlp_root_markers = ['node_modules', '.p4ignore']
 let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window = 'max:20'
 let g:ctrlp_brief_prompt=1
-let g:ctrlp_map = '<leader>f'
+let g:ctrlp_map = '<leader>p'
 map <leader>fb :CtrlPBuffer<cr>
 map <leader>fr :CtrlPMRUFiles<cr>
 
+
+" FZF
+nmap <leader>f :FZF<cr>
 
 " Unite
 " nnoremap <leader>g :Unite -no-split file<cr>
@@ -285,8 +288,8 @@ vmap <leader>a: :Tab /:\zs
 
 " yankring
 map <leader>y :YRShow<CR>
-" let g:yankring_persist = 0
-let g:yankring_history_dir = '/tmp'
+let g:yankring_persist = 0
+" let g:yankring_history_dir = '/tmp'
 
 
 " commentary
