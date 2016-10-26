@@ -44,6 +44,8 @@ call dein#add('nathanaelkane/vim-indent-guides')
 call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('tpope/vim-commentary')
 
+call dein#add('vim-scripts/DrawIt')
+
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive.git')
 
