@@ -51,7 +51,10 @@ Plug 'rizzatti/dash.vim'
 
 call plug#end()
 
-let s:vimrc_dir = '~/projects/vimrc'
+let s:vimrc_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+" echo s:vimrc_path
+let s:vimrc_dir = s:vimrc_path
+" let s:vimrc_dir = '~/projects/vimrc'
 execute "source ".s:vimrc_dir."/vimrcs/basic.vim"
 execute "source ".s:vimrc_dir."/my_configs.vim"
 
