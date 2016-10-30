@@ -19,6 +19,7 @@ au FileType typescript setl suffixesadd=.ts,.tsx,.js,.jsx
 au FileType typescript NeoCompleteLock
 
 au FileType samba setl commentstring=#%s
+au FileType groovy setl commentstring=//%s
 au FileType markdown setl foldmethod=manual
 
 " au Filetype typescript setlocal makeprg=tsc
