@@ -65,14 +65,14 @@ else
   " set background=light
 
   " let g:solarized_termcolors=256
-  " colorscheme solarized
   " let g:airline_theme="solarized"
+  " colorscheme solarized
 
-  " colorscheme molokai
-  " let g:airline_theme="molokai"
+  colorscheme molokai
+  let g:airline_theme="molokai"
 
-  colorscheme jellybeans
-  let g:airline_theme="jellybeans"
+  " colorscheme jellybeans
+  " let g:airline_theme="jellybeans"
 
   " colorscheme mongo
   " colorscheme gruvbox
