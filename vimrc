@@ -24,14 +24,16 @@ Plug 'vim-scripts/YankRing.vim'
 Plug 'yegappan/mru'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/DrawIt'
+Plug 'jiangmiao/auto-pairs'
 
 " syntax
 Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'othree/html5.vim'
 
 " tools
 Plug 'mileszs/ack.vim'
@@ -39,8 +41,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'rizzatti/dash.vim'
 
 " testing
-Plug 'tpope/vim-fugitive'
-
+" Plug 'tpope/vim-fugitive'
+" Plug 'pangloss/vim-javascript'
+" Plug 'ternjs/tern_for_vim'
 " Plug 'godlygeek/tabular'
 " Plug 'junegunn/limelight.vim'
 " Plug 'Quramy/tsuquyomi')
