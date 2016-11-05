@@ -101,9 +101,9 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline_detect_modified=1
 let g:airline_inactive_collapse=1
 let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '◀'
 let g:airline#extensions#tabline#show_buffers = 1
 "let g:airline#extensions#tabline#buffer_nr_show = 2
 let g:airline#extensions#tabline#show_tabs = 1
@@ -284,6 +284,13 @@ vmap <leader>a= :Tab /=
 nmap <leader>a: :Tab /:\zs
 vmap <leader>a: :Tab /:\zs
 " map <leader>ar :s/ *\(=\) */ \1 /
+
+
+" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 
 " yankring
