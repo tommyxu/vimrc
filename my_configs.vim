@@ -504,7 +504,7 @@ command! CLEAN retab | %s/ \+$//
 nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
 
 " vim rc quick access
-map <leader>e :e! ~/.vim_runtime/my_configs.vim<cr>
+execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
 map <leader>ee :e! ~/.vimrc<cr>
 
 " ctag enter
