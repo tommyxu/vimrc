@@ -98,22 +98,23 @@ nmap <leader>b :ToggleBufExplorer<cr>j
 
 
 " airline
-let g:airline#extensions#tabline#enabled=1
 let g:airline_detect_modified=1
 let g:airline_inactive_collapse=1
 let g:airline_left_sep = '»'
 let g:airline_right_sep = '«'
 " let g:airline_left_sep = '▶'
 " let g:airline_right_sep = '◀'
-let g:airline#extensions#tabline#show_buffers = 1
 "let g:airline#extensions#tabline#buffer_nr_show = 2
-let g:airline#extensions#tabline#show_tabs = 1
 "let g:airline#extensions#tabline#show_tab_nr = 1
 "let g:airline#extensions#tabline#tab_nr_type = 2
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#ycm#enabled = 1
 let g:airline#extensions#tabline#left_sep = '|'
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#ycm#enabled = 1
 
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -126,8 +127,15 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 
-" whitespace
-nmap <leader>sw :StripWhitespace<cr>
+" ale
+let g:ale_open_list = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+" let g:ale_keep_list_window_open = 1
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 
 " taglist
@@ -333,6 +341,15 @@ nmap <leader>id :IndentGuidesToggle
 " nmap <C-Y> <Plug>(emmet-expand-abbr)
 
 
+" autopairs
+" let g:AutoPairsFlyMode = 1
+
+
+" workspace
+let g:workspace_autosave = 0
+
+
+
 " neocomplete
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_smart_case=1
@@ -366,6 +383,13 @@ nnoremap <leader>u :UndotreeToggle<CR>
 " fzf
 " set rtp+=/usr/local/opt/fzf
 
+
+"vim-jsx
+let g:jsx_ext_required = 0
+
+
+" vim-javascript
+let g:javascript_plugin_flow = 1
 
 " misc (not plugin) mapping configuration
 
@@ -462,7 +486,7 @@ nnoremap <C-L> o<ESC>
 
 
 " use <CR> to confirm omni-complete popup
-inoremap <expr><CR> pumvisible() ? "\<C-Y>":"\<CR>"
+" inoremap <expr><CR> pumvisible() ? "\<C-Y>":"\<CR>"
 " inoremap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
 " inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
@@ -500,8 +524,9 @@ cnoremap <C-p> <Up>
 nnoremap mt 'm
 
 " trail tail whitespace
-command! CLEAN retab | %s/ \+$//
+nmap <leader>sw :StripWhitespace<cr>
 nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
+command! CLEAN retab | %s/ \+$//
 
 " vim rc quick access
 execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
@@ -512,8 +537,8 @@ map <leader>ee :e! ~/.vimrc<cr>
 " nnoremap <leader>b <C-o>
 
 " switch splits
-" nnoremap <Up> <c-w>k
-" nnoremap <Down> <c-w>j
+nnoremap <Up> <c-w>k
+nnoremap <Down> <c-w>j
 nnoremap <Right> <c-w>l
 nnoremap <Left> <c-w>h
 

@@ -8,13 +8,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 
 " basic
-Plug 'Shougo/neocomplete.vim'
 Plug 'Lokaltog/vim-easymotion'
+Plug 'Shougo/neocomplete.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-expand-region'
 Plug 'terryma/vim-multiple-cursors'
@@ -22,17 +22,15 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'yegappan/mru'
-Plug 'junegunn/vim-easy-align'
-Plug 'vim-scripts/DrawIt'
-Plug 'jiangmiao/auto-pairs'
+Plug 'thaerkh/vim-workspace'
 
 " syntax
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'mattn/emmet-vim'
 Plug 'plasticboy/vim-markdown'
-Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'jelera/vim-javascript-syntax'
+Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 
 " tools
@@ -41,6 +39,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'rizzatti/dash.vim'
 
 " testing
+Plug 'vim-scripts/DrawIt'
+Plug 'ervandew/supertab'
+" Plug 'ntpeters/vim-better-whitespace'
+" Plug 'jiangmiao/auto-pairs'
 " Plug 'tpope/vim-fugitive'
 " Plug 'pangloss/vim-javascript'
 " Plug 'ternjs/tern_for_vim'
@@ -53,7 +55,9 @@ Plug 'rizzatti/dash.vim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'junegunn/goyo.vim'
+" Plug 'scrooloose/syntastic'
 " Plug 'ctrlpvim/ctrlp.vim'
+" tagbar
 
 call plug#end()
 
