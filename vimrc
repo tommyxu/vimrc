@@ -23,9 +23,12 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'yegappan/mru'
 Plug 'thaerkh/vim-workspace'
+Plug 'wesQ3/vim-windowswap'
+Plug 'sbdchd/neoformat'
 
 " syntax
 Plug 'w0rp/ale'
+" Plug 'flowtype/vim-flow'
 Plug 'mattn/emmet-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'pangloss/vim-javascript'

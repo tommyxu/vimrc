@@ -23,10 +23,9 @@ au FileType groovy setl commentstring=//%s
 au FileType markdown setl foldmethod=manual
 
 " au Filetype typescript setlocal makeprg=tsc
+" au BufWritePost *.ts make
 " au FileType netrw setl bufhidden=wipe
 " autocmd FileType netrw setl bufhidden=delete
-" let g:netrw_liststyle=2
-" au BufWritePost *.ts make
 
 set nowrap
 set nofoldenable
@@ -53,7 +52,6 @@ set listchars=tab:»»,trail:·,extends:▸,eol:¬
 
 " color scheme selection
 
-
 " colorscheme default
 if has("gui_running")
   set background=light
@@ -68,8 +66,9 @@ else
   " let g:airline_theme="solarized"
   " colorscheme solarized
 
-  colorscheme molokai
-  let g:airline_theme="molokai"
+  colorscheme wombat256mod
+  " colorscheme molokai
+  " let g:airline_theme="molokai"
 
   " colorscheme jellybeans
   " let g:airline_theme="jellybeans"
@@ -136,6 +135,10 @@ let g:ale_lint_on_enter = 0
 " let g:ale_keep_list_window_open = 1
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+
+" flow
+let g:flow#autoclose=1
 
 
 " taglist
@@ -399,7 +402,7 @@ nmap <leader>q <ESC>:q!<CR>
 nmap <leader>qq <ESC>:qa!<CR>
 
 " search with \v
-nnoremap / /\v
+" nnoremap / /\v
 
 " motion and reset
 " silent! unmap <C-B>
@@ -427,7 +430,7 @@ nnoremap <S-Tab> :bp<CR>
 nnoremap <BS> :bp<CR>
 
 " switch location
-nnoremap ,, '.
+" nnoremap ,, '.
 nnoremap ;; '`
 
 
