@@ -138,7 +138,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 
 " flow
-let g:flow#autoclose=1
+" let g:flow#autoclose=1
 
 
 " taglist
@@ -165,7 +165,7 @@ let g:tagbar_indent = 1
 
 
 " supertab
-let g:SuperTabDefaultCompletionType = "<c-m>"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
 
 
 " syntastic
@@ -213,9 +213,9 @@ nmap <leader>kv <Plug>GitGutterPreviewHunk
 
 
 " git fugitive
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gd :Gsdiff<CR>
-nmap <leader>gc :Gcommit<CR>
+" nmap <leader>gs :Gstatus<CR>
+" nmap <leader>gd :Gsdiff<CR>
+" nmap <leader>gc :Gcommit<CR>
 
 
 " jedi (disabled)
@@ -254,8 +254,8 @@ nmap <leader>aa :Ack! <cword><CR>
 
 
 " ctrl-p find-files
-let g:ctrlp_max_files = 500
-let g:ctrlp_max_depth = 20
+let g:ctrlp_max_files = 200
+let g:ctrlp_max_depth = 10
 let g:ctrlp_custom_ignore = '^\.svn\|^\.DS_Store\|^\.git\|^\.cvs'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_root_markers = ['node_modules', '.p4ignore']
@@ -267,8 +267,14 @@ map <leader>fb :CtrlPBuffer<cr>
 map <leader>fr :CtrlPMRUFiles<cr>
 
 
+" vim-rooter
+let g:rooter_manual_only = 1
+nmap <leader>cdr :Rooter<cr>
+
+
 " FZF
 nmap <leader>f :FZF<cr>
+
 
 " Unite
 " nnoremap <leader>g :Unite -no-split file<cr>
@@ -279,7 +285,7 @@ nmap <leader>f :FZF<cr>
 
 
 " MRU
-map <leader>r :MRU<CR>
+" map <leader>r :MRU<CR>
 
 
 " easymotion
@@ -352,7 +358,6 @@ nmap <leader>id :IndentGuidesToggle
 let g:workspace_autosave = 0
 
 
-
 " neocomplete
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_smart_case=1
@@ -370,7 +375,7 @@ nmap <silent> <leader>dd <Plug>DashSearch
 
 
 " fileBeagle
-let g:filebeagle_suppress_keymaps=1
+" let g:filebeagle_suppress_keymaps=1
 " map <silent> -  <Plug>FileBeagleOpenCurrentBufferDir
 
 
@@ -381,10 +386,6 @@ let g:filebeagle_suppress_keymaps=1
 " undotree
 let g:undotree_SplitWidth=40
 nnoremap <leader>u :UndotreeToggle<CR>
-
-
-" fzf
-" set rtp+=/usr/local/opt/fzf
 
 
 "vim-jsx
@@ -417,21 +418,21 @@ nnoremap <space> <C-F>
 
 " buffer
 " nmap <leader>b :ls<CR>:b
-nmap <leader>bn :bnext<CR>
-nmap <leader>bp :bprev<CR>
+" nmap <leader>bn :bnext<CR>
+" nmap <leader>bp :bprev<CR>
 nmap <leader>bd :bdelete<CR>
-nmap <leader>d :bdelete<CR>
-nmap <leader>bb :e #<CR>
-" map <leader>be :e  <LEFT>
+" nmap <leader>d :bdelete<CR>
+" nmap <leader>bb :e #<CR>
+nmap <leader>be :e  <LEFT>
 
 " switch buffer with Tab key
 nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
+" nnoremap <S-Tab> :bp<CR>
 nnoremap <BS> :bp<CR>
 
 " switch location
 " nnoremap ,, '.
-nnoremap ;; '`
+" nnoremap ;; '`
 
 
 " quickfix
@@ -518,8 +519,8 @@ nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 " noremap ;; :
 
 " ex command
-cnoremap <C-n> <Down>
-cnoremap <C-p> <Up>
+" cnoremap <C-n> <Down>
+" cnoremap <C-p> <Up>
 
 " quick marks
 " use mm to mark the line as mark M
@@ -528,12 +529,14 @@ nnoremap mt 'm
 
 " trail tail whitespace
 nmap <leader>sw :StripWhitespace<cr>
-nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
+" nnoremap <leader>rtw :%s/\s\+$//<cr>:let @/=''<cr>
 command! CLEAN retab | %s/ \+$//
 
 " vim rc quick access
-execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
 map <leader>ee :e! ~/.vimrc<cr>
+
+" reload current buffer
+execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
 
 " ctag enter
 " nnoremap <Return> <C-]>
@@ -544,6 +547,10 @@ nnoremap <Up> <c-w>k
 nnoremap <Down> <c-w>j
 nnoremap <Right> <c-w>l
 nnoremap <Left> <c-w>h
+" noremap <c-up> <c-w>+
+" noremap <c-down> <c-w>-
+" noremap <c-left> <c-w>>
+" noremap <c-right> <c-w><
 
 " noremap vs :vsplit<CR>
 " noremap <C-h> <C-w>h
@@ -555,17 +562,10 @@ nnoremap <Left> <c-w>h
 " nnoremap <CR> :
 " set exrc   "enable per-directory .vimrc files
 " set secure "disable unsafe commands in local .vimrc files
-" noremap <c-up> <c-w>+
-" noremap <c-down> <c-w>-
-" noremap <c-left> <c-w>>
-" noremap <c-right> <c-w><
 " let mapleader=" "
 " imap <c-l><c-a> <c-k>a* " Alpha
 " imap <c-l><c-b> <c-k>b* " Beta
 " imap <c-l><c-g> <c-k>g* " Gamma
 " imap <c-l><c-d> <c-k>d* " Delta
 " imap <c-l><c-e> <c-k>e* " Epslion
-
-" eclim
-" let g:EclimCompletionMethod = 'omnifunc'
 
