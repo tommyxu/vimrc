@@ -427,7 +427,7 @@ nmap <leader>be :e  <LEFT>
 
 " switch buffer with Tab key
 nnoremap <Tab> :bn<CR>
-" nnoremap <S-Tab> :bp<CR>
+nnoremap <S-Tab> :bp<CR>
 nnoremap <BS> :bp<CR>
 
 " switch location
