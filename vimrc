@@ -25,14 +25,14 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wesQ3/vim-windowswap'
 
 " syntax
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Plug 'mattn/emmet-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'pangloss/vim-javascript'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
-Plug 'cespare/vim-toml'
+" Plug 'cespare/vim-toml'
 
 " tools
 Plug 'mileszs/ack.vim'
