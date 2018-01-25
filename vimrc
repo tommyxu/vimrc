@@ -23,9 +23,12 @@ Plug 'thaerkh/vim-workspace'
 Plug 'sbdchd/neoformat'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wesQ3/vim-windowswap'
+Plug 'raimondi/delimitmate'
+Plug 'editorconfig/editorconfig-vim'
 
 " syntax
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
+
 " Plug 'mattn/emmet-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'pangloss/vim-javascript'

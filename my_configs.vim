@@ -19,7 +19,9 @@ au FileType typescript setl suffixesadd=.ts,.tsx,.js,.jsx
 au FileType typescript NeoCompleteLock
 
 au FileType samba setl commentstring=#%s
+
 au FileType groovy setl commentstring=//%s
+
 au FileType markdown setl foldmethod=manual
 
 " au Filetype typescript setlocal makeprg=tsc
@@ -66,9 +68,9 @@ else
   " let g:airline_theme="solarized"
   " colorscheme solarized
 
-  colorscheme wombat256mod
-  " colorscheme molokai
-  " let g:airline_theme="molokai"
+  " colorscheme wombat256mod
+  colorscheme molokai
+  let g:airline_theme="molokai"
 
   " colorscheme jellybeans
   " let g:airline_theme="jellybeans"
@@ -420,7 +422,7 @@ nnoremap <space> <C-F>
 " nmap <leader>b :ls<CR>:b
 " nmap <leader>bn :bnext<CR>
 " nmap <leader>bp :bprev<CR>
-nmap <leader>bd :bdelete<CR>
+" nmap <leader>bd :bdelete<CR>
 " nmap <leader>d :bdelete<CR>
 " nmap <leader>bb :e #<CR>
 nmap <leader>be :e  <LEFT>
@@ -536,7 +538,7 @@ command! CLEAN retab | %s/ \+$//
 map <leader>ee :e! ~/.vimrc<cr>
 
 " reload current buffer
-execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
+" execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
 
 " ctag enter
 " nnoremap <Return> <C-]>
