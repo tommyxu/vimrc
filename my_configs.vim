@@ -535,10 +535,8 @@ nmap <leader>sw :StripWhitespace<cr>
 command! CLEAN retab | %s/ \+$//
 
 " vim rc quick access
+execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
 map <leader>ee :e! ~/.vimrc<cr>
-
-" reload current buffer
-" execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
 
 " ctag enter
 " nnoremap <Return> <C-]>
