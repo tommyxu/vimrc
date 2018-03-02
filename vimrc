@@ -10,7 +10,6 @@ Plug 'flazz/vim-colorschemes'
 " basic
 Plug 'airblade/vim-rooter'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Shougo/neocomplete.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -20,33 +19,38 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'thaerkh/vim-workspace'
-Plug 'sbdchd/neoformat'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'raimondi/delimitmate'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'Shougo/neocomplete.vim'
+Plug 'ervandew/supertab'
+Plug 'sbdchd/neoformat'
+Plug 'vim-scripts/loremipsum'
+Plug 'junegunn/vim-easy-align'
 
 " syntax
 Plug 'w0rp/ale'
-
-" Plug 'mattn/emmet-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'pangloss/vim-javascript'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
+" Plug 'davidhalter/jedi-vim'
+" Plug 'mattn/emmet-vim'
 " Plug 'cespare/vim-toml'
 
 " tools
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" external integration
 Plug 'rizzatti/dash.vim'
 
 " testing
 Plug 'vim-scripts/DrawIt'
-Plug 'ervandew/supertab'
 
-" Plug 'junegunn/vim-easy-align'
+" Plug 'godlygeek/tabular'
 " Plug 'vim-scripts/YankRing.vim'
 " Plug 'mbbill/undotree'
 " Plug 'yegappan/mru'
@@ -56,7 +60,6 @@ Plug 'ervandew/supertab'
 " Plug 'tpope/vim-fugitive'
 " Plug 'pangloss/vim-javascript'
 " Plug 'ternjs/tern_for_vim'
-" Plug 'godlygeek/tabular'
 " Plug 'junegunn/limelight.vim'
 " Plug 'Quramy/tsuquyomi')
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}

@@ -139,6 +139,9 @@ let g:ale_lint_on_enter = 0
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 
+" Loremipsum
+nmap <leader>lo :Loremipsum  <LEFT>
+
 " flow
 " let g:flow#autoclose=1
 
@@ -234,10 +237,10 @@ nmap <leader>kv <Plug>GitGutterPreviewHunk
 " ack
 let g:ackprg = "ag --vimgrep"
 let g:ack_use_cword_for_empty_search = 1
-" map <leader>a :Ack '' %<LEFT><LEFT><LEFT>
-" map <leader>aa :Ack ''<LEFT>
 nmap <leader>a :Ack! ''<LEFT>
 nmap <leader>aa :Ack! <cword><CR>
+" map <leader>a :Ack '' %<LEFT><LEFT><LEFT>
+" map <leader>aa :Ack ''<LEFT>
 " echo expand("<cword>")
 
 
@@ -267,6 +270,7 @@ let g:ctrlp_brief_prompt=1
 let g:ctrlp_map = '<leader>p'
 map <leader>fb :CtrlPBuffer<cr>
 map <leader>fr :CtrlPMRUFiles<cr>
+map <leader>ff :CtrlPCurWD<cr>
 
 
 " vim-rooter
