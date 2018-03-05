@@ -442,10 +442,11 @@ nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 nnoremap <BS> :bp<CR>
 
+
 " switch location
 " nnoremap ,, '.
 " nnoremap ;; '`
-
+nnoremap ;; '.
 
 " quickfix
 nnoremap <leader>cm :w<BAR>make<CR>
