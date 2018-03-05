@@ -142,6 +142,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 " let g:ale_keep_list_window_open = 1
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" jump to next error
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 
@@ -309,10 +310,10 @@ map s <Plug>(easymotion-bd-w)
 
 
 " tabularize
-nmap <leader>a= :Tab /=
-vmap <leader>a= :Tab /=
-nmap <leader>a: :Tab /:\zs
-vmap <leader>a: :Tab /:\zs
+" nmap <leader>a= :Tab /=
+" vmap <leader>a= :Tab /=
+" nmap <leader>a: :Tab /:\zs
+" vmap <leader>a: :Tab /:\zs
 " map <leader>ar :s/ *\(=\) */ \1 /
 
 
@@ -324,13 +325,13 @@ nmap ga <Plug>(EasyAlign)
 
 
 " yankring
-map <leader>y :YRShow<CR>
-let g:yankring_persist = 0
+nnoremap <leader>y :YRShow<CR>
+" let g:yankring_persist = 0
 " let g:yankring_history_dir = '/tmp'
 
 
 " commentary
-let g:commentary_map_backslash = 0
+" let g:commentary_map_backslash = 0
 
 
 " vimim
@@ -397,7 +398,7 @@ nmap <silent> <leader>dd <Plug>DashSearch
 
 " undotree
 let g:undotree_SplitWidth=40
-nnoremap <leader>u :UndotreeToggle<CR>
+" nnoremap <leader>u :UndotreeToggle<CR>
 
 
 "vim-jsx
