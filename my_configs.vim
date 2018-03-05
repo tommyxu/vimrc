@@ -506,8 +506,8 @@ nnoremap gV `[v`]
 
 
 " quick quit the input mode
-imap jj <esc>
-cmap jj <esc>
+inoremap jj <esc>
+cnoremap jj <esc>
 
 
 " sudo write
@@ -522,7 +522,7 @@ nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 " noremap <Down> <C-x>
 "
 " quick command line
-" noremap ;; :
+nnoremap ; :
 
 " ex command
 " cnoremap <C-n> <Down>
