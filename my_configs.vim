@@ -44,7 +44,7 @@ set cursorline
 set wildmenu
 set wildmode=full
 set listchars=tab:»»,trail:·,extends:▸,eol:¬
-set showmatch
+" set showmatch
 " set number
 " set relativenumber
 " set ttymouse=xterm2
@@ -432,7 +432,6 @@ nnoremap <space> <C-F>
 " nmap <leader>b :ls<CR>:b
 " nmap <leader>bn :bnext<CR>
 " nmap <leader>bp :bprev<CR>
-" nmap <leader>bd :bdelete<CR>
 " nmap <leader>d :bdelete<CR>
 " nmap <leader>bb :e #<CR>
 nmap <leader>be :e  <LEFT>
@@ -528,7 +527,7 @@ nnoremap <leader>rw :%s/<C-R>=expand('<cword>')<CR>//g<LEFT><LEFT>
 " noremap <Down> <C-x>
 "
 " quick command line
-nnoremap ; :
+" nnoremap ; :
 
 " ex command
 " cnoremap <C-n> <Down>
