@@ -24,11 +24,15 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'raimondi/delimitmate'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/neocomplete.vim'
-Plug 'ervandew/supertab'
 Plug 'sbdchd/neoformat'
 Plug 'vim-scripts/loremipsum'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/YankRing.vim'
+" Plug 'ervandew/supertab'
+
+" snip
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " syntax
 Plug 'w0rp/ale'
@@ -37,6 +41,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
+Plug 'fatih/vim-go'
+
 " Plug 'davidhalter/jedi-vim'
 " Plug 'mattn/emmet-vim'
 " Plug 'cespare/vim-toml'
