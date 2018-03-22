@@ -42,6 +42,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 Plug 'fatih/vim-go'
+Plug 'andrewstuart/vim-kubernetes'
 
 " Plug 'davidhalter/jedi-vim'
 " Plug 'mattn/emmet-vim'
