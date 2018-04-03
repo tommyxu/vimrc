@@ -31,6 +31,7 @@ au FileType markdown setl foldmethod=manual
 
 set nowrap
 set nofoldenable
+set colorcolumn=
 set foldcolumn=0
 set textwidth=0
 set nolbr
@@ -44,6 +45,7 @@ set cursorline
 set wildmenu
 set wildmode=full
 set listchars=tab:»»,trail:·,extends:▸,eol:¬
+
 " set showmatch
 " set number
 " set relativenumber
@@ -361,6 +363,12 @@ nmap <leader>id :IndentGuidesToggle
 
 " emmet
 " nmap <C-Y> <Plug>(emmet-expand-abbr)
+
+
+" pymode
+let g:pymode_python = 'python3'
+let g:pymode_rope = 1
+let g:pymode_rope_completion = 1
 
 
 " autopairs
