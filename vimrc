@@ -30,7 +30,7 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'sbdchd/neoformat'
 Plug 'vim-scripts/loremipsum'
 Plug 'godlygeek/tabular'
-Plug 'vim-scripts/YankRing.vim'
+" Plug 'vim-scripts/YankRing.vim'
 
 " snip
 Plug 'SirVer/ultisnips'
