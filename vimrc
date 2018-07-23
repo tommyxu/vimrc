@@ -33,8 +33,8 @@ Plug 'godlygeek/tabular'
 " Plug 'vim-scripts/YankRing.vim'
 
 " snip
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 " syntax
 Plug 'w0rp/ale'
