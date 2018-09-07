@@ -96,6 +96,8 @@ else
 endif
 
 
+let g:vim_json_syntax_conceal = 0
+
 " bufexplorer
 " let g:bufExplorerShowRelativePath=0
 " let g:bufExplorerSortBy='number'

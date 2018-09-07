@@ -8,12 +8,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 
 " basic
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 Plug 'airblade/vim-rooter'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'yggdroot/indentline'
+" Plug 'yggdroot/indentline'
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-expand-region'
@@ -26,10 +26,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'raimondi/delimitmate'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'Shougo/neocomplete.vim'
-Plug 'sbdchd/neoformat'
 Plug 'vim-scripts/loremipsum'
 Plug 'godlygeek/tabular'
+Plug 'Shougo/neocomplete.vim'
+Plug 'sbdchd/neoformat'
 " Plug 'vim-scripts/YankRing.vim'
 
 " snip
@@ -37,16 +37,17 @@ Plug 'godlygeek/tabular'
 " Plug 'honza/vim-snippets'
 
 " syntax
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'plasticboy/vim-markdown'
 " Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'mxw/vim-jsx'
-Plug 'othree/html5.vim'
-Plug 'fatih/vim-go'
+" Plug 'jelera/vim-javascript-syntax'
+" Plug 'mxw/vim-jsx'
+" Plug 'ekalinin/Dockerfile.vim'
+" Plug 'othree/html5.vim'
+" Plug 'fatih/vim-go'
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'ap/vim-css-color'
+" Plug 'elzr/vim-json'
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 
@@ -55,7 +56,7 @@ Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " external integration
-Plug 'rizzatti/dash.vim'
+" Plug 'rizzatti/dash.vim'
 
 " testing
 Plug 'vim-scripts/DrawIt'
