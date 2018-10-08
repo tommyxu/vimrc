@@ -23,13 +23,13 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'thaerkh/vim-workspace'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'wesQ3/vim-windowswap'
+" Plug 'wesQ3/vim-windowswap'
 Plug 'raimondi/delimitmate'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-scripts/loremipsum'
 Plug 'godlygeek/tabular'
 Plug 'Shougo/neocomplete.vim'
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 " Plug 'vim-scripts/YankRing.vim'
 
 " snip
@@ -45,7 +45,7 @@ Plug 'plasticboy/vim-markdown'
 " Plug 'ekalinin/Dockerfile.vim'
 " Plug 'othree/html5.vim'
 " Plug 'fatih/vim-go'
-Plug 'andrewstuart/vim-kubernetes'
+" Plug 'andrewstuart/vim-kubernetes'
 Plug 'ap/vim-css-color'
 " Plug 'elzr/vim-json'
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
@@ -53,13 +53,13 @@ Plug 'ap/vim-css-color'
 
 " tools
 Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " external integration
 " Plug 'rizzatti/dash.vim'
 
 " testing
-Plug 'vim-scripts/DrawIt'
+" Plug 'vim-scripts/DrawIt'
 
 " Plug 'tpope/vim-repeat'
 " Plug 'davidhalter/jedi-vim'
