@@ -310,7 +310,7 @@ let g:EasyMotion_do_mapping=0
 " map <leader>ge <Plug>(easymotion-prefix)
 " map <leader>gl <Plug>(easymotion-bd-jk)
 map S <Plug>(easymotion-bd-W)
-map s <Plug>(easymotion-bd-w)
+" map s <Plug>(easymotion-bd-w)
 
 
 " tabularize
@@ -435,7 +435,8 @@ nmap <leader>qq <ESC>:qa!<CR>
 unmap 0
 nnoremap 0 ^
 nnoremap 00 0
-nnoremap <bslash> <C-B>
+" nnoremap <bslash> <C-B>
+nnoremap s <C-B>
 nnoremap <space> <C-F>
 
 
