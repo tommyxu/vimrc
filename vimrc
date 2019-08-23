@@ -2,56 +2,70 @@ filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 
-" color and UI
+" color and themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 
 " basic
-" Plug 'junegunn/goyo.vim'
+Plug 'Lokaltog/vim-easymotion'
+
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-rooter'
+Plug 'scrooloose/nerdtree'
+" Plug 'jlanzarotta/bufexplorer'
+
+Plug 'tomtom/tcomment_vim'
+" Plug 'scrooloose/nerdcommenter'
+" Plug 'tpope/vim-commentary'
+
 Plug 'airblade/vim-gitgutter'
 " Plug 'yggdroot/indentline'
 " Plug 'nathanaelkane/vim-indent-guides'
-Plug 'scrooloose/nerdtree'
-Plug 'jlanzarotta/bufexplorer'
-" Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdcommenter'
-" Plug 'tomtom/tcomment_vim'
-" Plug 'tpope/vim-commentary'
-Plug 'Lokaltog/vim-easymotion'
+
 Plug 'terryma/vim-expand-region'
-Plug 'tpope/vim-surround'
-Plug 'raimondi/delimitmate'
-" Plug 'thaerkh/vim-workspace'
-Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'wesQ3/vim-windowswap'
+Plug 'jiangmiao/auto-pairs'
+" Plug 'tpope/vim-surround'
+" Plug 'raimondi/delimitmate'
+
 Plug 'editorconfig/editorconfig-vim'
-Plug 'vim-scripts/loremipsum'
-" Plug 'godlygeek/tabular'
+
 Plug 'Shougo/neocomplete.vim'
+" Plug 'ervandew/supertab'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
+
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'thaerkh/vim-workspace'
+" Plug 'wesQ3/vim-windowswap'
+" Plug 'godlygeek/tabular'
 " Plug 'sbdchd/neoformat'
 " Plug 'vim-scripts/YankRing.vim'
-
-" snip
+" Plug 'junegunn/goyo.vim'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
+" snip
 
 " syntax
+Plug 'plasticboy/vim-markdown'
+Plug 'ap/vim-css-color'
+
+" generation
+Plug 'mattn/emmet-vim'
+Plug 'vim-scripts/loremipsum'
+
 " Plug 'w0rp/ale'
-Plug 'tpope/vim-markdown'
-" Plug 'plasticboy/vim-markdown'
-Plug 'pangloss/vim-javascript'
+" Plug 'tpope/vim-markdown'
+" Plug 'pangloss/vim-javascript'
 " Plug 'jelera/vim-javascript-syntax'
 " Plug 'mxw/vim-jsx'
 " Plug 'ekalinin/Dockerfile.vim'
 " Plug 'othree/html5.vim'
 " Plug 'fatih/vim-go'
 " Plug 'andrewstuart/vim-kubernetes'
-Plug 'ap/vim-css-color'
 " Plug 'elzr/vim-json'
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
-
 
 " tools
 " Plug 'mileszs/ack.vim'
@@ -65,10 +79,8 @@ Plug 'ap/vim-css-color'
 
 " Plug 'tpope/vim-repeat'
 " Plug 'davidhalter/jedi-vim'
-Plug 'mattn/emmet-vim'
 " Plug 'cespare/vim-toml'
 " Plug 'junegunn/vim-easy-align'
-" Plug 'ervandew/supertab'
 " Plug 'mbbill/undotree'
 " Plug 'yegappan/mru'
 " Plug 'flowtype/vim-flow'

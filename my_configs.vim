@@ -105,8 +105,17 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerSortBy='mru'
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerSplitBelow=1
-nmap <leader>b :ToggleBufExplorer<cr>j
+" nmap <leader>b :ToggleBufExplorer<cr>j
 
+" To start exploring in the current window, use:
+"  <Leader>be   or   :BufExplorer   or   Your custom key mapping
+" To toggle bufexplorer on or off in the current window, use:
+"  <Leader>bt   or   :ToggleBufExplorer   or   Your custom key mapping
+" To start exploring in a newly split horizontal window, use:
+"  <Leader>bs   or   :BufExplorerHorizontalSplit   or   Your custom key mapping
+" To start exploring in a newly split vertical window, use:
+"  <Leader>bv   or   :BufExplorerVerticalSplit   or   Your custom key mapping
+" nnoremap <silent> <s-F11> :ToggleBufExplorer<CR>
 
 " airline
 let g:airline_detect_modified=1
@@ -144,14 +153,14 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-" let g:ale_keep_list_window_open = 1
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" jump to next error
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" let g:ale_keep_list_window_open = 1
 
 
 " Loremipsum
 nmap <leader>lo :Loremipsum  <LEFT>
+
 
 " flow
 " let g:flow#autoclose=1
@@ -182,6 +191,11 @@ let g:tagbar_indent = 1
 
 " supertab
 " let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "context"
+
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 
 " syntastic
@@ -279,9 +293,9 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window = 'max:20'
 let g:ctrlp_brief_prompt=1
 let g:ctrlp_map = '<leader>p'
-map <leader>fb :CtrlPBuffer<cr>
-map <leader>fr :CtrlPMRUFiles<cr>
-map <leader>ff :CtrlPCurWD<cr>
+nmap <leader>fb :CtrlPBuffer<cr>
+nmap <leader>fr :CtrlPMRUFiles<cr>
+nmap <leader>ff :CtrlPCurWD<cr>
 
 
 " vim-rooter
@@ -290,7 +304,7 @@ nmap <leader>cdr :Rooter<cr>
 
 
 " FZF
-nmap <leader>f :FZF<cr>
+" nmap <leader>f :FZF<cr>
 
 
 " Unite
@@ -323,13 +337,13 @@ map S <Plug>(easymotion-bd-W)
 
 " EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
 " " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" nmap ga <Plug>(EasyAlign)
 
 
 " yankring
-nnoremap <leader>y :YRShow<CR>
+" nnoremap <leader>y :YRShow<CR>
 " let g:yankring_persist = 0
 " let g:yankring_history_dir = '/tmp'
 
@@ -337,15 +351,45 @@ nnoremap <leader>y :YRShow<CR>
 " commentary
 " let g:commentary_map_backslash = 0
 
+" tcomment
+" As operator (the prefix can be customized via |g:tcomment_opleader1|):
+"
+"     gc{motion}   :: Toggle comments (for small comments within one line 
+"                     the &filetype_inline style will be used, if 
+"                     defined)
+"     gc<Count>c{motion} :: Toggle comment with count argument 
+"                     (see |tcomment#Comment()|)
+"     gcc          :: Toggle comment for the current line
+"
+" Force line-wise operation:
+"     gC{motion}   :: Toggle comments by line
+"     gC<Count>c{motion} :: Toggle comment by line with count argument 
+"                     (see |tcomment#Comment()|)
+"
+" Explicit commenting/uncommenting:
+"
+"     g<{motion}   :: Uncomment region
+"     g<c          :: Uncomment the current line
+"     g<b          :: Uncomment the current region as block
+"
+"     g>{motion}   :: Comment region
+"     g>c          :: Comment the current line
+"     g>b          :: Comment the current region as block
+"
+" In visual mode:
+"
+"     gc           :: Toggle comments
+"     g>           :: Comment selected text
+"
 
 " vimim
-let g:vimim_toggle="wubi,pinyin"
+" let g:vimim_toggle="wubi,pinyin"
 
 
 " nerdtree
-let g:NERDTreeWinSize = 55
+let g:NERDTreeWinSize = 48
 let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeChDirMode = 2
+" let g:NERDTreeChDirMode = 2
 map <leader>nn :NERDTreeToggle<cr>
 " map <leader>n :NERDTreeToggle<cr>
 
@@ -358,7 +402,7 @@ map <leader>nn :NERDTreeToggle<cr>
 
 
 " indent guide
-nmap <leader>id :IndentGuidesToggle
+" nmap <leader>id :IndentGuidesToggle
 " let g:indent_guides_guide_size = 1
 " let g:indent_guides_enable_on_vim_startup = 1
 
@@ -366,6 +410,7 @@ nmap <leader>id :IndentGuidesToggle
 " emmet
 " nmap <C-Y> <Plug>(emmet-expand-abbr)
 
+" t
 
 " pymode
 let g:pymode_python = 'python3'
@@ -392,6 +437,11 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+" use <CR> to confirm omni-complete popup
+" inoremap <expr><CR> pumvisible() ? "\<C-Y>":"\<CR>"
+" inoremap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
 
 " dash
 nmap <silent> <leader>dd <Plug>DashSearch
@@ -404,6 +454,7 @@ nmap <silent> <leader>dd <Plug>DashSearch
 
 " expand-region (use + and _ )
 " vnoremap + <Plug>(expand_region_shrink)
+" map J <Plug>(expand_region_shrink)
 
 
 " undotree
@@ -512,11 +563,6 @@ nmap <leader>inn :set nonumber<CR>:set norelativenumber<CR>
 " insert a empty line
 nnoremap <C-L> o<ESC>
 
-
-" use <CR> to confirm omni-complete popup
-" inoremap <expr><CR> pumvisible() ? "\<C-Y>":"\<CR>"
-" inoremap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 
 " select last inserted text
