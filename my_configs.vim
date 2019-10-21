@@ -179,7 +179,7 @@ nmap <leader>lo :Loremipsum  <LEFT>
 
 
 " tagbar
-map <leader>tt :TagbarToggle<CR>
+" map <leader>tt :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 " let g:tagbar_hide_nonpublic = 1
 " let g:tagbar_left = 1
