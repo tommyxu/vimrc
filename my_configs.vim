@@ -262,8 +262,8 @@ nmap <leader>kv <Plug>GitGutterPreviewHunk
 " ack
 let g:ackprg = "ag --vimgrep"
 let g:ack_use_cword_for_empty_search = 1
-nmap <leader>a :Ack! ''<LEFT>
-nmap <leader>aa :Ack! <cword><CR>
+" nmap <leader>a :Ack! ''<LEFT>
+" nmap <leader>aa :Ack! <cword><CR>
 " map <leader>a :Ack '' %<LEFT><LEFT><LEFT>
 " map <leader>aa :Ack ''<LEFT>
 " echo expand("<cword>")
@@ -458,7 +458,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 
 " dash
-nmap <silent> <leader>dd <Plug>DashSearch
+" nmap <silent> <leader>dd <Plug>DashSearch
 
 
 " fileBeagle
@@ -483,7 +483,7 @@ let g:jsx_ext_required = 0
 " vim-javascript
 let g:javascript_plugin_flow = 1
 
-" misc (not plugin) mapping configuration
+" Basic Key Mapping (Non-plugin)
 
 " system
 nmap <leader>x :x<CR>
@@ -511,7 +511,7 @@ nnoremap <space> <C-F>
 " nmap <leader>bp :bprev<CR>
 " nmap <leader>d :bdelete<CR>
 " nmap <leader>bb :e #<CR>
-nmap <leader>be :e  <LEFT>
+" nmap <leader>be :e  <LEFT>
 
 " switch buffer with Tab key
 nnoremap <Tab> :bn<CR>
@@ -556,7 +556,6 @@ nmap <leader>it :set filetype=plain<CR>
 nmap <leader>iy :syntax off<CR>
 nmap <leader>ii :nohlsearch<CR>
 
-" <leader>ig is indent-guides
 
 " use 2 commands to switch line numbers as
 " there is a bug that option "number" and "relativenumber" are exclusive on some vim version
