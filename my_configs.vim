@@ -387,7 +387,7 @@ nnoremap <leader>yr :YRShow<CR>
 
 
 " nerdtree
-let g:NERDTreeWinSize = 48
+let g:NERDTreeWinSize = 46
 let g:NERDTreeQuitOnOpen = 1
 " let g:NERDTreeChDirMode = 2
 map <leader>nn :NERDTreeToggle<cr>
