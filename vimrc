@@ -104,7 +104,7 @@ let s:vimrc_path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let s:vimrc_dir = s:vimrc_path
 " echo s:vimrc_path
 " let s:vimrc_dir = '~/projects/vimrc'
-execute "source ".s:vimrc_dir."/vimrcs/basic.vim"
+execute "source ".s:vimrc_dir."/basic.vim"
 execute "source ".s:vimrc_dir."/my_configs.vim"
 
 " source ~/.vim_runtime/vimrcs/filetypes.vim
