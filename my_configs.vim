@@ -77,8 +77,8 @@ else
   " colorscheme solarized
 
   " colorscheme wombat256mod
-  colorscheme janah
-  " colorscheme molokai
+  " colorscheme janah
+  colorscheme molokai
   " let g:airline_theme="molokai"
 
   " colorscheme jellybeans
