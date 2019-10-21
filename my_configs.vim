@@ -77,8 +77,9 @@ else
   " colorscheme solarized
 
   " colorscheme wombat256mod
-  colorscheme molokai
-  let g:airline_theme="molokai"
+  colorscheme janah
+  " colorscheme molokai
+  " let g:airline_theme="molokai"
 
   " colorscheme jellybeans
   " let g:airline_theme="jellybeans"
@@ -96,7 +97,8 @@ else
 endif
 
 
-let g:vim_json_syntax_conceal = 0
+" let g:vim_json_syntax_conceal = 0
+
 
 " bufexplorer
 " let g:bufExplorerShowRelativePath=0
@@ -509,7 +511,7 @@ nnoremap <space> <C-F>
 " nmap <leader>b :ls<CR>:b
 " nmap <leader>bn :bnext<CR>
 " nmap <leader>bp :bprev<CR>
-" nmap <leader>d :bdelete<CR>
+nnoremap <leader>bd :bdelete<CR>
 " nmap <leader>bb :e #<CR>
 " nmap <leader>be :e  <LEFT>
 
@@ -624,10 +626,11 @@ map <leader>ee :e! ~/.vimrc<cr>
 " nnoremap <leader>b <C-o>
 
 " switch splits
-nnoremap <Up> <c-w>k
-nnoremap <Down> <c-w>j
-nnoremap <Right> <c-w>l
-nnoremap <Left> <c-w>h
+nnoremap <Up> <C-W>k
+nnoremap <Down> <C-W>j
+nnoremap <Right> <C-W>l
+nnoremap <Left> <C-W>h
+nnoremap <leader>o <C-W>o
 " noremap <c-up> <c-w>+
 " noremap <c-down> <c-w>-
 " noremap <c-left> <c-w>>

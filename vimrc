@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
+" Plug 'mhinz/vim-janah'
 
 " basic
 Plug 'Lokaltog/vim-easymotion'
@@ -27,7 +28,7 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'terryma/vim-expand-region'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " Plug 'raimondi/delimitmate'
 
 Plug 'Shougo/neocomplete.vim'
@@ -36,6 +37,7 @@ Plug 'Shougo/neocomplete.vim'
 " Plug 'roxma/nvim-yarp'
 " Plug 'roxma/vim-hug-neovim-rpc'
 
+Plug 'mhinz/vim-startify'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'thaerkh/vim-workspace'
 " Plug 'wesQ3/vim-windowswap'
@@ -44,14 +46,13 @@ Plug 'Shougo/neocomplete.vim'
 " Plug 'junegunn/goyo.vim'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-" snip
 
 " syntax
 Plug 'plasticboy/vim-markdown'
 Plug 'ap/vim-css-color'
 
 " generation
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/loremipsum'
 
 " Plug 'w0rp/ale'
@@ -68,6 +69,7 @@ Plug 'vim-scripts/loremipsum'
 
 " tools
 " Plug 'mileszs/ack.vim'
+Plug 'gabesoft/vim-ags'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " external integration
