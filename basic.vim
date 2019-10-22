@@ -54,7 +54,7 @@ set cmdheight=2
 set hid
 
 " Configure backspace so it acts as it should act
-" set backspace=eol,start,indent
+set backspace=eol,start,indent
 " set backspace=indent,start
 set whichwrap+=<,>,h,l
 

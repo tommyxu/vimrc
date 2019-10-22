@@ -27,9 +27,8 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'terryma/vim-expand-region'
-Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-" Plug 'raimondi/delimitmate'
+Plug 'raimondi/delimitmate'
 
 Plug 'Shougo/neocomplete.vim'
 " Plug 'ervandew/supertab'
