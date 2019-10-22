@@ -266,6 +266,7 @@ vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 nnoremap <leader>g :Ags<space>
 nnoremap <leader>gw :Ags<space><C-R>=expand('<cword>')<CR><CR>
 vnoremap <leader>gv y:Ags<space><C-R>='"' . escape(@", '"*?()[]{}.') . '"'<CR><CR>
+nnoremap <leader>gq :AgsQuit<CR>
 
 
 " When you press <leader>r you can search and replace the selected text
