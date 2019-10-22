@@ -344,7 +344,7 @@ map S <Plug>(easymotion-bd-W)
 
 " yankring
 nnoremap <leader>yr :YRShow<CR>
-" let g:yankring_persist = 0
+let g:yankring_persist = 0
 " let g:yankring_history_dir = '/tmp'
 
 
