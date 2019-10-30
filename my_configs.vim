@@ -160,6 +160,10 @@ let g:ale_lint_on_enter = 0
 " let g:ale_keep_list_window_open = 1
 
 
+" markdown
+let g:vim_markdown_toc_autofit = 1
+
+
 " Loremipsum
 nmap <leader>lo :Loremipsum  <LEFT>
 

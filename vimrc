@@ -40,20 +40,21 @@ Plug 'mhinz/vim-startify'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'thaerkh/vim-workspace'
 " Plug 'wesQ3/vim-windowswap'
-" Plug 'godlygeek/tabular'
 " Plug 'sbdchd/neoformat'
 " Plug 'junegunn/goyo.vim'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 
-" syntax
-Plug 'plasticboy/vim-markdown'
-Plug 'ap/vim-css-color'
-
 " generation
 " Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/loremipsum'
 
+" syntax
+Plug 'ap/vim-css-color'
+
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'mzlogin/vim-markdown-toc'
 " Plug 'w0rp/ale'
 " Plug 'tpope/vim-markdown'
 " Plug 'pangloss/vim-javascript'
@@ -80,7 +81,7 @@ Plug 'gabesoft/vim-ags'
 " Plug 'tpope/vim-repeat'
 " Plug 'davidhalter/jedi-vim'
 " Plug 'cespare/vim-toml'
-" Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 " Plug 'mbbill/undotree'
 " Plug 'yegappan/mru'
 " Plug 'flowtype/vim-flow'
