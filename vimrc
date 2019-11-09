@@ -79,7 +79,8 @@ Plug 'gabesoft/vim-ags'
 " Plug 'vim-scripts/DrawIt'
 
 " Plug 'tpope/vim-repeat'
-" Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
+
 " Plug 'cespare/vim-toml'
 Plug 'junegunn/vim-easy-align'
 " Plug 'mbbill/undotree'
