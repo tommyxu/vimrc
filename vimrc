@@ -50,7 +50,6 @@ Plug 'mhinz/vim-startify'
 Plug 'vim-scripts/loremipsum'
 
 " syntax
-" Plug 'ap/vim-css-color'
 Plug 'plasticboy/vim-markdown'
 " Plug 'godlygeek/tabular'
 Plug 'mzlogin/vim-markdown-toc'
@@ -65,6 +64,10 @@ Plug 'ekalinin/Dockerfile.vim'
 " Plug 'andrewstuart/vim-kubernetes'
 " Plug 'elzr/vim-json'
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
+" Plug 'ap/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'jelera/vim-javascript-syntax'
+
 
 " tools
 " Plug 'mileszs/ack.vim'
