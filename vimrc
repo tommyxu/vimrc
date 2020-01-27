@@ -67,7 +67,7 @@ Plug 'ekalinin/Dockerfile.vim'
 " Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'jelera/vim-javascript-syntax'
-
+Plug 'leafgarland/typescript-vim'
 
 " tools
 " Plug 'mileszs/ack.vim'
