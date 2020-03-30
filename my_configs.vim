@@ -16,7 +16,7 @@ au FileType javascript setl suffixesadd=.js,.jsx,.ts,.tsx
 
 au FileType typescript setl commentstring=//%s
 au FileType typescript setl suffixesadd=.ts,.tsx,.js,.jsx
-au FileType typescript NeoCompleteLock
+" au FileType typescript NeoCompleteLock
 
 au FileType samba setl commentstring=#%s
 
@@ -197,11 +197,13 @@ let g:tagbar_indent = 1
 
 " supertab
 " let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabMappingBackward = '<nul>'
+let g:SuperTabMappingTabLiteral = '<s-tab>'
 
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 
 " syntastic
@@ -393,7 +395,7 @@ let g:yankring_persist = 0
 
 
 " nerdtree
-let g:NERDTreeWinSize = 46
+let g:NERDTreeWinSize = 48
 let g:NERDTreeQuitOnOpen = 1
 " let g:NERDTreeChDirMode = 2
 map <leader>nn :NERDTreeToggle<cr>
@@ -447,15 +449,16 @@ let g:workspace_autosave = 0
 
 
 " neocomplete
-let g:neocomplete#enable_at_startup=1
-let g:neocomplete#enable_smart_case=1
-let g:neocomplete#sources#min_keyword_length=3
+" let g:neocomplete#enable_at_startup=1
+" let g:neocomplete#enable_smart_case=1
+" let g:neocomplete#sources#min_keyword_length=3
+"
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " use <CR> to confirm omni-complete popup
 " inoremap <expr><CR> pumvisible() ? "\<C-Y>":"\<CR>"
@@ -478,16 +481,16 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 
 " undotree
-let g:undotree_SplitWidth=40
+" let g:undotree_SplitWidth=40
 " nnoremap <leader>u :UndotreeToggle<CR>
 
 
 "vim-jsx
-let g:jsx_ext_required = 0
+" let g:jsx_ext_required = 0
 
 
 " vim-javascript
-let g:javascript_plugin_flow = 1
+" let g:javascript_plugin_flow = 1
 
 " Basic Key Mapping (Non-plugin)
 

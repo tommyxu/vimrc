@@ -37,10 +37,11 @@ Plug 'tpope/vim-surround'
 Plug 'raimondi/delimitmate'
 
 " Plug 'Shougo/neocomplete.vim'
-" Plug 'ervandew/supertab'
+Plug 'ervandew/supertab'
 " Plug 'Shougo/deoplete.nvim'
 " Plug 'roxma/nvim-yarp'
 " Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'ajh17/VimCompletesMe'
 
 Plug 'mhinz/vim-startify'
 " Plug 'terryma/vim-multiple-cursors'
