@@ -6,6 +6,8 @@ au VimResized * exec "normal! \<c-w>="
 " file type detector
 au BufRead,BufNewFile Makefile* setlocal filetype=make
 
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " au == autocmd, setl == setlocal
 au FileType python setl nowrap
 
@@ -67,18 +69,16 @@ if has("gui_running")
   set background=light
   colorscheme molokai
 else
-  set t_Co=256
-
   set background=dark
-  " set background=light
+  set t_Co=256
 
   " let g:solarized_termcolors=256
   " let g:airline_theme="solarized"
-  " colorscheme solarized
-
+  colorscheme angr
+  " colorscheme dracula
   " colorscheme wombat256mod
   " colorscheme janah
-  colorscheme molokai
+  " colorscheme molokai
   " let g:airline_theme="molokai"
 
   " colorscheme jellybeans
@@ -159,6 +159,18 @@ let g:ale_lint_on_enter = 0
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " let g:ale_keep_list_window_open = 1
 
+
+" coc
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 
 " markdown
 let g:vim_markdown_toc_autofit = 1
@@ -351,8 +363,8 @@ map S <Plug>(easymotion-bd-W)
 
 
 " yankring
-nnoremap <leader>yr :YRShow<CR>
-let g:yankring_persist = 0
+" nnoremap <leader>yr :YRShow<CR>
+" let g:yankring_persist = 0
 " let g:yankring_history_dir = '/tmp'
 
 

@@ -11,17 +11,22 @@ call plug#begin('~/.vim/plugged')
 " color and themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
+Plug 'rafi/awesome-vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
+" Plug 'dracula/vim'
+
+" file explorer
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+
 " Plug 'mhinz/vim-janah'
 
 " basic
 Plug 'Lokaltog/vim-easymotion'
-
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-rooter'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/YankRing.vim'
 Plug 'editorconfig/editorconfig-vim'
+" Plug 'vim-scripts/YankRing.vim'
 " Plug 'jlanzarotta/bufexplorer'
 
 Plug 'tomtom/tcomment_vim'
@@ -33,11 +38,12 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'terryma/vim-expand-region'
-Plug 'tpope/vim-surround'
-Plug 'raimondi/delimitmate'
+
+" Plug 'tpope/vim-surround'
+" Plug 'raimondi/delimitmate'
 
 " Plug 'Shougo/neocomplete.vim'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 " Plug 'Shougo/deoplete.nvim'
 " Plug 'roxma/nvim-yarp'
 " Plug 'roxma/vim-hug-neovim-rpc'
@@ -58,9 +64,9 @@ Plug 'vim-scripts/loremipsum'
 
 " syntax
 Plug 'plasticboy/vim-markdown'
-" Plug 'godlygeek/tabular'
 Plug 'mzlogin/vim-markdown-toc'
-Plug 'ekalinin/Dockerfile.vim'
+" Plug 'ekalinin/Dockerfile.vim'
+" Plug 'godlygeek/tabular'
 " Plug 'w0rp/ale'
 " Plug 'tpope/vim-markdown'
 " Plug 'pangloss/vim-javascript'
@@ -71,10 +77,14 @@ Plug 'ekalinin/Dockerfile.vim'
 " Plug 'andrewstuart/vim-kubernetes'
 " Plug 'elzr/vim-json'
 " Plug 'python-mode/python-mode', { 'branch': 'develop' }
-" Plug 'ap/vim-css-color'
+
 Plug 'hail2u/vim-css3-syntax'
 Plug 'jelera/vim-javascript-syntax'
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'ap/vim-css-color'
+
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
 " tools
 " Plug 'mileszs/ack.vim'
