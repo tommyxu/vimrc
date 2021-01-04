@@ -209,9 +209,9 @@ let g:tagbar_indent = 1
 
 " supertab
 " let g:SuperTabDefaultCompletionType = "<c-n>"
-" let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabMappingBackward = '<nul>'
-let g:SuperTabMappingTabLiteral = '<s-tab>'
+" let g:SuperTabMappingTabLiteral = '<s-tab>'
 
 
 " deoplete
@@ -457,6 +457,7 @@ let g:pymode_rope_completion = 1
 
 
 " workspace
+nnoremap <leader>s :ToggleWorkspace<CR>
 let g:workspace_autosave = 0
 
 

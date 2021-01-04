@@ -43,15 +43,16 @@ Plug 'terryma/vim-expand-region'
 " Plug 'raimondi/delimitmate'
 
 " Plug 'Shougo/neocomplete.vim'
-" Plug 'ervandew/supertab'
+Plug 'ervandew/supertab'
 " Plug 'Shougo/deoplete.nvim'
 " Plug 'roxma/nvim-yarp'
 " Plug 'roxma/vim-hug-neovim-rpc'
 " Plug 'ajh17/VimCompletesMe'
 
 Plug 'mhinz/vim-startify'
+Plug 'mg979/vim-visual-multi'
+Plug 'thaerkh/vim-workspace'
 " Plug 'terryma/vim-multiple-cursors'
-" Plug 'thaerkh/vim-workspace'
 " Plug 'wesQ3/vim-windowswap'
 " Plug 'sbdchd/neoformat'
 " Plug 'junegunn/goyo.vim'
@@ -132,3 +133,13 @@ execute "source ".s:vimrc_dir."/my_configs.vim"
 " source ~/.vim_runtime/vimrcs/filetypes.vim
 " source ~/.vim_runtime/vimrcs/plugins_config.vim
 " source ~/.vim_runtime/vimrcs/extended.vim
+
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:deoplete#enable_at_startup = 1
+
