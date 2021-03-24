@@ -655,8 +655,9 @@ nmap <leader>sw :StripWhitespace<cr>
 command! CLEAN retab | %s/ \+$//
 
 " vim rc quick access
-execute 'map <leader>e :e! '.expand('<sfile>:p').'<cr>'
-map <leader>ee :e! ~/.vimrc<cr>
+execute 'nnoremap <leader>e :e! '.expand('<sfile>:p').'<cr>'
+execute 'nnoremap <leader>ee :e! '.expand('<sfile>:p:h').'/.vimrc'.'<cr>'
+" nnoremap <leader>ee :e! '.expand('%:p:h')/.vimrc.'<cr>
 
 " ctag enter
 " nnoremap <Return> <C-]>
