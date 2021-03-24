@@ -17,14 +17,14 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 " file explorer
 Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 " Plug 'mhinz/vim-janah'
 
 " basic
 Plug 'Lokaltog/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 Plug 'editorconfig/editorconfig-vim'
 " Plug 'vim-scripts/YankRing.vim'
 " Plug 'jlanzarotta/bufexplorer'
