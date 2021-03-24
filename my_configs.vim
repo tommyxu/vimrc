@@ -280,8 +280,8 @@ nmap <leader>kv <Plug>GitGutterPreviewHunk
 
 
 " ack
-let g:ackprg = "ag --vimgrep"
-let g:ack_use_cword_for_empty_search = 1
+" let g:ackprg = "ag --vimgrep"
+" let g:ack_use_cword_for_empty_search = 1
 " nmap <leader>a :Ack! ''<LEFT>
 " nmap <leader>aa :Ack! <cword><CR>
 " map <leader>a :Ack '' %<LEFT><LEFT><LEFT>
@@ -289,7 +289,24 @@ let g:ack_use_cword_for_empty_search = 1
 " echo expand("<cword>")
 
 
-" ag
+" vim-ags
+let g:ags_agexe = 'rg'
+let g:ags_agargs = {
+  \ '--column'         : ['', ''],
+  \ '--line-number'    : ['', ''],
+  \ '--context'        : ['g:ags_agcontext', '-C'],
+  \ '--max-count'      : ['g:ags_agmaxcount', ''],
+  \ '--heading'        : ['',''],
+  \ '--smart-case'     : ['','-S'],
+  \ '--color'          : ['always',''],
+  \ '--colors'         : [['match:fg:green', 'match:bg:black', 'match:style:nobold', 'path:fg:red', 'path:style:bold', 'line:fg:black', 'line:style:bold'] ,''],
+  \ }
+nnoremap <Leader>aw :Ags<Space><C-R>=expand('<cword>')<CR><CR>
+vnoremap <Leader>av y:Ags<Space><C-R>='"' . escape(@", '"*?()[]{}.') . '"'<CR><CR>
+nnoremap <Leader>aa :AgsQuit<CR>
+" nnoremap <Leader>aa :Ags<Space>
+
+
 " nmap * <Plug>AgActionWord
 " vmap * <Plug>AgActionVisual
 " nmap <leader>gw :Ag <C-R><C-W>
